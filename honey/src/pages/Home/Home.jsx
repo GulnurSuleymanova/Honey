@@ -6,6 +6,8 @@ import slideBackground from '../../assets/slide4-3.webp';
 import WhyChooseUs from './WhyChoossUs';
 import ACertification from './ACertification';
 import PBenefit from './PBenefit';
+import Featured from './Featured';
+import BSocial from './BSocial';
 
 const Home = () => {
   return (
@@ -49,8 +51,9 @@ const Home = () => {
 
       <WhyChooseUs />
       <ACertification />
-            <PBenefit />
-
+      <PBenefit />
+<Featured/>
+<BSocial/>
     </>
   );
 };
