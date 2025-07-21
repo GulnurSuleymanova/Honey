@@ -13,7 +13,7 @@ const ACertification = () => {
       <div className="max-w-[1200px] mx-auto px-4">
         <div className="flex flex-col-reverse lg:flex-row items-center">
 
-  <div className="w-full lg:w-1/2 mb-6 lg:mb-0">
+          <div className="w-full lg:w-1/2 mb-6 lg:mb-0">
             <img
               src={img}
               className="mx-auto max-w-full h-auto"
@@ -22,6 +22,7 @@ const ACertification = () => {
               alt="img"
             />
           </div>
+
           <div className="w-full lg:w-1/2 pt-8 lg:pt-20">
             <div>
               <h6 className="text-[#5B2800] dark:text-[#F9BD17] text-[17px] font-bold mb-2">
@@ -44,25 +45,81 @@ const ACertification = () => {
                   speed={2000}
                   loop={true}
                 >
-                  {[brand1, brand2, brand3, brand1, brand2, brand3].map((brand, index) => (
-                    <SwiperSlide key={index}>
-                      <div className="w-full inline-block px-4 pb-10">
-                        <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
-                          <img
-                            src={brand}
-                            alt={`brand-${index}`}
-                            className="w-[90px] h-[90px] object-contain mx-auto"
-                          />
-                        </div>
+                  <SwiperSlide>
+                    <div className="w-full inline-block px-4 pb-10">
+                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                        <img
+                          src={brand1}
+                          alt="brand-1"
+                          className="w-[90px] h-[90px] object-contain mx-auto"
+                        />
                       </div>
-                    </SwiperSlide>
-                  ))}
+                    </div>
+                  </SwiperSlide>
+
+                  <SwiperSlide>
+                    <div className="w-full inline-block px-4 pb-10">
+                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                        <img
+                          src={brand2}
+                          alt="brand-2"
+                          className="w-[90px] h-[90px] object-contain mx-auto"
+                        />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+
+                  <SwiperSlide>
+                    <div className="w-full inline-block px-4 pb-10">
+                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                        <img
+                          src={brand3}
+                          alt="brand-3"
+                          className="w-[90px] h-[90px] object-contain mx-auto"
+                        />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+
+                  <SwiperSlide>
+                    <div className="w-full inline-block px-4 pb-10">
+                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                        <img
+                          src={brand1}
+                          alt="brand-1-duplicate"
+                          className="w-[90px] h-[90px] object-contain mx-auto"
+                        />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+
+                  <SwiperSlide>
+                    <div className="w-full inline-block px-4 pb-10">
+                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                        <img
+                          src={brand2}
+                          alt="brand-2-duplicate"
+                          className="w-[90px] h-[90px] object-contain mx-auto"
+                        />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+
+                  <SwiperSlide>
+                    <div className="w-full inline-block px-4 pb-10">
+                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                        <img
+                          src={brand3}
+                          alt="brand-3-duplicate"
+                          className="w-[90px] h-[90px] object-contain mx-auto"
+                        />
+                      </div>
+                    </div>
+                  </SwiperSlide>
                 </Swiper>
               </div>
             </div>
           </div>
-
-        
 
         </div>
       </div>

@@ -5,10 +5,13 @@ import img4 from "../../assets/gallerry4.webp";
 import img5 from "../../assets/gallerry5.webp";
 import img6 from "../../assets/gallerry6.webp";
 import { FaInstagram } from "react-icons/fa6";
+import test from "../../assets/icon-testimonial.webp";
 
 const BSocial = () => {
   return (
     <div className="pt-[100px] bg-white dark:bg-white">
+                    <img src={test} alt="testimonial icon" className="mx-auto mb-4" />
+
       <div className="max-w-[1240px] mx-auto px-4">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-4 pb-6">
           <div className="w-full lg:w-1/4 relative group overflow-hidden rounded-[20px]">
