@@ -11,6 +11,7 @@ import BSocial from "../src/pages/Home/BSocial";
 import Testimonials from "../src/pages/Home/Testimonials";
 import Brend from "../src/pages/Home/Brend";
 import Shopbutton from "../src/pages/Home/Shopbutton";
+import NotFound from "../src/pages/NotFound";
 
 export const route = createBrowserRouter(
     createRoutesFromElements(
@@ -27,6 +28,8 @@ export const route = createBrowserRouter(
                                 <Route path='/shopbutton' element={<Shopbutton />} />
 
                               <Route path='/about' element={<About />} />
+      <Route path="*" element={<NotFound />} />
+
 
             </Route>
         </>
