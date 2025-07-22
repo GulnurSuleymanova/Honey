@@ -15,7 +15,7 @@ import Shopbutton from './Shopbutton';
 const Home = () => {
   return (
     <>
-      <div className="relative w-full">
+      <div className="relative w-full -mt-32 z-10">
         <div
           className="relative bg-cover bg-center bg-no-repeat w-full h-[110vh] pt-[250px]"
           style={{ backgroundImage: `url(${slideBackground})` }}

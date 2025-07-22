@@ -7,7 +7,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="relative mx-auto md:h-[90px] w-[1310px] mt-7 lg:px-[15px] pt-[15px] md:rounded-[90px] bg-[#FBF2E0] shadow-md dark:text-gray-800">
+    <header className="relative mx-auto md:h-[90px] w-[1310px] mt-7 lg:px-[15px] pt-[15px] md:rounded-[90px] bg-[#FBF2E0] shadow-md dark:text-gray-800 z-40">
       <div className="relative flex justify-between items-center h-full mx-auto">
 
         <button

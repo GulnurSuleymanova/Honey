@@ -1,10 +1,10 @@
+import { FaInstagram } from "react-icons/fa";
 import img1 from "../../assets/gallerry1.webp";
 import img2 from "../../assets/gallerry2.webp";
 import img3 from "../../assets/gallerry3.webp";
 import img4 from "../../assets/gallerry4.webp";
 import img5 from "../../assets/gallerry5.webp";
 import img6 from "../../assets/gallerry6.webp";
-import { FaInstagram } from "react-icons/fa6";
 import test from "../../assets/icon-testimonial.webp";
 
 const BSocial = () => {
@@ -41,7 +41,7 @@ const BSocial = () => {
               className="w-full transition-transform duration-500 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-500 flex items-center justify-center text-white text-[40px] opacity-0 group-hover:opacity-100">
-              <FaInstagram />
+<FaInstagram />
             </div>
           </div>
         </div>

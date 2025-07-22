@@ -1,6 +1,8 @@
 import React from 'react';
 import bgFooter from '../assets/bg-footer4.webp';
 import logo from '../assets/logo.png';
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -33,7 +35,6 @@ const Footer = () => {
         <footer className="py-10 text-gray-900">
           <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-              {/* Sol tərəfdə: Shop */}
               <div className="text-center md:text-left order-1">
                 <p className="text-lg font-semibold mb-3">Shop</p>
                 <ul className="space-y-2 text-sm">
@@ -45,14 +46,32 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* Ortada: Logo və təsvir */}
               <div className="flex flex-col items-center md:items-center order-2">
                 <img src={logo} alt="Logo" className="w-32 mb-4" />
                 <p className="text-sm text-center text-gray-700">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed dui tempor eros porttitor tristique eget eu lectus. Sed auctor mi vitae velit aliquet, quis pharetra sem vestibulum. Nam vel lectus imperdiet.    </p>
+              <div className="flex space-x-4 mt-10">
+  <a
+    href="#"
+    className="w-10 h-10 flex items-center justify-center rounded-full bg-[#5B2800] text-white hover:bg-[#251c14]"
+  >
+<FaInstagram />
+  </a>
+  <a
+    href="#"
+    className="w-10 h-10 flex items-center justify-center rounded-full bg-[#5B2800] text-white hover:bg-[#251c14]"
+  >
+<FaXTwitter />
+  </a>
+  <a
+    href="#"
+    className="w-10 h-10 flex items-center justify-center rounded-full bg-[#5B2800] text-white hover:bg-[#251c14]"
+  >
+<FaWhatsapp />
+  </a>
+</div>
               </div>
 
-              {/* Sağda: Info */}
               <div className="text-center md:text-right order-3">
                 <p className="text-lg font-semibold mb-3">Info</p>
                 <ul className="space-y-2 text-sm">
@@ -64,30 +83,12 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-
-
-            <div className="flex flex-col md:flex-row items-center justify-between text-sm text-gray-600 border-t pt-6">
-              <div className="space-x-4 mb-4 md:mb-0">
+            <div className="flex flex-col md:flex-row items-center justify-center text-sm text-gray-600 border-t pt-6">
                 <span>© 2025 Gulnur</span>
-              
-              </div>
-
-              <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-[#5B2800] text-white hover:bg-[#251c14]">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003..."></path></svg>
-                </a>
-                <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-[#5B2800] text-white hover:bg-[#251c14]">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M10.9..."></path></svg>
-                </a>
-                <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-[#5B2800] text-white hover:bg-[#251c14]">
-                </a>
-              </div>
             </div>
           </div>
         </footer>
       </section>
-
-
     </div>
   );
 };

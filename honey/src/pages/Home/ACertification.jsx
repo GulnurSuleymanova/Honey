@@ -9,10 +9,9 @@ import 'swiper/css';
 
 const ACertification = () => {
   return (
-    <div className="pt-5">
-      <div className="max-w-[1200px] mx-auto px-4">
-        <div className="flex flex-col-reverse lg:flex-row items-center">
-
+    <div className="pt-20">
+      <div className="max-w-[1500px] mx-auto px-4">
+        <div className="flex flex-col-reverse lg:flex-row items-center font-medium tracking-wide">
           <div className="w-full lg:w-1/2 mb-6 lg:mb-0">
             <img
               src={img}
@@ -23,17 +22,17 @@ const ACertification = () => {
             />
           </div>
 
-          <div className="w-full lg:w-1/2 pt-8 lg:pt-20">
+          <div className="w-full lg:w-1/2 pt-8 lg:pt-20 ">
             <div>
-              <h6 className="text-[#5B2800] dark:text-[#F9BD17] text-[17px] font-bold mb-2">
-                Certified Product
+              <h6 className="text-[#5B2800] text-[27px] font-semibold mb-2">
+True Source Certified
+
               </h6>
-              <h3 className="text-[30px] dark:text-[#A2A8B7] font-semibold mb-3">
-                We Are Authentic
+              <h3 className="text-[46px]  font-semibold mb-3 leading-tight">
+Authenticity Certification
               </h3>
-              <p className="text-gray-700 dark:text-[#A2A8B7] mb-6">
-                Our honey products are tested and certified to meet the highest quality standards.
-              </p>
+              <p className="text-shadow-gray-800  mb-6 opacity-80 text-[16px] leading-relaxed">
+True Source Honey certification confirms that honey was sourced in a transparent manner and tested for authenticity. When consumers buy honey or honey containing products bearing the True Source.              </p>
 
               <div>
                 <Swiper
@@ -46,72 +45,72 @@ const ACertification = () => {
                   loop={true}
                 >
                   <SwiperSlide>
-                    <div className="w-full inline-block px-4 pb-10">
-                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                    <div className="w-full inline-block px-2 pb-8">
+                      <div className="bg-white rounded h-[120px] text-center shadow-md p-4 flex items-center justify-center dark:bg-white">
                         <img
                           src={brand1}
                           alt="brand-1"
-                          className="w-[90px] h-[90px] object-contain mx-auto"
+                          className="w-[80px] h-[80px] object-contain mx-auto"
                         />
                       </div>
                     </div>
                   </SwiperSlide>
 
                   <SwiperSlide>
-                    <div className="w-full inline-block px-4 pb-10">
-                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                    <div className="w-full inline-block px-2 pb-8">
+                      <div className="bg-white rounded h-[120px] text-center shadow-md p-4 flex items-center justify-center dark:bg-white">
                         <img
                           src={brand2}
                           alt="brand-2"
-                          className="w-[90px] h-[90px] object-contain mx-auto"
+                          className="w-[80px] h-[80px] object-contain mx-auto"
                         />
                       </div>
                     </div>
                   </SwiperSlide>
 
                   <SwiperSlide>
-                    <div className="w-full inline-block px-4 pb-10">
-                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                    <div className="w-full inline-block px-2 pb-8">
+                      <div className="bg-white rounded h-[120px] text-center shadow-md p-4 flex items-center justify-center dark:bg-white">
                         <img
                           src={brand3}
                           alt="brand-3"
-                          className="w-[90px] h-[90px] object-contain mx-auto"
+                          className="w-[80px] h-[80px] object-contain mx-auto"
                         />
                       </div>
                     </div>
                   </SwiperSlide>
 
                   <SwiperSlide>
-                    <div className="w-full inline-block px-4 pb-10">
-                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                    <div className="w-full inline-block px-2 pb-8">
+                      <div className="bg-white rounded h-[120px] text-center shadow-md p-4 flex items-center justify-center dark:bg-white">
                         <img
                           src={brand1}
                           alt="brand-1-duplicate"
-                          className="w-[90px] h-[90px] object-contain mx-auto"
+                          className="w-[80px] h-[80px] object-contain mx-auto"
                         />
                       </div>
                     </div>
                   </SwiperSlide>
 
                   <SwiperSlide>
-                    <div className="w-full inline-block px-4 pb-10">
-                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                    <div className="w-full inline-block px-2 pb-8">
+                      <div className="bg-white rounded h-[120px] text-center shadow-md p-4 flex items-center justify-center dark:bg-white">
                         <img
                           src={brand2}
                           alt="brand-2-duplicate"
-                          className="w-[90px] h-[90px] object-contain mx-auto"
+                          className="w-[80px] h-[80px] object-contain mx-auto"
                         />
                       </div>
                     </div>
                   </SwiperSlide>
 
                   <SwiperSlide>
-                    <div className="w-full inline-block px-4 pb-10">
-                      <div className="bg-white rounded h-[140px] text-center shadow-[13px_15px_30px_0px_rgba(0,0,0,0.2)] p-5 flex items-center justify-center dark:bg-white">
+                    <div className="w-full inline-block px-2 pb-8">
+                      <div className="bg-white rounded h-[120px] text-center shadow-md p-4 flex items-center justify-center dark:bg-white">
                         <img
                           src={brand3}
                           alt="brand-3-duplicate"
-                          className="w-[90px] h-[90px] object-contain mx-auto"
+                          className="w-[80px] h-[80px] object-contain mx-auto"
                         />
                       </div>
                     </div>
