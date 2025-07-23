@@ -71,7 +71,7 @@ const Header = () => {
       )}
 
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
+        className={`fixed top-0 left-0 h-full w-64 bg-[#FBF2E0] shadow-lg z-50 transform transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -89,7 +89,10 @@ const Header = () => {
             </NavLink>  
             <NavLink to='/contact' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
               Contact
-            </NavLink>  </ul>
+            </NavLink>  
+            <NavLink to='/faq' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+            FAQ
+            </NavLink> </ul>
       </div>
     </header>
   );

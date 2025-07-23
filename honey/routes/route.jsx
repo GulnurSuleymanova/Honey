@@ -13,6 +13,7 @@ import Brend from "../src/pages/Home/Brend";
 import Shopbutton from "../src/pages/Home/Shopbutton";
 import NotFound from "../src/pages/NotFound";
 import Contact from "../src/pages/Contact";
+import Faq from "../src/pages/Faq";
 
 export const route = createBrowserRouter(
     createRoutesFromElements(
@@ -30,6 +31,8 @@ export const route = createBrowserRouter(
 
                               <Route path='/about' element={<About />} />
                                                             <Route path='/contact' element={<Contact />} />
+                                                                                                                        <Route path='/faq' element={<Faq />} />
+
 
       <Route path="*" element={<NotFound />} />
 
