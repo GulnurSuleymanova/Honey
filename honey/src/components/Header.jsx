@@ -86,7 +86,10 @@ const Header = () => {
             </NavLink>    
               <NavLink to='/about' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
               About
-            </NavLink>    </ul>
+            </NavLink>  
+            <NavLink to='/contact' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+              Contact
+            </NavLink>  </ul>
       </div>
     </header>
   );
