@@ -4,17 +4,14 @@ import bgImage from "../assets/slider4.webp";
 const Faq = () => {
   return (
     <div>
-      {/* Header Section */}
-      <section
-        className="h-[400px] bg-cover bg-center"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      >
-        <div className="h-full flex justify-center items-center bg-white/60">
-          <h1 className="text-[#3a1e0d] text-4xl md:text-5xl font-medium tracking-wide uppercase">
-            FAQ
-          </h1>
-        </div>
-      </section>
+         <section
+              className="h-[400px] bg-cover bg-center -mt-30"
+              style={{ backgroundImage: `url(${bgImage})` }}
+            >
+              <div className="h-full flex justify-center items-center ">
+                <h1 className="text-[#3a1e0d] text-3xl font-medium tracking-wide uppercase">FAQ</h1>
+              </div>
+            </section>
 
       {/* Content Section */}
       <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center gap-10">
@@ -56,7 +53,7 @@ const Faq = () => {
           <img
             src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWwzMWEwNzFobzQ0OXVsNG82dGE3aWttdXlqZjNoM3FsMmR6ZXpzOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/XOwupRBdM5IaDMusoD/giphy.gif"
             alt="FAQ animation"
-            className="w-full max-w-md h-auto mx-auto rounded-lg shadow-md"
+            className="w-full max-w-md h-auto mx-auto "
           />
         </div>
       </div>
