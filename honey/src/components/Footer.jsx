@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl font-semibold text-gray-800 mb-4">Subscribe</h2>
           <p className="text-gray-600 mb-6 max-w-xl mx-auto">
-            Sign in up for newsletter to receive special offers and exclusive news about Botanica products
+            Sign up for newsletter to receive special offers and exclusive news about Botanica products
           </p>
 
           <div className="flex justify-center">
