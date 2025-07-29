@@ -13,9 +13,7 @@ const Faq = () => {
               </div>
             </section>
 
-      {/* Content Section */}
       <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center gap-10">
-        {/* FAQ Accordion */}
         <section className="w-full md:w-2/3">
           <div className="bg-gray-100 dark:bg-gray-100 dark:text-gray-800 p-6 rounded-lg shadow-md">
             <div className="flex flex-col divide-y divide-gray-300">
@@ -48,7 +46,6 @@ const Faq = () => {
           </div>
         </section>
 
-        {/* Gif Section */}
         <div className="w-full md:w-1/3">
           <img
             src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWwzMWEwNzFobzQ0OXVsNG82dGE3aWttdXlqZjNoM3FsMmR6ZXpzOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/XOwupRBdM5IaDMusoD/giphy.gif"
