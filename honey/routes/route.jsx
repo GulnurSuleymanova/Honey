@@ -14,6 +14,7 @@ import Shopbutton from "../src/pages/Home/Shopbutton";
 import NotFound from "../src/pages/NotFound";
 import Contact from "../src/pages/Contact";
 import Faq from "../src/pages/Faq";
+import Login from "../src/pages/admin/Login";
 
 export const route = createBrowserRouter(
     createRoutesFromElements(
@@ -35,6 +36,7 @@ export const route = createBrowserRouter(
 
 
       <Route path="*" element={<NotFound />} />
+            <Route path="/login" element={<Login />} />
 
 
             </Route>
