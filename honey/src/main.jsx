@@ -3,8 +3,16 @@ import './index.css'
 import { BrowserRouter, RouterProvider } from 'react-router'
 import { route } from '../routes/route'
 import 'animate.css';
+import { Provider } from 'react-redux';
+import { store } from '../src/store/store';
+import { ToastContainer } from 'react-toastify';
 
 createRoot(document.getElementById('root')).render(
-    <RouterProvider router={route} />
+      <Provider store={store}>
+    <ToastContainer />
+
+        <RouterProvider router={route} />
+  </Provider>
 
 )
+

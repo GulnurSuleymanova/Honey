@@ -2,7 +2,7 @@ import { Outlet } from 'react-router'
 import Header from '../src/components/Header'
 import Footer from '../src/components/Footer'
 
-const MainLayout = () => {
+const UserLayout = () => {
     return (
         <>
             <Header />
@@ -12,4 +12,4 @@ const MainLayout = () => {
     )
 }
 
-export default MainLayout
+export default UserLayout
