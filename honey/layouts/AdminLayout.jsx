@@ -1,5 +1,5 @@
 import { Outlet } from "react-router"
-import SiderBar from "../components/admin/SiderBar"
+import SiderBar from "../src/components/admin/Siderbar"
 
 const AdminLayout = () => {
     return (

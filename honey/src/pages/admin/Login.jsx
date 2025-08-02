@@ -19,8 +19,13 @@ const Login = () => {
       toast.success('Uğurla giriş edildi');
       navigate('/admin/news');
     } catch (error) {
-      console.log(error);
-      toast.error(error?.data?.message?.join(', ') || "Giriş zamanı xəta baş verdi");
+      console.log('Login error:', error);
+
+      const errMessage = Array.isArray(error?.data?.message)
+        ? error.data.message.join(', ')
+        : error?.data?.message || "Giriş zamanı xəta baş verdi";
+
+      toast.error(errMessage);
     }
   };
 
