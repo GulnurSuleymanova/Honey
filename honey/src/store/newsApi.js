@@ -3,15 +3,15 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const getToken = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   return user?.token;
-  
 };
+
 console.log(localStorage.getItem("user"));
 
 export const newsApi = createApi({
   reducerPath: "newsApi",
-   baseQuery: fetchBaseQuery({
+  baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api",
-    prepareHeaders: (headers, { getState }) => {
+    prepareHeaders: (headers) => {
       const token = getToken();
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
@@ -21,31 +21,31 @@ export const newsApi = createApi({
   }),
   tagTypes: ["Category", "Product", "News"],
   endpoints: (builder) => ({
+    // Auth
     login: builder.mutation({
       query: ({ email, password }) => ({
         method: "POST",
         url: "/auth/signin",
-        body: { email: email, password: password },
+        body: { email, password },
       }),
     }),
 
-    getCategories:builder.query({
+    // Category
+    getCategories: builder.query({
       query: () => "category",
       providesTags: ["Category"],
     }),
 
     addCategory: builder.mutation({
-     query: ({ name, slug, parentId }) => {
-        return {
-          method: "post",
-          url: "/category",
-          body: {
-            name,
-            slug,
-            parentId: parentId || null,
-          },
-        };
-      },
+      query: ({ name, slug, parentId }) => ({
+        method: "POST",
+        url: "/category",
+        body: {
+          name,
+          slug,
+          parentId: parentId || null,
+        },
+      }),
       invalidatesTags: ["Category"],
     }),
 
@@ -59,13 +59,14 @@ export const newsApi = createApi({
 
     editCategory: builder.mutation({
       query: ({ name, slug, id }) => ({
-        method: "post",
+        method: "POST",
         url: `/category/${id}`,
         body: { name, slug },
       }),
       invalidatesTags: ["Category"],
     }),
 
+    // Product
     addProduct: builder.mutation({
       query: (productData) => ({
         method: "POST",
@@ -75,6 +76,7 @@ export const newsApi = createApi({
       invalidatesTags: ["Product"],
     }),
 
+    // Upload
     uploadImages: builder.mutation({
       query: (formData) => ({
         url: "/upload/image",
@@ -83,6 +85,7 @@ export const newsApi = createApi({
       }),
     }),
 
+    // News
     addNews: builder.mutation({
       query: (newsData) => ({
         method: "POST",
@@ -90,6 +93,28 @@ export const newsApi = createApi({
         body: newsData,
       }),
       invalidatesTags: ["News"],
+    }),
+
+    editNews: builder.mutation({
+      query: ({ id, ...newsData }) => ({
+        url: `/news/${id}`,
+        method: "PUT",
+        body: newsData,
+      }),
+      invalidatesTags: ["News"],
+    }),
+
+    deleteNews: builder.mutation({
+      query: (id) => ({
+        url: `/news/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["News"],
+    }),
+
+    allNews: builder.query({
+      query: () => "/news",
+      providesTags: ["News"],
     }),
   }),
 });
@@ -103,4 +128,7 @@ export const {
   useAddProductMutation,
   useUploadImagesMutation,
   useAddNewsMutation,
+  useEditNewsMutation,
+  useDeleteNewsMutation, // ✅ Buraya əlavə edildi
+  useAllNewsQuery,
 } = newsApi;
