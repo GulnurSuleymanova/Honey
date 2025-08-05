@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Modal from '../../components/ui/Modal'
-import { useDeleteCategoryMutation, useGetCategoriesQuery } from '../../store/newsApi'
+import { useDeleteCategoryMutation, useGetCategoriesQuery } from '../../store/shopApi'
 
 import Swal from 'sweetalert2'
 import { toast } from 'react-toastify'

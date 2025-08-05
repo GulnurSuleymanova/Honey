@@ -4,23 +4,23 @@ import * as Yup from "yup";
 import { Loader2 } from "lucide-react";
 import { toast } from "react-toastify";
 import {
-  useEditNewsMutation,
-  useAllNewsQuery,
+  useEditProductMutation,
+  useGetAllProductQuery,
   
-} from "../../../store/newsApi";
+} from "../../../store/shopApi";
 
-const EditNews = ({ setOpen, id }) => {
-  const { data: news, isLoading: newsLoading } = useAllNewsQuery();
-  const [editNews, { isLoading: submitting }] = useEditNewsMutation();
+const EditProduct = ({ setOpen, id }) => {
+  const { data: product, isLoading: productLoading } = useGetAllProductQuery();
+  const [editProduct, { isLoading: submitting }] = useEditProductMutation();
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      title: news?.title || "",
-      slug: news?.slug || "",
-      content: news?.content || "",
-      thumbnail: news?.thumbnail || "",
-      categoryId: news?.categoryId?.toString() || "",
+      title: product?.title || "",
+      slug: product?.slug || "",
+      content: product?.content || "",
+      thumbnail: product?.thumbnail || "",
+      categoryId: product?.categoryId?.toString() || "",
     },
     validationSchema: Yup.object({
       title: Yup.string().required("Başlıq tələb olunur"),
@@ -35,7 +35,7 @@ const EditNews = ({ setOpen, id }) => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        await editNews({ id, params: values }).unwrap();
+        await editProduct({ id, params: values }).unwrap();
         toast.success("Xəbər uğurla yeniləndi");
         setOpen(false);
       } catch (error) {
@@ -46,7 +46,7 @@ const EditNews = ({ setOpen, id }) => {
     },
   });
 
-  if (newsLoading || categoriesLoading) {
+  if (productLoading || categoriesLoading) {
     return (
       <div className="p-10 text-center text-purple-500">
         <Loader2 className="w-8 h-8 animate-spin mx-auto" />
@@ -178,4 +178,4 @@ const EditNews = ({ setOpen, id }) => {
   );
 };
 
-export default EditNews;
+export default EditProduct;

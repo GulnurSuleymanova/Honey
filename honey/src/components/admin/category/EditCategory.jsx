@@ -1,4 +1,4 @@
-import { useEditCategoryMutation } from "../../../store/newsApi"
+import { useEditCategoryMutation } from "../../../store/shopApi"
 import { toast } from "react-toastify"
 import { Loader2 } from "lucide-react"
 import { useFormik } from "formik"

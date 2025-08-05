@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useAddCategoryMutation } from "../../../store/newsApi"
+import { useAddCategoryMutation } from "../../../store/shopApi"
 import { toast } from "react-toastify"
 import { Loader2 } from "lucide-react"
 

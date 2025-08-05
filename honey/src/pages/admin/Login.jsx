@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import honey from '../../assets/honey2.webp';
-import { useLoginMutation } from '../../store/newsApi';
+import { useLoginMutation } from '../../store/shopApi';
 import { toast } from 'react-toastify';
 import { Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router';
@@ -18,7 +18,7 @@ const Login = () => {
        localStorage.setItem('user', JSON.stringify({ token: user.token }));
 
       toast.success('Uğurla giriş edildi');
-      navigate('/admin/news');
+      navigate('/admin/product');
     } catch (error) {
       console.log('Login error:', error);
 

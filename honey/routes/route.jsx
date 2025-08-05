@@ -16,7 +16,7 @@ import Contact from "../src/pages/Contact";
 import Faq from "../src/pages/Faq";
 import Login from "../src/pages/admin/Login";
 import Auth from "./Auth";
-import News from "../src/pages/admin/News";
+import Product from "../src/pages/admin/Product";
 import NotFound from "../src/pages/NotFound";
 import Category from "../src/pages/admin/Category";
 
@@ -47,7 +47,7 @@ export const route = createBrowserRouter(
           </Auth>
         }
       >
-        <Route path="news" element={<News />} />
+        <Route path="product" element={<Product />} />
                 <Route path="category" element={<Category />} />
 
       </Route>

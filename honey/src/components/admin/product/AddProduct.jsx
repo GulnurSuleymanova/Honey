@@ -1,14 +1,14 @@
 import React from "react";
 import {
-  useAddNewsMutation,
+  useAddProductMutation,
   useGetCategoriesQuery,
-} from "../../../store/newsApi";
+} from "../../../store/shopApi";
 import { toast } from "react-toastify";
 import { Loader2 } from "lucide-react";
 import * as Yup from "yup";
 import { Field, Formik, Form } from "formik";
 
-const newsSchema = Yup.object().shape({
+const productSchema = Yup.object().shape({
   title: Yup.string()
     .min(2, "Başlıq çox qısadır")
     .max(100, "Başlıq çox uzundur")
@@ -28,13 +28,13 @@ const newsSchema = Yup.object().shape({
   categoryId: Yup.string().required("Kateqoriya seçilməlidir"),
 });
 
-const AddNews = ({ setOpen }) => {
+const AddProduct = ({ setOpen }) => {
   const { data: categories } = useGetCategoriesQuery();
-  const [addNews, { isLoading }] = useAddNewsMutation();
+  const [addProduct, { isLoading }] = useAddProductMutation();
 
-  const saveNews = async (values, actions) => {
+  const saveProduct = async (values, actions) => {
     try {
-      const response = await addNews(values).unwrap();
+      const response = await addProduct(values).unwrap();
       toast.success(response.message || "Xəbər uğurla əlavə olundu");
       actions.resetForm();
       setOpen(false);
@@ -52,8 +52,8 @@ const AddNews = ({ setOpen }) => {
         thumbnail: "",
         categoryId: "",
       }}
-      validationSchema={newsSchema}
-      onSubmit={saveNews}
+      validationSchema={productSchema}
+      onSubmit={saveProduct}
     >
       {({ errors, touched }) => (
         <Form className="flex flex-col gap-5 bg-white p-6 rounded-xl shadow-md text-black">
@@ -147,4 +147,4 @@ const AddNews = ({ setOpen }) => {
   );
 };
 
-export default AddNews;
+export default AddProduct;

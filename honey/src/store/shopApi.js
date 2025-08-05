@@ -5,10 +5,8 @@ const getToken = () => {
   return user?.token;
 };
 
-console.log(localStorage.getItem("user"));
-
-export const newsApi = createApi({
-  reducerPath: "newsApi",
+export const shopApi = createApi({
+  reducerPath: "shopApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api",
     prepareHeaders: (headers) => {
@@ -19,7 +17,7 @@ export const newsApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Category", "Product", "News"],
+  tagTypes: ["Category", "Product"],
   endpoints: (builder) => ({
     // Auth
     login: builder.mutation({
@@ -32,7 +30,7 @@ export const newsApi = createApi({
 
     // Category
     getCategories: builder.query({
-      query: () => "category",
+      query: () => "/category",
       providesTags: ["Category"],
     }),
 
@@ -51,7 +49,7 @@ export const newsApi = createApi({
 
     deleteCategory: builder.mutation({
       query: (id) => ({
-        url: `category/${id}`,
+        url: `/category/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Category"],
@@ -68,15 +66,53 @@ export const newsApi = createApi({
 
     // Product
     addProduct: builder.mutation({
-      query: (productData) => ({
+      query: ({
+        name,
+        description,
+        price,
+        stock,
+        brandId,
+        colors,
+        sizes,
+        images,
+        categoryId,
+        slug,
+      }) => ({
         method: "POST",
         url: "/product",
-        body: productData,
+        body: {
+          name,
+          description,
+          price,
+          stock,
+          brandId,
+          colors,
+          sizes,
+          images,
+          categoryId,
+          slug,
+        },
       }),
       invalidatesTags: ["Product"],
     }),
 
-    // Upload
+    editProduct: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        method: "PUT",
+        url: `/product/${id}`,
+        body: patch,
+      }),
+      invalidatesTags: ["Product"],
+    }),
+
+    deleteProduct: builder.mutation({
+      query: (id) => ({
+        url: `/product/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Product"],
+    }),
+
     uploadImages: builder.mutation({
       query: (formData) => ({
         url: "/upload/image",
@@ -85,50 +121,27 @@ export const newsApi = createApi({
       }),
     }),
 
-    // News
-    addNews: builder.mutation({
-      query: (newsData) => ({
-        method: "POST",
-        url: "/news",
-        body: newsData,
-      }),
-      invalidatesTags: ["News"],
+    getAllProduct: builder.query({
+      query: () => "product/all",
+      providesTags: ["Product"],
     }),
 
-    editNews: builder.mutation({
-      query: ({ id, ...newsData }) => ({
-        url: `/news/${id}`,
-        method: "PUT",
-        body: newsData,
-      }),
-      invalidatesTags: ["News"],
-    }),
-
-    deleteNews: builder.mutation({
-      query: (id) => ({
-        url: `/news/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["News"],
-    }),
-
-    allNews: builder.query({
-      query: () => "/news",
-      providesTags: ["News"],
+    getProductsById: builder.query({
+      query: (categoryId) => `product/category/${categoryId}`,
+      providesTags: ["Product"],
     }),
   }),
 });
 
+// Export hooks
 export const {
   useLoginMutation,
+  useGetCategoriesQuery,
   useAddCategoryMutation,
   useDeleteCategoryMutation,
   useEditCategoryMutation,
-  useGetCategoriesQuery,
   useAddProductMutation,
-  useUploadImagesMutation,
-  useAddNewsMutation,
-  useEditNewsMutation,
-  useDeleteNewsMutation, // ✅ Buraya əlavə edildi
-  useAllNewsQuery,
-} = newsApi;
+  useEditProductMutation,
+  useDeleteProductMutation,
+  useGetAllProductQuery,
+} = shopApi;
