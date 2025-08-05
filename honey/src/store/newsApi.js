@@ -1,36 +1,51 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const token = JSON.parse(localStorage.getItem("user"))?.token;
+const getToken = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user?.token;
+  
+};
+console.log(localStorage.getItem("user"));
 
 export const newsApi = createApi({
   reducerPath: "newsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
+   baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:3000/api",
+    prepareHeaders: (headers, { getState }) => {
+      const token = getToken();
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
   tagTypes: ["Category", "Product", "News"],
   endpoints: (builder) => ({
-    // Auth
     login: builder.mutation({
       query: ({ email, password }) => ({
         method: "POST",
         url: "/auth/signin",
-        body: { email, password },
+        body: { email: email, password: password },
       }),
     }),
 
-    // Category
-    getCategories: builder.query({
-      query: () => ({
-        url: "/category",
-        method: "GET",
-      }),
+    getCategories:builder.query({
+      query: () => "category",
       providesTags: ["Category"],
     }),
 
     addCategory: builder.mutation({
-      query: ({ name, slug }) => ({
-        url: "category",
-        method: "POST",
-        body: { name, slug },
-      }),
+     query: ({ name, slug, parentId }) => {
+        return {
+          method: "post",
+          url: "/category",
+          body: {
+            name,
+            slug,
+            parentId: parentId || null,
+          },
+        };
+      },
       invalidatesTags: ["Category"],
     }),
 
@@ -43,50 +58,23 @@ export const newsApi = createApi({
     }),
 
     editCategory: builder.mutation({
-      query: ({ params, id }) => ({
-        url: `category/${id}`,
-        method: "PUT",
-        body: params,
+      query: ({ name, slug, id }) => ({
+        method: "post",
+        url: `/category/${id}`,
+        body: { name, slug },
       }),
       invalidatesTags: ["Category"],
     }),
 
-    // Product
     addProduct: builder.mutation({
-      query: ({
-        name,
-        description,
-        price,
-        stock,
-        brandId,
-        colors,
-        sizes,
-        images,
-        categoryId,
-        slug,
-      }) => ({
+      query: (productData) => ({
         method: "POST",
         url: "/product",
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-        body: {
-          name,
-          description,
-          price,
-          stock,
-          brandId,
-          colors,
-          sizes,
-          images,
-          categoryId,
-          slug,
-        },
+        body: productData,
       }),
       invalidatesTags: ["Product"],
     }),
 
-    // Image upload
     uploadImages: builder.mutation({
       query: (formData) => ({
         url: "/upload/image",
@@ -95,14 +83,10 @@ export const newsApi = createApi({
       }),
     }),
 
-    // News
     addNews: builder.mutation({
       query: (newsData) => ({
         method: "POST",
         url: "/news",
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
         body: newsData,
       }),
       invalidatesTags: ["News"],

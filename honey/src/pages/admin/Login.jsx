@@ -15,7 +15,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const user = await login({ email, password }).unwrap();
-      localStorage.setItem('token', user.token);
+       localStorage.setItem('user', JSON.stringify({ token: user.token }));
+
       toast.success('Uğurla giriş edildi');
       navigate('/admin/news');
     } catch (error) {
@@ -78,7 +79,6 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Image */}
         <div className="md:w-1/2 hidden md:block">
           <img src={honey} alt="Login Visual" className="h-full w-full object-cover" />
         </div>
