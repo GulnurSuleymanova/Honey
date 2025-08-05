@@ -19,7 +19,6 @@ const Product = () => {
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(null);
 
-  // Backend-in tələb etdiyi bütün sahələr formData-da olmalıdır
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -89,12 +88,9 @@ const Product = () => {
     });
   };
 
-  // Sadə inputlar üçün change handler
   const handleFormChange = (e) => {
     const { name, value } = e.target;
 
-    // colors, sizes və images kimi array tipləri üçün ayrıca idarə etmə tələb oluna bilər
-    // burada sadəcə sadə string və number tiplər üçün nümunə verilir
 
     setFormData((prev) => ({
       ...prev,
@@ -108,7 +104,6 @@ const Product = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Minimal validation: name və slug yoxlanılır
     if (!formData.name || !formData.slug) {
       toast.error("Ad və Slug mütləqdir!");
       return;
@@ -310,7 +305,6 @@ const Product = () => {
             />
           </div>
 
-          {/* colors, sizes, images sahələrini array kimi əlavə etmək istəyirsənsə, onları ayrıca input və ya komponentdə idarə etmək lazımdır */}
 
           <div className="flex justify-end space-x-4">
             <button

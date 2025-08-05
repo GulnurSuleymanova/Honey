@@ -133,7 +133,6 @@ export const shopApi = createApi({
   }),
 });
 
-// Export hooks
 export const {
   useLoginMutation,
   useGetCategoriesQuery,
