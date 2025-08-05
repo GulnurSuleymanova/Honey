@@ -55,10 +55,10 @@ const SiderBar = () => {
           )}
         </Link>
         <Link
-          to="/admin/product"
+          to="/admin/news"
           className={`
             group flex items-center p-3 rounded-xl transition-all duration-200 
-            ${isActivePath("/admin/product")
+            ${isActivePath("/admin/news")
               ? 'bg-white shadow-md border border-slate-200 text-slate-800'
               : 'text-slate-600 hover:bg-white/60 hover:shadow-sm'
             }
@@ -66,7 +66,7 @@ const SiderBar = () => {
         >
           <div className={`
             w-9 h-9 rounded-lg flex items-center justify-center mr-3 transition-colors
-            ${isActivePath("/admin/product")
+            ${isActivePath("/admin/news")
               ? 'bg-gradient-to-br from-green-400 to-green-600 text-white shadow-sm'
               : 'text-green-600 group-hover:bg-slate-100'
             }
@@ -74,9 +74,9 @@ const SiderBar = () => {
             <FiPackage className="text-lg" />
           </div>
           <span className="font-medium text-sm tracking-wide">
-            Products
+            news
           </span>
-          {isActivePath("/admin/product") && (
+          {isActivePath("/admin/news") && (
             <div className="ml-auto w-2 h-2 bg-yellow-500 rounded-full"></div>
           )}
         </Link>

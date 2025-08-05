@@ -1,17 +1,18 @@
 import { useState } from 'react'
 import Modal from '../../components/ui/Modal'
-import { useDeleteCategoryMutation, useGetAllCategoriesQuery } from '../../store/newsApi'
-import AddCategory from '../../components/admin/category/AddCategory'
-import EditCategory from '../../components/admin/category/EditCategory'
+import { useDeleteCategoryMutation, useGetCategoriesQuery } from '../../store/newsApi'
+
 import Swal from 'sweetalert2'
 import { toast } from 'react-toastify'
 import { Pen, Trash } from "lucide-react"
+import EditCategory from '../../components/admin/category/EditCategory'
+import AddCategory from '../../components/admin/category/AddCategory'
 
 const Category = () => {
   const [open, setOpen] = useState(false)
   const [edit, setEdit] = useState(null)
 
-  const { data, refetch } = useGetAllCategoriesQuery()
+  const { data, refetch } = useGetCategoriesQuery()
   const [deleteCategory] = useDeleteCategoryMutation()
 
   const handleDelete = async (id) => {

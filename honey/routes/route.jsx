@@ -18,7 +18,7 @@ import Login from "../src/pages/admin/Login";
 import Auth from "./Auth";
 import News from "../src/pages/admin/News";
 import NotFound from "../src/pages/NotFound";
-
+import Category from "../src/pages/admin/Category";
 
 export const route = createBrowserRouter(
   createRoutesFromElements(
@@ -48,6 +48,8 @@ export const route = createBrowserRouter(
         }
       >
         <Route path="news" element={<News />} />
+                <Route path="category" element={<Category />} />
+
       </Route>
 
       <Route path="*" element={<NotFound />} />

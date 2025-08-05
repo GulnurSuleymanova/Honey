@@ -17,33 +17,36 @@ export const newsApi = createApi({
     }),
 
     // Category
-    addCategory: builder.mutation({
-      query: ({ name, slug, parentId }) => ({
-        method: "POST",
+    getCategories: builder.query({
+      query: () => ({
         url: "/category",
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-        body: {
-          name,
-          slug,
-          parentId: parentId || null,
-        },
+        method: "GET",
+      }),
+      providesTags: ["Category"],
+    }),
+
+    addCategory: builder.mutation({
+      query: ({ name, slug }) => ({
+        url: "category",
+        method: "POST",
+        body: { name, slug },
       }),
       invalidatesTags: ["Category"],
     }),
-    getAllCategory: builder.query({
-      query: () => "category",
-      providesTags: ["Category"],
+
+    deleteCategory: builder.mutation({
+      query: (id) => ({
+        url: `category/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Category"],
     }),
-    updateCategory: builder.mutation({
-      query: ({ name, slug, id }) => ({
-        method: "POST",
-        url: `/category/${id}`,
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-        body: { name, slug },
+
+    editCategory: builder.mutation({
+      query: ({ params, id }) => ({
+        url: `category/${id}`,
+        method: "PUT",
+        body: params,
       }),
       invalidatesTags: ["Category"],
     }),
@@ -104,15 +107,15 @@ export const newsApi = createApi({
       }),
       invalidatesTags: ["News"],
     }),
-
-   
   }),
 });
 
 export const {
   useLoginMutation,
   useAddCategoryMutation,
-  useUpdateCategoryMutation,
+  useDeleteCategoryMutation,
+  useEditCategoryMutation,
+  useGetCategoriesQuery,
   useAddProductMutation,
   useUploadImagesMutation,
   useAddNewsMutation,
