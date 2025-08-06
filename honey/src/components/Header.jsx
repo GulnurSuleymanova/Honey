@@ -71,9 +71,8 @@ const Header = () => {
       )}
 
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-[#FBF2E0] shadow-lg z-50 transform transition-transform duration-300 ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+        className={`fixed top-0 left-0 h-full w-64 bg-[#FBF2E0] shadow-lg z-50 transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
       >
         <div className="flex justify-between items-center p-4 border-b">
           <button onClick={() => setIsOpen(false)}>
@@ -81,18 +80,22 @@ const Header = () => {
           </button>
         </div>
         <ul className="p-4 space-y-2">
-  <NavLink to='/' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
-              Home
-            </NavLink>    
-              <NavLink to='/about' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
-              About
-            </NavLink>  
-            <NavLink to='/contact' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
-              Contact
-            </NavLink>  
-            <NavLink to='/faq' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+          <NavLink to='/' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+            Home
+          </NavLink>
+          <NavLink to='/shop' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+            Shop
+          </NavLink>
+          <NavLink to='/about' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+            About
+          </NavLink>
+          <NavLink to='/contact' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+            Contact
+          </NavLink>
+          <NavLink to='/faq' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
             FAQ
-            </NavLink> </ul>
+          </NavLink>
+        </ul>
       </div>
     </header>
   );

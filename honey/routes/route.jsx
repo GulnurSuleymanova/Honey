@@ -19,6 +19,7 @@ import Auth from "./Auth";
 import Product from "../src/pages/admin/Product";
 import NotFound from "../src/pages/NotFound";
 import Category from "../src/pages/admin/Category";
+import Shop from "../src/pages/Shop";
 
 export const route = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +36,8 @@ export const route = createBrowserRouter(
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Faq />} />
+                <Route path="/shop" element={<Shop />} />
+
       </Route>
 
       <Route path="/login" element={<Login />} />
