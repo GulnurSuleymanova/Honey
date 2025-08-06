@@ -1,4 +1,3 @@
-import { Plus } from "lucide-react";
 import React, { useState } from "react";
 import Modal from "../../components/ui/Modal";
 import AddProduct from "../../components/Admin/Product/AddProduct";
@@ -23,8 +22,7 @@ const Product = () => {
               onClick={() => setOpen(true)}
               className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-amber-400 to-orange-400 text-white rounded-xl hover:from-amber-500 hover:to-orange-500 transform hover:scale-105 transition-all duration-200 shadow-lg"
             >
-              <Plus className="w-5 h-5" />
-              <span className="font-medium">+ Add Product</span>
+              <span className="font-medium"> Add Product</span>
             </button>
           </div>
         </div>
