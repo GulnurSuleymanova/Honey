@@ -17,7 +17,7 @@ export const shopApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Category", "Product"],
+  tagTypes: ["Category", "Product", "Brand"],
   endpoints: (builder) => ({
     // Auth
     login: builder.mutation({
@@ -38,11 +38,7 @@ export const shopApi = createApi({
       query: ({ name, slug, parentId }) => ({
         method: "POST",
         url: "/category",
-        body: {
-          name,
-          slug,
-          parentId: parentId || null,
-        },
+        body: { name, slug, parentId: parentId || null },
       }),
       invalidatesTags: ["Category"],
     }),
@@ -62,6 +58,12 @@ export const shopApi = createApi({
         body: { name, slug },
       }),
       invalidatesTags: ["Category"],
+    }),
+
+    // Brand
+    getBrands: builder.query({
+      query: () => "/brand",
+      providesTags: ["Brand"],
     }),
 
     // Product
@@ -96,23 +98,6 @@ export const shopApi = createApi({
       invalidatesTags: ["Product"],
     }),
 
-    editProduct: builder.mutation({
-      query: ({ id, ...patch }) => ({
-        method: "PUT",
-        url: `/product/${id}`,
-        body: patch,
-      }),
-      invalidatesTags: ["Product"],
-    }),
-
-    deleteProduct: builder.mutation({
-      query: (id) => ({
-        url: `/product/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["Product"],
-    }),
-
     uploadImages: builder.mutation({
       query: (formData) => ({
         url: "/upload/image",
@@ -139,8 +124,9 @@ export const {
   useAddCategoryMutation,
   useDeleteCategoryMutation,
   useEditCategoryMutation,
+  useGetBrandsQuery,
   useAddProductMutation,
-  useEditProductMutation,
-  useDeleteProductMutation,
+  useUploadImagesMutation,
   useGetAllProductQuery,
+  useGetProductsByIdQuery,
 } = shopApi;

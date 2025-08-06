@@ -28,7 +28,7 @@ const AddCategory = ({ setOpen }) => {
     return (
         <div className='flex flex-col gap-5'>
             <div>
-                <label className='text-white text-lg'>Name</label>
+                <label className=' text-lg'>Name</label>
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -38,7 +38,7 @@ const AddCategory = ({ setOpen }) => {
                 />
             </div>
             <div>
-                <label className='text-white text-lg'>Slug</label>
+                <label className=' text-lg'>Slug</label>
                 <input
                   value={slug}
                   onChange={(e) => setSlug(e.target.value)}

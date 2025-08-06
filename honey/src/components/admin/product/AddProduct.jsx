@@ -1,149 +1,237 @@
-import React from "react";
-import {
-  useAddProductMutation,
-  useGetCategoriesQuery,
-} from "../../../store/shopApi";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { Loader2 } from "lucide-react";
-import * as Yup from "yup";
-import { Field, Formik, Form } from "formik";
-
-const productSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(2, "Başlıq çox qısadır")
-    .max(100, "Başlıq çox uzundur")
-    .required("Başlıq tələb olunur"),
-  content: Yup.string()
-    .min(10, "Kontent çox qısadır")
-    .max(1000, "Kontent çox uzundur")
-    .required("Kontent tələb olunur"),
-  slug: Yup.string()
-    .matches(/^[a-z0-9-]+$/, "Slug yalnız kiçik hərf, rəqəm və '-' ola bilər")
-    .min(2, "Slug çox qısadır")
-    .max(50, "Slug çox uzundur")
-    .required("Slug tələb olunur"),
-  thumbnail: Yup.string()
-    .url("Düzgün URL daxil edin")
-    .required("Şəkil linki tələb olunur"),
-  categoryId: Yup.string().required("Kateqoriya seçilməlidir"),
-});
+import { useAddProductMutation, useGetCategoriesQuery, useUploadImagesMutation } from "../../../store/shopApi";
 
 const AddProduct = ({ setOpen }) => {
-  const { data: categories } = useGetCategoriesQuery();
+  const colors = [
+    "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Brown", "Black", "White",
+    "Gray"
+  ];
+
+  const sizeArr = [
+    "100ml", "200ml", "300ml"
+  ];
+
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
+  const [brandId, setBrand] = useState("");
+  const [slug, setSlug] = useState("");
+  const [sizes, setSizes] = useState([]);
+  const [categoryId, setCategoryId] = useState("");
+  const [selectedColor, setSelectedColor] = useState([]);
+  const [images, setImages] = useState([]);
+  const [previews, setPreviews] = useState([]);
+
+  const [uploadImage] = useUploadImagesMutation();
+  const { data: category } = useGetCategoriesQuery();
   const [addProduct, { isLoading }] = useAddProductMutation();
 
-  const saveProduct = async (values, actions) => {
+  const handleFile = async (e) => {
+    const files = Array.from(e.target.files);
+    for (const file of files) {
+      const formData = new FormData();
+      formData.append("image", file);
+      try {
+        const result = await uploadImage(formData).unwrap();
+        if (result?.id) {
+          setImages((prev) => [...prev, result.id]);
+          setPreviews((prev) => [...prev, URL.createObjectURL(file)]);
+        }
+        toast.success(result.message || "Image uploaded successfully");
+      } catch (error) {
+        toast.error("Image upload failed");
+      }
+    }
+  };
+
+  const handleProduct = async () => {
+    if (!name || !description || !price || !stock || !brandId || !categoryId || !slug) {
+      return toast.error("Zəhmət olmasa bütün sahələri doldurun.");
+    }
     try {
-      const response = await addProduct(values).unwrap();
-      toast.success(response.message || "Xəbər uğurla əlavə olundu");
-      actions.resetForm();
+      await addProduct({
+        name,
+        description,
+        price: Number(price),
+        stock: Number(stock),
+        brandId: Number(brandId),
+        sizes,
+        images,
+        categoryId: Number(categoryId),
+        slug,
+        colors: selectedColor,
+      }).unwrap();
+
+      toast.success("Məhsul uğurla əlavə edildi");
       setOpen(false);
     } catch (error) {
-      toast.error(error?.data?.message || "Xəta baş verdi");
+      toast.error("Məhsul əlavə edilmədi, xahiş olunur məlumatları yoxlayın.");
+      console.error(error);
     }
   };
 
   return (
-    <Formik
-      initialValues={{
-        title: "",
-        content: "",
-        slug: "",
-        thumbnail: "",
-        categoryId: "",
-      }}
-      validationSchema={productSchema}
-      onSubmit={saveProduct}
-    >
-      {({ errors, touched }) => (
-        <Form className="flex flex-col gap-5 bg-white p-6 rounded-xl shadow-md text-black">
-          <h2 className="text-xl font-bold text-center text-purple-700">Yeni Xəbər Əlavə Et</h2>
+    <div className="flex flex-col gap-6 w-full max-h-[600px] overflow-y-auto px-4 py-6 ">
+      <h2 className="text-2xl font-semibold  text-center mb-4">Add Product</h2>
 
-          <div>
-            <label className="font-medium">Başlıq</label>
-            <Field
-              name="title"
-              type="text"
-              className="w-full bg-gray-100 rounded p-3 mt-1"
-              placeholder="Başlıq əlavə et"
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Name</label>
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full border rounded-lg px-4 py-3 outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition"
+          placeholder="Enter product name"
+          type="text"
+        />
+      </div>
+
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Description</label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          rows="4"
+          className="w-full border rounded-lg px-4 py-3 outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition resize-none"
+          placeholder="Enter product description"
+        ></textarea>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-gray-700 font-medium mb-2">Price</label>
+          <input
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="w-full border rounded-lg px-4 py-3 outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition"
+            placeholder="Price"
+            type="number"
+          />
+        </div>
+        <div>
+          <label className="block text-gray-700 font-medium mb-2">Stock</label>
+          <input
+            value={stock}
+            onChange={(e) => setStock(e.target.value)}
+            className="w-full border rounded-lg px-4 py-3 outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition"
+            placeholder="Stock quantity"
+            type="number"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Brand ID</label>
+        <input
+          value={brandId}
+          onChange={(e) => setBrand(e.target.value)}
+          className="w-full border rounded-lg px-4 py-3 outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition"
+          placeholder="Enter brand ID"
+          type="number"
+        />
+      </div>
+
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Colors</label>
+        <select
+          multiple
+          value={selectedColor}
+          onChange={(e) => {
+            const selectedCo = Array.from(e.target.selectedOptions).map((item) => item.value);
+            setSelectedColor(selectedCo);
+          }}
+          className="w-full border rounded-lg px-4 py-3 outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition"
+        >
+          {colors.map((item, i) => (
+            <option key={i} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Sizes</label>
+        <select
+          multiple
+          value={sizes}
+          onChange={(e) => setSizes([...e.target.selectedOptions].map((opt) => opt.value))}
+          className="w-full border rounded-lg px-4 py-3 outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition"
+        >
+          {sizeArr.map((item, i) => (
+            <option value={item} key={i}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Images</label>
+        <input
+          type="file"
+          multiple
+          onChange={handleFile}
+          className="w-full border rounded-lg px-4 py-3 outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition"
+        />
+        <div className="flex gap-3 mt-4 flex-wrap">
+          {previews.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={`Preview ${i + 1}`}
+              className="w-20 h-20 object-cover rounded border"
             />
-            {errors.title && touched.title && (
-              <div className="text-red-500 text-sm mt-1">{errors.title}</div>
-            )}
-          </div>
+          ))}
+        </div>
+      </div>
 
-          <div>
-            <label className="font-medium">Kontent</label>
-            <Field
-              name="content"
-              as="textarea"
-              rows={4}
-              className="w-full bg-gray-100 rounded p-3 mt-1 resize-none"
-              placeholder="Xəbərin kontenti..."
-            />
-            {errors.content && touched.content && (
-              <div className="text-red-500 text-sm mt-1">{errors.content}</div>
-            )}
-          </div>
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Category</label>
+        <select
+          className="w-full border rounded-lg px-4 py-3 outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition"
+          value={categoryId}
+          onChange={(e) => setCategoryId(e.target.value)}
+        >
+          <option value="">Select a category</option>
+          {category?.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
-          <div>
-            <label className="font-medium">Slug</label>
-            <Field
-              name="slug"
-              type="text"
-              className="w-full bg-gray-100 rounded p-3 mt-1"
-              placeholder="slug yazın"
-            />
-            {errors.slug && touched.slug && (
-              <div className="text-red-500 text-sm mt-1">{errors.slug}</div>
-            )}
-          </div>
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Slug</label>
+        <input
+          value={slug}
+          onChange={(e) => setSlug(e.target.value)}
+          className="w-full border rounded-lg px-4 py-3 outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition"
+          placeholder="Enter slug"
+          type="text"
+        />
+        <p className="text-xs text-gray-500 mt-1">URL-friendly version of the name</p>
+      </div>
 
-          <div>
-            <label className="font-medium">Şəkil Linki</label>
-            <Field
-              name="thumbnail"
-              type="url"
-              className="w-full bg-gray-100 rounded p-3 mt-1"
-              placeholder="https://example.com/image.jpg"
-            />
-            {errors.thumbnail && touched.thumbnail && (
-              <div className="text-red-500 text-sm mt-1">{errors.thumbnail}</div>
-            )}
-          </div>
-
-          <div>
-            <label className="font-medium">Kateqoriya</label>
-            <Field
-              as="select"
-              name="categoryId"
-              className="w-full bg-gray-100 rounded p-3 mt-1"
-            >
-              <option value="">Kateqoriya seçin</option>
-              {categories?.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
-            </Field>
-            {errors.categoryId && touched.categoryId && (
-              <div className="text-red-500 text-sm mt-1">{errors.categoryId}</div>
-            )}
-          </div>
-
-          <div className="flex justify-end">
-            <button
-              type="submit"
-              className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all flex items-center gap-2"
-              disabled={isLoading}
-            >
-              {isLoading && <Loader2 className="w-5 h-5 animate-spin" />}
-              {isLoading ? "Yüklənir..." : "Əlavə Et"}
-            </button>
-          </div>
-        </Form>
-      )}
-    </Formik>
+      <div className="w-full flex justify-end gap-3 pt-4">
+        <button
+          onClick={() => setOpen(false)}
+          className="px-6 py-3 font-semibold text-gray-600 border rounded-lg hover:bg-gray-100 transition"
+          disabled={isLoading}
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleProduct}
+          className="px-6 py-3 font-semibold bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition"
+          disabled={isLoading}
+        >
+          {isLoading ? "Adding..." : "Add Product"}
+        </button>
+      </div>
+    </div>
   );
 };
 
