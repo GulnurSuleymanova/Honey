@@ -15,7 +15,6 @@ const WhyChooseUs = () => {
 
         <div className="flex flex-col md:flex-row md:justify-center md:gap-36 gap-12 pt-3 items-center">
 
-          {/* Card 1 */}
           <div className="relative group max-w-sm w-full">
             <div className="absolute -top-3 -right-3 w-full h-full bg-[#F9BD17] rounded-tl-[80px] rounded-br-[80px] z-0"></div>
             <div className="absolute -top-[8px] -left-[20px] w-[calc(100%+30px)] h-[calc(100%+30px)] border border-dashed border-black rounded-tl-[80px] rounded-br-[80px] z-[-1]"></div>
@@ -33,7 +32,6 @@ const WhyChooseUs = () => {
             </div>
           </div>
 
-          {/* Card 2 */}
           <div className="relative group max-w-sm w-full">
             <div className="absolute -top-3 -right-3 w-full h-full bg-[#F9BD17] rounded-tl-[80px] rounded-br-[80px] z-0"></div>
             <div className="absolute -top-[8px] -left-[20px] w-[calc(100%+30px)] h-[calc(100%+30px)] border border-dashed border-black rounded-tl-[80px] rounded-br-[80px] z-[-1]"></div>
@@ -51,7 +49,6 @@ const WhyChooseUs = () => {
             </div>
           </div>
 
-          {/* Card 3 */}
           <div className="relative group max-w-sm w-full">
             <div className="absolute -top-3 -right-3 w-full h-full bg-[#F9BD17] rounded-tl-[80px] rounded-br-[80px] z-0"></div>
             <div className="absolute -top-[8px] -left-[20px] w-[calc(100%+30px)] h-[calc(100%+30px)] border border-dashed border-black rounded-tl-[80px] rounded-br-[80px] z-[-1]"></div>

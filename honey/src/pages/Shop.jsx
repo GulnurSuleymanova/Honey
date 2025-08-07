@@ -7,6 +7,7 @@ import shopslider4 from "../assets/drinks-shop.webp";
 import shopslider5 from "../assets/Fresh_Fruit-shop.webp";
 import shopslider6 from "../assets/Meats-shop.webp";
 import { useGetAllProductQuery, useGetCategoriesQuery } from "../store/shopApi";
+import { Heart, ShoppingBasket } from "lucide-react";
 
 const Shop = () => {
   const { data: categoryData = [], isLoading: isCategoryLoading } = useGetCategoriesQuery();
@@ -77,109 +78,158 @@ const Shop = () => {
           )
         )}
       </section>
+      <section className="flex">
+        <div className="shop_filters mx-20  w-1/6 ">
+          <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10 ">
+            <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Categories</p>
+            <hr className="mt-2 border-[#7A3E1C]" />
+            <div className="pt-4 flex flex-col gap-3">
+              {isCategoryLoading ? (
+                <p className="text-gray-500 text-sm text-center">Loading...</p>
+              ) : (
+                categoryData.map((item, index) => (
+                  <label
+                    key={index}
+                    className="flex items-center gap-2 cursor-pointer select-none transition-all"
+                  >
+                    <input
+                      type="checkbox"
+                      value={item.name}
+                      checked={selectedCategories.includes(item.name)}
+                      onChange={() => toggleCategory(item.name)}
+                      className="accent-orange-600 w-4 h-4"
+                    />
+                    <span
+                      className={`text-sm tracking-wide ${selectedCategories.includes(item.name)
+                        ? "text-orange-600 font-medium"
+                        : "text-gray-700"
+                        }`}
+                    >
+                      {item.name}
+                    </span>
+                  </label>
+                ))
+              )}
+            </div>
+          </div>
+          <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10 ">
+            <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Sizes</p>
+            <hr className="mt-2 border-[#7A3E1C]" />
+            <div className="pt-4 flex flex-col gap-3">
+              {isProductLoading ? (
+                <p className="text-gray-500 text-sm text-center">Loading...</p>
+              ) : uniqueSizes.length === 0 ? (
+                <p className="text-gray-500 text-sm">No sizes found.</p>
+              ) : (
+                uniqueSizes.map((size, index) => (
+                  <label
+                    key={index}
+                    className="flex items-center gap-2 cursor-pointer select-none transition-all"
+                  >
+                    <input
+                      type="checkbox"
+                      value={size}
+                      checked={selectedSizes.includes(size)}
+                      onChange={() => toggleSize(size)}
+                      className="accent-orange-600 w-4 h-4"
+                    />
+                    <span
+                      className={`text-sm tracking-wide ${selectedSizes.includes(size)
+                        ? "text-orange-600 font-medium"
+                        : "text-gray-700"
+                        }`}
+                    >
+                      {size}
+                    </span>
+                  </label>
+                ))
+              )}
+            </div>
+          </div>
+          <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10 ">
+            <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Colors</p>
+            <hr className="mt-2 border-[#7A3E1C]" />
+            <div className="pt-4 flex flex-col gap-3">
+              {isProductLoading ? (
+                <p className="text-gray-500 text-sm text-center">Loading...</p>
+              ) : uniqueColors.length === 0 ? (
+                <p className="text-gray-500 text-sm">No colors found.</p>
+              ) : (
+                uniqueColors.map((color, index) => (
+                  <label
+                    key={index}
+                    className="flex items-center gap-2 cursor-pointer select-none transition-all"
+                  >
+                    <input
+                      type="checkbox"
+                      value={color}
+                      checked={selectedColors.includes(color)}
+                      onChange={() => toggleColors(color)}
+                      className="accent-orange-600 w-4 h-4"
+                    />
+                    <span
+                      className={`text-sm tracking-wide ${selectedColors.includes(color)
+                        ? "text-orange-600 font-medium"
+                        : "text-gray-700"
+                        }`}
+                    >
+                      {color}
+                    </span>
+                  </label>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      <div className="w-4/5">
+  {isProductLoading ? (
+    <p className="text-gray-600 text-center text-lg">Loading products...</p>
+  ) : (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {productData
+        .filter(({ category, sizes = [], colors = [] }) =>
+          (selectedCategories.length === 0 || selectedCategories.includes(category)) &&
+          (selectedSizes.length === 0 || sizes.some(size => selectedSizes.includes(size))) &&
+          (selectedColors.length === 0 || colors.some(color => selectedColors.includes(color)))
+        )
+        .map((product, index) => (
+          <div
+            key={index}
+            className="relative group bg-white shadow-md rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg"
+          >
+            <div className="absolute inset-0 bg-[#F9BD17] rounded-[18px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[-1] group-hover:rounded-tl-[80px] group-hover:rounded-br-[80px]" />
 
-      <div className="shop_filters mx-20  w-1/6 ">
-        <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10 ">
-          <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Categories</p>
-          <hr className="mt-2 border-[#7A3E1C]" />
-          <div className="pt-4 flex flex-col gap-3">
-            {isCategoryLoading ? (
-              <p className="text-gray-500 text-sm text-center">Loading...</p>
-            ) : (
-              categoryData.map((item, index) => (
-                <label
-                  key={index}
-                  className="flex items-center gap-2 cursor-pointer select-none transition-all"
-                >
-                  <input
-                    type="checkbox"
-                    value={item.name}
-                    checked={selectedCategories.includes(item.name)}
-                    onChange={() => toggleCategory(item.name)}
-                    className="accent-orange-600 w-4 h-4"
-                  />
-                  <span
-                    className={`text-sm tracking-wide ${selectedCategories.includes(item.name)
-                        ? "text-orange-600 font-medium"
-                        : "text-gray-700"
-                      }`}
-                  >
-                    {item.name}
-                  </span>
-                </label>
-              ))
-            )}
+            <div className="absolute top-3 right-3 z-20">
+              <Heart className="text-gray-600 hover:text-red-500 transition-colors duration-200" />
+            </div>
+
+            <img
+              src={product.images?.[0]?.url}
+              alt={product.name}
+              className="w-full h-60 object-cover rounded-t-2xl"
+            />
+
+            <div className="p-4 relative z-20">
+              <h3 className="text-md font-semibold text-gray-800 mb-1">
+                {product.name}
+              </h3>
+              <p className="text-orange-600 font-medium text-sm">
+                {product.price} AZN
+              </p>
+              <div className="absolute bottom-4 right-4">
+                <ShoppingBasket className="text-gray-700 hover:text-orange-500 transition-colors duration-200" />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10 ">
-          <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Sizes</p>
-          <hr className="mt-2 border-[#7A3E1C]" />
-          <div className="pt-4 flex flex-col gap-3">
-            {isProductLoading ? (
-              <p className="text-gray-500 text-sm text-center">Loading...</p>
-            ) : uniqueSizes.length === 0 ? (
-              <p className="text-gray-500 text-sm">No sizes found.</p>
-            ) : (
-              uniqueSizes.map((size, index) => (
-                <label
-                  key={index}
-                  className="flex items-center gap-2 cursor-pointer select-none transition-all"
-                >
-                  <input
-                    type="checkbox"
-                    value={size}
-                    checked={selectedSizes.includes(size)}
-                    onChange={() => toggleSize(size)}
-                    className="accent-orange-600 w-4 h-4"
-                  />
-                  <span
-                    className={`text-sm tracking-wide ${selectedSizes.includes(size)
-                        ? "text-orange-600 font-medium"
-                        : "text-gray-700"
-                      }`}
-                  >
-                    {size}
-                  </span>
-                </label>
-              ))
-            )}
-          </div>
-        </div>
-        <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10 ">
-          <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Colors</p>
-          <hr className="mt-2 border-[#7A3E1C]" />
-          <div className="pt-4 flex flex-col gap-3">
-            {isProductLoading ? (
-              <p className="text-gray-500 text-sm text-center">Loading...</p>
-            ) : uniqueColors.length === 0 ? (
-              <p className="text-gray-500 text-sm">No colors found.</p>
-            ) : (
-              uniqueColors.map((color, index) => (
-                <label
-                  key={index}
-                  className="flex items-center gap-2 cursor-pointer select-none transition-all"
-                >
-                  <input
-                    type="checkbox"
-                    value={color}
-                    checked={selectedColors.includes(color)}
-                    onChange={() => toggleColors(color)}
-                    className="accent-orange-600 w-4 h-4"
-                  />
-                  <span
-                    className={`text-sm tracking-wide ${selectedColors.includes(color)
-                        ? "text-orange-600 font-medium"
-                        : "text-gray-700"
-                      }`}
-                  >
-                    {color}
-                  </span>
-                </label>
-              ))
-            )}
-          </div>
-        </div>
-      </div>
+        ))}
+    </div>
+  )}
+</div>
+
+
+
+
+      </section>
 
     </>
   );
