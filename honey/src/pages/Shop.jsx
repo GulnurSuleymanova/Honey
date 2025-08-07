@@ -14,6 +14,7 @@ const Shop = () => {
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
 
   const toggleCategory = (categoryName) => {
     setSelectedCategories((prevSelected) =>
@@ -31,14 +32,28 @@ const Shop = () => {
     );
   };
 
+  const toggleColors = (colors) => {
+    setSelectedColors((prevSelected) =>
+      prevSelected.includes(colors)
+        ? prevSelected.filter((k) => k !== colors)
+        : [...prevSelected, colors]
+    );
+  };
+
+
   const uniqueSizes = [
     ...new Set(
       productData.flatMap((product) => product.sizes || [])
     ),
   ];
+  const uniqueColors = [
+    ...new Set(
+      productData.flatMap((product) => product.colors || [])
+    ),
+  ];
 
   return (
-    <div>
+    <>
       <section
         className="h-[400px] bg-cover bg-center -mt-30"
         style={{ backgroundImage: `url(${bgImage})` }}
@@ -63,8 +78,8 @@ const Shop = () => {
         )}
       </section>
 
-      <div className="shop_filters p-6 my-10 mx-20 border-[#7A3E1C] rounded-3xl border-2 w-1/6 bg-white shadow-md">
-        <div className="mb-6">
+      <div className="shop_filters mx-20  w-1/6 ">
+        <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10 ">
           <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Categories</p>
           <hr className="mt-2 border-[#7A3E1C]" />
           <div className="pt-4 flex flex-col gap-3">
@@ -84,11 +99,10 @@ const Shop = () => {
                     className="accent-orange-600 w-4 h-4"
                   />
                   <span
-                    className={`text-sm tracking-wide ${
-                      selectedCategories.includes(item.name)
+                    className={`text-sm tracking-wide ${selectedCategories.includes(item.name)
                         ? "text-orange-600 font-medium"
                         : "text-gray-700"
-                    }`}
+                      }`}
                   >
                     {item.name}
                   </span>
@@ -97,9 +111,7 @@ const Shop = () => {
             )}
           </div>
         </div>
-
-        {/* Sizes */}
-        <div>
+        <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10 ">
           <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Sizes</p>
           <hr className="mt-2 border-[#7A3E1C]" />
           <div className="pt-4 flex flex-col gap-3">
@@ -121,11 +133,10 @@ const Shop = () => {
                     className="accent-orange-600 w-4 h-4"
                   />
                   <span
-                    className={`text-sm tracking-wide ${
-                      selectedSizes.includes(size)
+                    className={`text-sm tracking-wide ${selectedSizes.includes(size)
                         ? "text-orange-600 font-medium"
                         : "text-gray-700"
-                    }`}
+                      }`}
                   >
                     {size}
                   </span>
@@ -134,8 +145,43 @@ const Shop = () => {
             )}
           </div>
         </div>
+        <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10 ">
+          <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Colors</p>
+          <hr className="mt-2 border-[#7A3E1C]" />
+          <div className="pt-4 flex flex-col gap-3">
+            {isProductLoading ? (
+              <p className="text-gray-500 text-sm text-center">Loading...</p>
+            ) : uniqueColors.length === 0 ? (
+              <p className="text-gray-500 text-sm">No colors found.</p>
+            ) : (
+              uniqueColors.map((color, index) => (
+                <label
+                  key={index}
+                  className="flex items-center gap-2 cursor-pointer select-none transition-all"
+                >
+                  <input
+                    type="checkbox"
+                    value={color}
+                    checked={selectedColors.includes(color)}
+                    onChange={() => toggleColors(color)}
+                    className="accent-orange-600 w-4 h-4"
+                  />
+                  <span
+                    className={`text-sm tracking-wide ${selectedColors.includes(color)
+                        ? "text-orange-600 font-medium"
+                        : "text-gray-700"
+                      }`}
+                  >
+                    {color}
+                  </span>
+                </label>
+              ))
+            )}
+          </div>
+        </div>
       </div>
-    </div>
+
+    </>
   );
 };
 
