@@ -23,7 +23,7 @@ const Home = () => {
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
               <div className="w-full md:w-1/3 text-start">
-                <h5 className="text-[30px] mb-3 font-bold text-[#151418] font-medium tracking-wide">
+                <h5 className="text-[30px] mb-3 text-[#151418] font-medium tracking-wide">
                   Fresh Organic
                 </h5>
   <h3 className="text-[#151418] text-[60px] leading-[1.2em] mb-[42px] font-medium tracking-wide">

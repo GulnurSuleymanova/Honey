@@ -68,7 +68,6 @@ const Category = () => {
         )}
       </Modal>
 
-      {/* List */}
       <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-xl p-6 max-w-3xl mx-auto">
         <ul className="space-y-4">
           {data?.map((item, index) => (
@@ -77,17 +76,14 @@ const Category = () => {
               className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-yellow-100 to-amber-100 border border-amber-200 hover:border-amber-300 shadow-sm hover:shadow-md transition-all duration-300"
             >
               <div className="flex items-center gap-5">
-                {/* Index */}
                 <div className="flex items-center justify-center w-14 h-14 rounded-full bg-amber-300 text-white font-extrabold text-xl shadow-inner">
                   {index + 1}
                 </div>
-                {/* Name */}
                 <span className="text-amber-800 text-lg font-semibold">
                   {item.name}
                 </span>
               </div>
               <div className="flex gap-3">
-                {/* Edit Button */}
                 <button
                   onClick={() => handleEdit(item)}
                   className="bg-amber-400 hover:bg-amber-500 p-2 rounded-full text-white shadow-md transition"
@@ -97,7 +93,6 @@ const Category = () => {
                   <Pen className="w-5 h-5" />
                 </button>
 
-                {/* Delete Button */}
                 <button
                   onClick={() => handleDelete(item.id)}
                   className="bg-orange-400 hover:bg-orange-500 p-2 rounded-full text-white shadow-md transition"

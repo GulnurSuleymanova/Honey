@@ -15,10 +15,12 @@ const Login = () => {
     e.preventDefault();
     try {
       const user = await login({ email, password }).unwrap();
-       localStorage.setItem('user', JSON.stringify({ token: user.token }));
+      localStorage.setItem('user',  JSON.stringify(user.user));
+      localStorage.setItem('token',  user?.token);
+
 
       toast.success('Uğurla giriş edildi');
-      navigate('/admin/product');
+      user?.user?.role == "admin" ? navigate('/admin/product') : navigate('/');
     } catch (error) {
       console.log('Login error:', error);
 

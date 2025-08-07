@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const getToken = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  return user?.token;
+  const token = localStorage.getItem("token")
+  return token;
 };
 
 export const shopApi = createApi({
@@ -19,7 +19,6 @@ export const shopApi = createApi({
   }),
   tagTypes: ["Category", "Product", "Brand"],
   endpoints: (builder) => ({
-    // Auth
     login: builder.mutation({
       query: ({ email, password }) => ({
         method: "POST",
@@ -28,7 +27,6 @@ export const shopApi = createApi({
       }),
     }),
 
-    // Category
     getCategories: builder.query({
       query: () => "/category",
       providesTags: ["Category"],
@@ -60,13 +58,11 @@ export const shopApi = createApi({
       invalidatesTags: ["Category"],
     }),
 
-    // Brand
     getBrands: builder.query({
       query: () => "/brand",
       providesTags: ["Brand"],
     }),
 
-    // Product
     addProduct: builder.mutation({
       query: ({
         name,

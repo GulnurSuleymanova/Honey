@@ -2,9 +2,10 @@
 import { Navigate } from 'react-router'
 
 const Auth = ({ children }) => {
-    let token = localStorage.getItem('token')
+    let user = JSON.parse(localStorage.getItem('user'))
+    console.log(user)
     return (
-        token ? children : <Navigate to='/login' />
+        user.role == "admin" ? children : <Navigate to='/login' />
     )
 }
 
