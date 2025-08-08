@@ -16,6 +16,7 @@ const Shop = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedPrice, setSelectedPrice] = useState({ min: "", max: "" });
 
   const toggleCategory = (categoryName) => {
     setSelectedCategories((prevSelected) =>
@@ -33,11 +34,11 @@ const Shop = () => {
     );
   };
 
-  const toggleColors = (colors) => {
+  const toggleColors = (color) => {
     setSelectedColors((prevSelected) =>
-      prevSelected.includes(colors)
-        ? prevSelected.filter((k) => k !== colors)
-        : [...prevSelected, colors]
+      prevSelected.includes(color)
+        ? prevSelected.filter((k) => k !== color)
+        : [...prevSelected, color]
     );
   };
 
@@ -80,6 +81,7 @@ const Shop = () => {
 
       <section className="flex">
         <div className="shop_filters mx-20 w-1/6">
+          {/* Categories */}
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Categories</p>
             <hr className="mt-2 border-[#7A3E1C]" />
@@ -112,7 +114,40 @@ const Shop = () => {
               )}
             </div>
           </div>
-
+ {/* Price Filter */}
+          <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
+            <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Price</p>
+            <hr className="mt-2 border-[#7A3E1C]" />
+            <div className="pt-4 flex flex-col gap-4">
+              <div className="flex items-center gap-2">
+                <label className="text-sm font-medium text-gray-700">Min:</label>
+                <input
+                  type="number"
+                  min="0"
+                  value={selectedPrice.min}
+                  onChange={(e) =>
+                    setSelectedPrice((prev) => ({ ...prev, min: e.target.value }))
+                  }
+                  className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  placeholder="Minimum price"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <label className="text-sm font-medium text-gray-700">Max:</label>
+                <input
+                  type="number"
+                  min="0"
+                  value={selectedPrice.max}
+                  onChange={(e) =>
+                    setSelectedPrice((prev) => ({ ...prev, max: e.target.value }))
+                  }
+                  className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  placeholder="Maximum price"
+                />
+              </div>
+            </div>
+            </div>
+          {/* Sizes */}
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Sizes</p>
             <hr className="mt-2 border-[#7A3E1C]" />
@@ -148,6 +183,7 @@ const Shop = () => {
             </div>
           </div>
 
+          {/* Colors */}
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Colors</p>
             <hr className="mt-2 border-[#7A3E1C]" />
@@ -182,32 +218,35 @@ const Shop = () => {
               )}
             </div>
           </div>
+
+         
         </div>
 
+        {/* Products List */}
         <div className="w-4/5 mr-30">
           {isProductLoading ? (
             <p className="text-gray-600 text-center text-lg">Loading products...</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {productData
-                .filter(({ category, sizes = [], colors = [] }) =>
+                .filter(({ category, sizes = [], colors = [], price }) =>
                   (selectedCategories.length === 0 || selectedCategories.includes(category)) &&
                   (selectedSizes.length === 0 || sizes.some(size => selectedSizes.includes(size))) &&
-                  (selectedColors.length === 0 || colors.some(color => selectedColors.includes(color)))
+                  (selectedColors.length === 0 || colors.some(color => selectedColors.includes(color))) &&
+                  (selectedPrice.min === "" || price >= Number(selectedPrice.min)) &&
+                  (selectedPrice.max === "" || price <= Number(selectedPrice.max))
                 )
                 .map((product, index) => (
                   <div
                     key={index}
-                    className="group  rounded-3xl overflow-hidden shadow-lg cursor-pointer border-2 border-transparent hover:border-r-amber-400  hover:border-l-amber-400"
+                    className="group rounded-3xl overflow-hidden shadow-lg cursor-pointer border-2 border-transparent hover:border-r-amber-400 hover:border-l-amber-400"
                   >
-
                     <div className="relative aspect-[4/3] overflow-hidden p-4 bg-white">
                       <img
                         src={product.images?.[0]?.url}
                         alt={product.name}
                         className="w-full h-full object-contain"
                       />
-
                       <div className="absolute top-4 right-4 w-11 h-11 bg-amber-50/95 backdrop-blur-sm rounded-full flex items-center justify-center">
                         <Heart className="w-5 h-5 text-amber-700 hover:text-red-500 hover:fill-red-500 transition-all duration-200" />
                       </div>
