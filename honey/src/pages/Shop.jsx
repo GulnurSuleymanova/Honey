@@ -8,6 +8,7 @@ import shopslider5 from "../assets/Fresh_Fruit-shop.webp";
 import shopslider6 from "../assets/Meats-shop.webp";
 import { useGetAllProductQuery, useGetCategoriesQuery } from "../store/shopApi";
 import { Heart, ShoppingCart } from "lucide-react";
+import { useNavigate } from "react-router";
 
 const Shop = () => {
   const { data: categoryData = [], isLoading: isCategoryLoading } = useGetCategoriesQuery();
@@ -17,7 +18,10 @@ const Shop = () => {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState({ min: "", max: "" });
-
+  const navigate = useNavigate();
+  const openDetails = (productId) => {
+    navigate(`/details/${productId}`);
+  };
   const toggleCategory = (categoryName) => {
     setSelectedCategories((prevSelected) =>
       prevSelected.includes(categoryName)
@@ -81,7 +85,6 @@ const Shop = () => {
 
       <section className="flex">
         <div className="shop_filters mx-20 w-1/6">
-          {/* Categories */}
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Categories</p>
             <hr className="mt-2 border-[#7A3E1C]" />
@@ -114,7 +117,6 @@ const Shop = () => {
               )}
             </div>
           </div>
- {/* Price Filter */}
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Price</p>
             <hr className="mt-2 border-[#7A3E1C]" />
@@ -146,8 +148,7 @@ const Shop = () => {
                 />
               </div>
             </div>
-            </div>
-          {/* Sizes */}
+          </div>
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Sizes</p>
             <hr className="mt-2 border-[#7A3E1C]" />
@@ -183,7 +184,6 @@ const Shop = () => {
             </div>
           </div>
 
-          {/* Colors */}
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Colors</p>
             <hr className="mt-2 border-[#7A3E1C]" />
@@ -219,11 +219,10 @@ const Shop = () => {
             </div>
           </div>
 
-         
+
         </div>
 
-        {/* Products List */}
-        <div className="w-4/5 mr-30">
+        <div className="w-4/5 mr-30" >
           {isProductLoading ? (
             <p className="text-gray-600 text-center text-lg">Loading products...</p>
           ) : (
@@ -239,6 +238,7 @@ const Shop = () => {
                 .map((product, index) => (
                   <div
                     key={index}
+                    onClick={() => openDetails(product.id)}
                     className="group rounded-3xl overflow-hidden shadow-lg cursor-pointer border-2 border-transparent hover:border-r-amber-400 hover:border-l-amber-400"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden p-4 bg-white">

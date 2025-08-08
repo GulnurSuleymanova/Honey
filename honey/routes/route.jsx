@@ -20,6 +20,7 @@ import Product from "../src/pages/admin/Product";
 import NotFound from "../src/pages/NotFound";
 import Category from "../src/pages/admin/Category";
 import Shop from "../src/pages/Shop";
+import Details from "../src/pages/Details";
 
 export const route = createBrowserRouter(
   createRoutesFromElements(
@@ -37,6 +38,7 @@ export const route = createBrowserRouter(
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Faq />} />
                 <Route path="/shop" element={<Shop />} />
+        <Route path="/details/:id" element={<Details />} />
 
       </Route>
 
