@@ -111,8 +111,17 @@ export const shopApi = createApi({
       query: (categoryId) => `product/category/${categoryId}`,
       providesTags: ["Product"],
     }),
+    deleteProduct: builder.mutation({
+  query: (id) => ({
+    url: `/product/${id}`,
+    method: "DELETE",
+  }),
+  invalidatesTags: ["Product"],
+}),
+
   }),
 });
+
 
 export const {
   useLoginMutation,
@@ -125,4 +134,5 @@ export const {
   useUploadImagesMutation,
   useGetAllProductQuery,
   useGetProductsByIdQuery,
+  useDeleteProductMutation
 } = shopApi;

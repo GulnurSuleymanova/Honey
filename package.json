@@ -3,6 +3,7 @@
     "@reduxjs/toolkit": "^2.8.2",
     "@tinymce/tinymce-react": "^6.3.0",
     "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "formik": "^2.4.6",
     "framer-motion": "^12.23.6",
     "i18next": "^25.3.2",
