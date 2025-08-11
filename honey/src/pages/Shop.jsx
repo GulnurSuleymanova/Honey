@@ -7,17 +7,17 @@ import shopslider4 from "../assets/drinks-shop.webp";
 import shopslider5 from "../assets/Fresh_Fruit-shop.webp";
 import shopslider6 from "../assets/Meats-shop.webp";
 import { useGetAllProductQuery, useGetCategoriesQuery } from "../store/shopApi";
-import { Heart, ShoppingCart } from "lucide-react";
+import { Heart, Search, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router";
 
 const Shop = () => {
   const { data: categoryData = [], isLoading: isCategoryLoading } = useGetCategoriesQuery();
   const { data: productData = [], isLoading: isProductLoading } = useGetAllProductQuery();
-
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState({ min: "", max: "" });
+  const [searchTerm, setSearchTerm] = useState(""); // ✅ Search
   const navigate = useNavigate();
   const openDetails = (productId) => {
     navigate(`/details/${productId}`);
@@ -84,7 +84,18 @@ const Shop = () => {
       </section>
 
       <section className="flex">
+
         <div className="shop_filters mx-20 w-1/6">
+          <div className="mb-6 max-w-md mx-auto relative">
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className="w-full px-4 py-3 pr-12 border border-[#7A3E1C] rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 placeholder-gray-400 text-gray-700 font-medium"
+            />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-[#7A3E1C] w-5 h-5" />
+          </div>
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Categories</p>
             <hr className="mt-2 border-[#7A3E1C]" />
@@ -222,24 +233,32 @@ const Shop = () => {
 
         </div>
 
-        <div className="w-4/5 mr-30" >
+        <div className="w-4/5 mr-30 mb-10" >
           {isProductLoading ? (
             <p className="text-gray-600 text-center text-lg">Loading products...</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {productData
-                .filter(({ category, sizes = [], colors = [], price }) =>
-                  (selectedCategories.length === 0 || selectedCategories.includes(category)) &&
-                  (selectedSizes.length === 0 || sizes.some(size => selectedSizes.includes(size))) &&
-                  (selectedColors.length === 0 || colors.some(color => selectedColors.includes(color))) &&
-                  (selectedPrice.min === "" || price >= Number(selectedPrice.min)) &&
-                  (selectedPrice.max === "" || price <= Number(selectedPrice.max))
-                )
+                .filter(({ category, sizes = [], colors = [], price, name }) => {
+                  const priceValue = Number(price) || 0;
+                  const minPrice = selectedPrice.min !== "" ? Number(selectedPrice.min) : null;
+                  const maxPrice = selectedPrice.max !== "" ? Number(selectedPrice.max) : null;
+                  const searchValue = searchTerm.trim().toLowerCase();
+
+                  return (
+                    (selectedCategories.length === 0 || selectedCategories.includes(category)) &&
+                    (selectedSizes.length === 0 || sizes.some(size => selectedSizes.includes(size))) &&
+                    (selectedColors.length === 0 || colors.some(color => selectedColors.includes(color))) &&
+                    (minPrice === null || priceValue >= minPrice) &&
+                    (maxPrice === null || priceValue <= maxPrice) &&
+                    (searchValue === "" || (name || "").toLowerCase().includes(searchValue))
+                  );
+                })
                 .map((product, index) => (
                   <div
                     key={index}
                     onClick={() => openDetails(product.id)}
-                    className="group rounded-3xl overflow-hidden shadow-lg cursor-pointer border-2 border-transparent hover:border-r-amber-400 hover:border-l-amber-400"
+                    className="group rounded-3xl overflow-hidden shadow-lg cursor-pointer border-2 border-transparent border-r-amber-400 border-l-amber-400 hover:border-amber-400 "
                   >
                     <div className="relative aspect-[4/3] overflow-hidden p-4 bg-white">
                       <img
@@ -282,6 +301,7 @@ const Shop = () => {
                     </div>
                   </div>
                 ))}
+
             </div>
           )}
         </div>
