@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa';
 import { FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from 'react-icons/fa6';
+import bee from "../assets/icon-footer.png"
 
 const Contact = () => {
   return (
@@ -19,6 +20,8 @@ const Contact = () => {
         >
           <div className="h-full flex justify-center items-center ">
             <h1 className="text-[#3a1e0d] text-3xl font-medium tracking-wide uppercase">Contact Us</h1>
+                            <img src={bee} alt="" className='w-26' />
+            
           </div>
         </section>
 

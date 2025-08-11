@@ -4,6 +4,7 @@ import gif1 from "../assets/about.gif";
 import gif2 from "../assets/about2.gif";
 import quo from '../assets/quote.webp'
 import quote from '../assets/icon_quote.webp'
+import bee from "../assets/icon-footer.png"
 
 const About = () => {
   return (
@@ -14,9 +15,11 @@ const About = () => {
       >
         <div className="h-full flex justify-center items-center ">
           <h1 className="text-[#3a1e0d] text-3xl font-medium tracking-wide uppercase">About Us</h1>
+                          <img src={bee} alt="" className='w-26' />
+          
         </div>
       </section>
-      <section className="bg-[#F1F1F1] rounded-3xl flex flex-row items-center justify-center gap-4 px-6 py-10 max-w-5xl mx-auto my-16 shadow-md text-center">
+      <section className="bg-[#F1F1F1] rounded-3xl flex flex-row items-center justify-center gap-4 px-6 py-10 max-w-5xl mx-auto my-16 shadow-md text-center -mt-9">
         <img src={quo} alt="quote decoration" className="w-16 h-auto" />
         <img src={quote} alt="quote icon" className="w-10 h-auto" />
         <p className="text-[#3a1e0d] text-lg font-medium tracking-wide leading-relaxed">

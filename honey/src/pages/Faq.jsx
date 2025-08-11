@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import bgImage from "../assets/slider4.webp";
-
+import { ChevronDown, Heart, Leaf, Shield, Sparkles } from 'lucide-react';
+import bee from "../assets/icon-footer.png"
 const Faq = () => {
+    const [openItem1, setOpenItem1] = useState(true);
+  const [openItem2, setOpenItem2] = useState(false);
+  const [openItem3, setOpenItem3] = useState(false);
+  const [openItem4, setOpenItem4] = useState(false);
   return (
     <div>
          <section
@@ -10,41 +15,133 @@ const Faq = () => {
             >
               <div className="h-full flex justify-center items-center ">
                 <h1 className="text-[#3a1e0d] text-3xl font-medium tracking-wide uppercase">FAQ</h1>
+                <img src={bee} alt="" className='w-26' />
               </div>
             </section>
 
       <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center gap-10">
-        <section className="w-full md:w-2/3">
-          <div className="bg-gray-100 dark:bg-gray-100 dark:text-gray-800 p-6 rounded-lg shadow-md">
-            <div className="flex flex-col divide-y divide-gray-300">
-              <details open>
-                <summary className="py-3 cursor-pointer font-medium hover:underline">
-                  Optio maiores eligendi molestiae totam dolores similique?
-                </summary>
-                <div className="px-4 pb-4 text-sm text-gray-700">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde neque in fugiat magni, quas animi enim veritatis deleniti ex. Impedit.
+        <section className="w-full lg:w-2/3">
+      <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-amber-100">
+        <div className="space-y-4">
+                    <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200 overflow-hidden transition-all duration-300 hover:shadow-lg">
+            <button
+              onClick={() => setOpenItem1(!openItem1)}
+              className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 hover:bg-amber-100/50 transition-colors duration-200"
+            >
+              <div className="flex items-center gap-3">
+                <Leaf className="w-5 h-5 text-amber-600" />
+                <span className="font-semibold text-gray-800 text-lg">
+                  Is your honey completely natural?
+                </span>
+              </div>
+              <ChevronDown 
+                className={`w-5 h-5 text-amber-600 transition-transform duration-300 ${
+                  openItem1 ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+            
+            <div className={`transition-all duration-300 overflow-hidden ${
+              openItem1 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}>
+              <div className="px-6 pb-4">
+                <div className="pl-8 text-gray-700 leading-relaxed">
+                  Yes, our honey is 100% natural and additive-free. Our bees receive no chemical intervention and the honey reaches you without any processing. Our hives are located in organically certified flower fields.
                 </div>
-              </details>
-              <details>
-                <summary className="py-3 cursor-pointer font-medium hover:underline">
-                  Modi dolorem veritatis culpa quos consequuntur beatae itaque excepturi perspiciatis?
-                </summary>
-                <div className="px-4 pb-4 text-sm text-gray-700">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Est aspernatur quae, eos explicabo odit minima libero veniam similique quibusdam doloribus facilis ipsa accusantium vel maiores corrupti! Libero voluptate a doloribus?
-                </div>
-              </details>
-              <details>
-                <summary className="py-3 cursor-pointer font-medium hover:underline">
-                  Magni reprehenderit possimus debitis?
-                </summary>
-                <div className="px-4 pb-4 text-sm text-gray-700 space-y-2">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptates aspernatur dolores in consequatur doloremque inventore reprehenderit, consequuntur perspiciatis architecto.</p>
-                  <p>Sed consectetur quod tenetur! Voluptatibus culpa incidunt veritatis velit quasi cupiditate unde eaque! Iure, voluptatibus autem eaque unde possimus quae.</p>
-                </div>
-              </details>
+              </div>
             </div>
           </div>
-        </section>
+
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200 overflow-hidden transition-all duration-300 hover:shadow-lg">
+            <button
+              onClick={() => setOpenItem2(!openItem2)}
+              className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 hover:bg-amber-100/50 transition-colors duration-200"
+            >
+              <div className="flex items-center gap-3">
+                <Shield className="w-5 h-5 text-amber-600" />
+                <span className="font-semibold text-gray-800 text-lg">
+                  How do you guarantee honey quality?
+                </span>
+              </div>
+              <ChevronDown 
+                className={`w-5 h-5 text-amber-600 transition-transform duration-300 ${
+                  openItem2 ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+            
+            <div className={`transition-all duration-300 overflow-hidden ${
+              openItem2 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}>
+              <div className="px-6 pb-4">
+                <div className="pl-8 text-gray-700 leading-relaxed">
+                  Each batch of our honey undergoes laboratory testing. Pollen analysis, moisture content, HMF value and antibiotic residue tests are performed. We also have ISO 22000 quality certificates.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200 overflow-hidden transition-all duration-300 hover:shadow-lg">
+            <button
+              onClick={() => setOpenItem3(!openItem3)}
+              className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 hover:bg-amber-100/50 transition-colors duration-200"
+            >
+              <div className="flex items-center gap-3">
+                <Sparkles className="w-5 h-5 text-amber-600" />
+                <span className="font-semibold text-gray-800 text-lg">
+                  What flower honey varieties are available?
+                </span>
+              </div>
+              <ChevronDown 
+                className={`w-5 h-5 text-amber-600 transition-transform duration-300 ${
+                  openItem3 ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+            
+            <div className={`transition-all duration-300 overflow-hidden ${
+              openItem3 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}>
+              <div className="px-6 pb-4">
+                <div className="pl-8 text-gray-700 leading-relaxed">
+                  We have chestnut honey, pine honey, lavender honey, acacia honey, wildflower honey and strained honey varieties. Each has its own unique taste and health benefits. We also have seasonal specialty honeys available.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200 overflow-hidden transition-all duration-300 hover:shadow-lg">
+            <button
+              onClick={() => setOpenItem4(!openItem4)}
+              className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 hover:bg-amber-100/50 transition-colors duration-200"
+            >
+              <div className="flex items-center gap-3">
+                <Heart className="w-5 h-5 text-amber-600" />
+                <span className="font-semibold text-gray-800 text-lg">
+                  What are the health benefits of honey?
+                </span>
+              </div>
+              <ChevronDown 
+                className={`w-5 h-5 text-amber-600 transition-transform duration-300 ${
+                  openItem4 ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+            
+            <div className={`transition-all duration-300 overflow-hidden ${
+              openItem4 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}>
+              <div className="px-6 pb-4">
+                <div className="pl-8 text-gray-700 leading-relaxed">
+                  Our honey contains natural antioxidants, vitamins and minerals. It strengthens the immune system, aids digestion and is a natural energy source. It also has anti-inflammatory and antibacterial properties.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
         <div className="w-full md:w-1/3">
           <img

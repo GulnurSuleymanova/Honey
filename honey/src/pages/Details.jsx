@@ -4,6 +4,7 @@ import { useGetAllProductQuery } from '../store/shopApi';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigationType } from 'react-router';
 import bgImage from "../assets/slider4.webp";
+import bee from "../assets/icon-footer.png"
 
 const Details = () => {
     const { id } = useParams();
@@ -20,6 +21,8 @@ const Details = () => {
         >
             <div className="h-full flex justify-center items-center ">
                 <h1 className="text-[#3a1e0d] text-3xl font-medium tracking-wide uppercase">Details</h1>
+                                <img src={bee} alt="" className='w-26' />
+                
             </div>
         </section>
         <div className="max-w-6xl mx-auto p-6">

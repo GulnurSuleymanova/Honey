@@ -82,9 +82,7 @@ const Shop = () => {
           )
         )}
       </section>
-
       <section className="flex">
-
         <div className="shop_filters mx-20 w-1/6">
           <div className="mb-6 max-w-md mx-auto relative">
             <input
@@ -129,36 +127,57 @@ const Shop = () => {
             </div>
           </div>
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
-            <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Price</p>
-            <hr className="mt-2 border-[#7A3E1C]" />
-            <div className="pt-4 flex flex-col gap-4">
-              <div className="flex items-center gap-2">
-                <label className="text-sm font-medium text-gray-700">Min:</label>
+            <h5
+              className="text-xl font-semibold tracking-wide text-[#7A3E1C] cursor-pointer flex justify-between items-center pb-4 select-none"
+            >
+              Price
+            </h5>
+            <div className="relative pt-4">
+              <div className="h-2 rounded-full bg-white border border-[#ababab] relative z-10">
                 <input
-                  type="number"
+                  type="range"
                   min="0"
-                  value={selectedPrice.min}
+                  max="100"
+                  step="1"
+                  value={selectedPrice.min || 0}
                   onChange={(e) =>
-                    setSelectedPrice((prev) => ({ ...prev, min: e.target.value }))
+                    setSelectedPrice((prev) => ({
+                      ...prev,
+                      min: Math.min(Number(e.target.value), prev.max || 1000),
+                    }))
                   }
-                  className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400"
-                  placeholder="Minimum price"
+                  className="absolute w-full h-2 appearance-none pointer-events-auto z-20 bg-transparent"
+                  style={{ top: 0, left: 0 }}
+                />
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value={selectedPrice.max || 100}
+                  onChange={(e) =>
+                    setSelectedPrice((prev) => ({
+                      ...prev,
+                      max: Math.max(Number(e.target.value), prev.min || 0),
+                    }))
+                  }
+                  className="absolute w-full h-2 appearance-none pointer-events-auto z-20 bg-transparent"
+                  style={{ top: 0, left: 0 }}
+                />
+                <div
+                  className="absolute h-2 rounded-full bg-amber-400 border border-amber-400 top-0"
+                  style={{
+                    left: `${(selectedPrice.min / 100) * 100}%`,
+                    right: `${100 - (selectedPrice.max / 100) * 100}%`,
+                  }}
                 />
               </div>
-              <div className="flex items-center gap-2">
-                <label className="text-sm font-medium text-gray-700">Max:</label>
-                <input
-                  type="number"
-                  min="0"
-                  value={selectedPrice.max}
-                  onChange={(e) =>
-                    setSelectedPrice((prev) => ({ ...prev, max: e.target.value }))
-                  }
-                  className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400"
-                  placeholder="Maximum price"
-                />
+              <div className="flex justify-between text-xs font-semibold text-gray-600 mt-2 select-none">
+                <span>{selectedPrice.min ?? 0} AZN</span>
+                <span>{selectedPrice.max ?? 100} AZN</span>
               </div>
             </div>
+
           </div>
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Sizes</p>
@@ -194,45 +213,39 @@ const Shop = () => {
               )}
             </div>
           </div>
-
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Colors</p>
             <hr className="mt-2 border-[#7A3E1C]" />
-            <div className="pt-4 flex flex-col gap-3">
+            <div className="pt-4 flex flex-wrap gap-3">
               {isProductLoading ? (
                 <p className="text-gray-500 text-sm text-center">Loading...</p>
               ) : uniqueColors.length === 0 ? (
                 <p className="text-gray-500 text-sm">No colors found.</p>
               ) : (
-                uniqueColors.map((color, index) => (
-                  <label
-                    key={index}
-                    className="flex items-center gap-2 cursor-pointer select-none transition-all"
-                  >
-                    <input
-                      type="checkbox"
-                      value={color}
-                      checked={selectedColors.includes(color)}
-                      onChange={() => toggleColors(color)}
-                      className="accent-orange-600 w-4 h-4"
+                uniqueColors.map((color, index) => {
+                  const isSelected = selectedColors.includes(color);
+                  return (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => toggleColors(color)}
+                      title={color}
+                      className={`
+              w-8 h-8 rounded-full border-2 
+              transition 
+              ${isSelected ? 'border-amber-500 ring-2 ring-amber-400' : 'border-gray-300'}
+              focus:outline-none
+              cursor-pointer
+              `}
+                      style={{ backgroundColor: color }}
                     />
-                    <span
-                      className={`text-sm tracking-wide ${selectedColors.includes(color)
-                        ? "text-orange-600 font-medium"
-                        : "text-gray-700"
-                        }`}
-                    >
-                      {color}
-                    </span>
-                  </label>
-                ))
+                  );
+                })
               )}
             </div>
           </div>
 
-
         </div>
-
         <div className="w-4/5 mr-30 mb-10" >
           {isProductLoading ? (
             <p className="text-gray-600 text-center text-lg">Loading products...</p>
