@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const getToken = () => {
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
   return token;
 };
 
@@ -107,21 +107,26 @@ export const shopApi = createApi({
       providesTags: ["Product"],
     }),
 
-    getProductsById: builder.query({
+    // Bu hissə sənə lazım olan tək məhsulu ID ilə almaq üçündür:
+    getProductById: builder.query({
+      query: (id) => `/product/${id}`,
+      providesTags: ["Product"],
+    }),
+
+    getProductsByCategoryId: builder.query({
       query: (categoryId) => `product/category/${categoryId}`,
       providesTags: ["Product"],
     }),
-    deleteProduct: builder.mutation({
-  query: (id) => ({
-    url: `/product/${id}`,
-    method: "DELETE",
-  }),
-  invalidatesTags: ["Product"],
-}),
 
+    deleteProduct: builder.mutation({
+      query: (id) => ({
+        url: `/product/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Product"],
+    }),
   }),
 });
-
 
 export const {
   useLoginMutation,
@@ -133,6 +138,7 @@ export const {
   useAddProductMutation,
   useUploadImagesMutation,
   useGetAllProductQuery,
-  useGetProductsByIdQuery,
-  useDeleteProductMutation
+  useGetProductByIdQuery,   // Burada tək məhsul üçün hook
+  useGetProductsByCategoryIdQuery,
+  useDeleteProductMutation,
 } = shopApi;

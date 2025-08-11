@@ -126,59 +126,61 @@ const Shop = () => {
               )}
             </div>
           </div>
-          <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
-            <h5
-              className="text-xl font-semibold tracking-wide text-[#7A3E1C] cursor-pointer flex justify-between items-center pb-4 select-none"
-            >
-              Price
-            </h5>
-            <div className="relative pt-4">
-              <div className="h-2 rounded-full bg-white border border-[#ababab] relative z-10">
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  step="1"
-                  value={selectedPrice.min || 0}
-                  onChange={(e) =>
-                    setSelectedPrice((prev) => ({
-                      ...prev,
-                      min: Math.min(Number(e.target.value), prev.max || 1000),
-                    }))
-                  }
-                  className="absolute w-full h-2 appearance-none pointer-events-auto z-20 bg-transparent"
-                  style={{ top: 0, left: 0 }}
-                />
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  step="1"
-                  value={selectedPrice.max || 100}
-                  onChange={(e) =>
-                    setSelectedPrice((prev) => ({
-                      ...prev,
-                      max: Math.max(Number(e.target.value), prev.min || 0),
-                    }))
-                  }
-                  className="absolute w-full h-2 appearance-none pointer-events-auto z-20 bg-transparent"
-                  style={{ top: 0, left: 0 }}
-                />
-                <div
-                  className="absolute h-2 rounded-full bg-amber-400 border border-amber-400 top-0"
-                  style={{
-                    left: `${(selectedPrice.min / 100) * 100}%`,
-                    right: `${100 - (selectedPrice.max / 100) * 100}%`,
-                  }}
-                />
-              </div>
-              <div className="flex justify-between text-xs font-semibold text-gray-600 mt-2 select-none">
-                <span>{selectedPrice.min ?? 0} AZN</span>
-                <span>{selectedPrice.max ?? 100} AZN</span>
-              </div>
-            </div>
+         <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
+  <h5
+    className="text-xl font-semibold tracking-wide text-[#7A3E1C] cursor-pointer flex justify-between items-center pb-4 select-none"
+  >
+    Price
+  </h5>
 
-          </div>
+  <div className="relative pt-4">
+    <div className="h-2 rounded-full bg-white border border-[#ababab] relative z-10">
+      <input
+        type="range"
+        min="0"
+        max="100"
+        step="1"
+        value={selectedPrice.min || 0}
+        onChange={(e) =>
+          setSelectedPrice((prev) => ({
+            ...prev,
+            min: Math.min(Number(e.target.value), prev.max || 1000),
+          }))
+        }
+        className="absolute w-full h-2 appearance-none pointer-events-auto z-20 bg-transparent"
+        style={{ top: 0, left: 0 }}
+      />
+      <input
+        type="range"
+        min="0"
+        max="100"
+        step="1"
+        value={selectedPrice.max || 100}
+        onChange={(e) =>
+          setSelectedPrice((prev) => ({
+            ...prev,
+            max: Math.max(Number(e.target.value), prev.min || 0),
+          }))
+        }
+        className="absolute w-full h-2 appearance-none pointer-events-auto z-20 bg-transparent"
+        style={{ top: 0, left: 0 }}
+      />
+      <div
+        className="absolute h-2 rounded-full bg-amber-400 border border-amber-400 top-0"
+        style={{
+          left: `${(selectedPrice.min / 100) * 100}%`,
+          right: `${100 - (selectedPrice.max / 100) * 100}%`,
+        }}
+      />
+    </div>
+    <div className="flex justify-between text-xs font-semibold text-gray-600 mt-2 select-none">
+      <span>{selectedPrice.min ?? 0} AZN</span>
+      <span>{selectedPrice.max ?? 100} AZN</span>
+    </div>
+  </div>
+
+</div>
+
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
             <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Sizes</p>
             <hr className="mt-2 border-[#7A3E1C]" />
@@ -213,37 +215,40 @@ const Shop = () => {
               )}
             </div>
           </div>
-          <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
-            <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Colors</p>
-            <hr className="mt-2 border-[#7A3E1C]" />
-            <div className="pt-4 flex flex-wrap gap-3">
-              {isProductLoading ? (
-                <p className="text-gray-500 text-sm text-center">Loading...</p>
-              ) : uniqueColors.length === 0 ? (
-                <p className="text-gray-500 text-sm">No colors found.</p>
-              ) : (
-                uniqueColors.map((color, index) => {
-                  const isSelected = selectedColors.includes(color);
-                  return (
-                    <button
-                      key={index}
-                      type="button"
-                      onClick={() => toggleColors(color)}
-                      title={color}
-                      className={`
+
+         <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
+  <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Colors</p>
+  <hr className="mt-2 border-[#7A3E1C]" />
+  <div className="pt-4 flex flex-wrap gap-3">
+    {isProductLoading ? (
+      <p className="text-gray-500 text-sm text-center">Loading...</p>
+    ) : uniqueColors.length === 0 ? (
+      <p className="text-gray-500 text-sm">No colors found.</p>
+    ) : (
+      uniqueColors.map((color, index) => {
+        const isSelected = selectedColors.includes(color);
+        return (
+          <button
+            key={index}
+            type="button"
+            onClick={() => toggleColors(color)}
+            title={color}
+            className={`
               w-8 h-8 rounded-full border-2 
               transition 
               ${isSelected ? 'border-amber-500 ring-2 ring-amber-400' : 'border-gray-300'}
               focus:outline-none
               cursor-pointer
               `}
-                      style={{ backgroundColor: color }}
-                    />
-                  );
-                })
-              )}
-            </div>
-          </div>
+            style={{ backgroundColor: color }}
+          />
+        );
+      })
+    )}
+  </div>
+</div>
+
+
 
         </div>
         <div className="w-4/5 mr-30 mb-10" >
@@ -252,21 +257,24 @@ const Shop = () => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {productData
-                .filter(({ category, sizes = [], colors = [], price, name }) => {
-                  const priceValue = Number(price) || 0;
-                  const minPrice = selectedPrice.min !== "" ? Number(selectedPrice.min) : null;
-                  const maxPrice = selectedPrice.max !== "" ? Number(selectedPrice.max) : null;
-                  const searchValue = searchTerm.trim().toLowerCase();
+             .filter(({ category, sizes = [], colors = [], price, name }) => {
+  const priceValue = Number(price) || 0;
+  const minPrice = selectedPrice.min !== "" ? Number(selectedPrice.min) : null;
+  const maxPrice = selectedPrice.max !== "" ? Number(selectedPrice.max) : null;
+  const searchValue = searchTerm.trim().toLowerCase();
 
-                  return (
-                    (selectedCategories.length === 0 || selectedCategories.includes(category)) &&
-                    (selectedSizes.length === 0 || sizes.some(size => selectedSizes.includes(size))) &&
-                    (selectedColors.length === 0 || colors.some(color => selectedColors.includes(color))) &&
-                    (minPrice === null || priceValue >= minPrice) &&
-                    (maxPrice === null || priceValue <= maxPrice) &&
-                    (searchValue === "" || (name || "").toLowerCase().includes(searchValue))
-                  );
-                })
+  const categoryName = typeof category === "string" ? category : category?.name;
+
+  return (
+    (selectedCategories.length === 0 || selectedCategories.includes(categoryName)) &&
+    (selectedSizes.length === 0 || sizes.some(size => selectedSizes.includes(size))) &&
+    (selectedColors.length === 0 || colors.some(color => selectedColors.includes(color))) &&
+    (minPrice === null || priceValue >= minPrice) &&
+    (maxPrice === null || priceValue <= maxPrice) &&
+    (searchValue === "" || (name || "").toLowerCase().includes(searchValue))
+  );
+})
+
                 .map((product, index) => (
                   <div
                     key={index}

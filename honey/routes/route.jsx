@@ -21,6 +21,9 @@ import NotFound from "../src/pages/NotFound";
 import Category from "../src/pages/admin/Category";
 import Shop from "../src/pages/Shop";
 import Details from "../src/pages/Details";
+import Wishlist from "../src/pages/Wishlist";
+import Register from "../src/components/users/Register";
+import Loginuser from "../src/components/users/Loginuser";
 
 export const route = createBrowserRouter(
   createRoutesFromElements(
@@ -37,6 +40,11 @@ export const route = createBrowserRouter(
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Faq />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/loginuser" element={<Loginuser />} />
+
+                <Route path="/wishlist" element={<Wishlist />} />
+
                 <Route path="/shop" element={<Shop />} />
         <Route path="/details/:id" element={<Details />} />
 
