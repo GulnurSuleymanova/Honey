@@ -16,7 +16,7 @@ const Featured = () => {
         <h2 className="text-[48px] text-[#222] font-medium tracking-wide mt-4">Featured Categories</h2>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center gap-10 px-4">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-10 px-4 " data-aos="zoom-out-down" >
         <div className="w-[300px] text-center">
           <div className="relative w-[260px] h-[260px] mx-auto mb-8">
             <img src={border} alt="border" className="absolute inset-0 w-full h-full object-contain z-10" />

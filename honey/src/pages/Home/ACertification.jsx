@@ -12,15 +12,17 @@ const ACertification = () => {
     <div className="pt-20">
       <div className="max-w-[1500px] mx-auto px-4">
         <div className="flex flex-col-reverse lg:flex-row items-center font-medium tracking-wide">
-          <div className="w-full lg:w-1/2 mb-6 lg:mb-0">
-            <img
-              src={img}
-              className="mx-auto max-w-full h-auto"
-              width="700"
-              height="500"
-              alt="img"
-            />
-          </div>
+        <div className="w-full lg:w-1/2 mb-6 lg:mb-0">
+  <img
+    src={img}
+    className="mx-auto max-w-full h-auto"
+    width="700"
+    height="500"
+    alt="img"
+    data-aos="zoom-out-down" 
+  />
+</div>
+
 
           <div className="w-full lg:w-1/2 pt-8 lg:pt-20 ">
             <div>

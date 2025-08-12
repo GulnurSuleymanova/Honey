@@ -28,7 +28,7 @@ Sleep Soundly" />
           </div>
 
           <div className="w-full lg:w-1/2 flex justify-center items-center">
-            <img src={img} alt="benefit" className="max-w-[300px] lg:max-w-full" />
+            <img src={img} alt="benefit" className="max-w-[300px] lg:max-w-full"  data-aos="zoom-out-down" />
           </div>
 
           <div className="flex flex-col gap-20 w-full lg:w-1/3">
