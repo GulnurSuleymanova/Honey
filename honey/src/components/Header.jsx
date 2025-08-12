@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import logo from '../assets/logo.png';
 import { Heart, ShoppingBasket, UserPen, X, Logs, Link } from 'lucide-react';
 import { NavLink } from 'react-router';
+import { useWishlist } from '../context/WishlistContext';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { wishlist } = useWishlist(); 
 
   return (
     <header className="relative mx-auto md:h-[90px] w-[1310px] mt-7 lg:px-[15px] pt-[15px] md:rounded-[90px] bg-[#FBF2E0] shadow-md dark:text-gray-800 z-40">
@@ -37,9 +39,9 @@ const Header = () => {
               <Heart className="w-5 h-5 text-gray-700 group-hover:text-white duration-300" />
           </NavLink>
             
-            <span className="absolute -top-1 -right-1 bg-[#FABE17] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-              0
-            </span>
+         <span className="absolute -top-1 -right-1 bg-[#FABE17] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+            {wishlist.length}
+          </span>
           </div>
 
           <div className="relative">
