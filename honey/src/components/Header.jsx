@@ -3,10 +3,12 @@ import logo from '../assets/logo.png';
 import { Heart, ShoppingBasket, UserPen, X, Logs, Link } from 'lucide-react';
 import { NavLink } from 'react-router';
 import { useWishlist } from '../context/WishlistContext';
+import { useAddtocard } from '../context/AddtocardContext';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { wishlist } = useWishlist(); 
+  const { addtocard } = useAddtocard(); 
 
   return (
     <header className="relative mx-auto md:h-[90px] w-[1310px] mt-7 lg:px-[15px] pt-[15px] md:rounded-[90px] bg-[#FBF2E0] shadow-md dark:text-gray-800 z-40">
@@ -52,8 +54,8 @@ const Header = () => {
           </NavLink>
          
             <span className="absolute -top-1 -right-1 bg-[#FABE17] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-              0
-            </span>
+            {addtocard.length}
+          </span>
           </div>
         </div>
       </div>
