@@ -25,12 +25,17 @@ import { Provider } from 'react-redux';
 import { store } from '../src/store/store';
 import { ToastContainer } from 'react-toastify';
 import { WishlistProvider } from '../src/context/WishlistContext'; 
+import { AddtocardProvider } from './context/AddtocardContext';
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <WishlistProvider> 
+            <AddtocardProvider>
+
       <ToastContainer />
       <RouterProvider router={route} />
+            </AddtocardProvider>
+
     </WishlistProvider>
   </Provider>
 )

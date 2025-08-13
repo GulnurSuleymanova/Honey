@@ -24,6 +24,7 @@ import Details from "../src/pages/Details";
 import Wishlist from "../src/pages/Wishlist";
 import Register from "../src/components/users/Register";
 import Loginuser from "../src/components/users/Loginuser";
+import Addtocard from "../src/pages/Addtocard";
 
 export const route = createBrowserRouter(
   createRoutesFromElements(
@@ -44,7 +45,7 @@ export const route = createBrowserRouter(
                 <Route path="/loginuser" element={<Loginuser />} />
 
                 <Route path="/wishlist" element={<Wishlist />} />
-
+<Route path="/addtocard" element={<Addtocard/>}/>
                 <Route path="/shop" element={<Shop />} />
         <Route path="/details/:id" element={<Details />} />
 

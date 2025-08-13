@@ -45,14 +45,12 @@ const Header = () => {
           </div>
 
           <div className="relative">
-            <a
-              href="wishlist.jsx"
-              aria-label="basket"
+             <NavLink to='/addtocard' onClick={() => setIsOpen(false)}  aria-label="user"
               className="group bg-white duration-300 h-[50px] w-[50px] flex items-center justify-center rounded-full hover:bg-amber-950"
-              style={{ boxShadow: '2px 3px 0 0 #FABE17' }}
-            >
+              style={{ boxShadow: '2px 3px 0 0 #FABE17' }}>
               <ShoppingBasket className="w-5 h-5 text-gray-700 group-hover:text-white duration-300" />
-            </a>
+          </NavLink>
+         
             <span className="absolute -top-1 -right-1 bg-[#FABE17] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
               0
             </span>

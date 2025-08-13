@@ -11,9 +11,11 @@ import { Heart, Search, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router";
 import { useWishlist } from "../context/WishlistContext";
 import { toast } from "react-toastify";
+import { useAddtocard } from "../context/AddtocardContext";
 
 const Shop = () => {
   const { toggleWishlist, wishlist } = useWishlist();
+  const { toggleAddtocard, addtocard } = useAddtocard();
 
   const { data: categoryData = [], isLoading: isCategoryLoading } = useGetCategoriesQuery();
   const { data: productData = [], isLoading: isProductLoading } = useGetAllProductQuery();
@@ -68,6 +70,20 @@ const handleWishlistClick = (e, product) => {
     toast.success(`"${product.name}" wishliste əlavə olundu.`);
   } else {
     toast(`"${product.name}" wishlistdən silindi.`);
+  }
+};
+
+const handleAddtocardClick = (e, product) => {
+  e.stopPropagation();
+
+  const isInAddtocard = addtocard.some((item) => item.id === product.id);
+
+  toggleAddtocard(product);
+
+  if (!isInAddtocard) {
+    toast.success(`"${product.name}" Addtocarde əlavə olundu.`);
+  } else {
+    toast(`"${product.name}" Addtocarddən silindi.`);
   }
 };
   return (
@@ -345,7 +361,15 @@ const handleWishlistClick = (e, product) => {
                             {product.price} AZN
                           </span>
 
-                          <button className="w-12 h-12 bg-amber-600 hover:bg-amber-700 rounded-2xl flex items-center justify-center text-white transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg hover:shadow-xl">
+                          <button className="w-12 h-12 bg-amber-600 hover:bg-amber-700 rounded-2xl flex items-center justify-center text-white transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg hover:shadow-xl" 
+                          onClick={(e) => handleAddtocardClick(e, product)}
+                        title={
+                          addtocard.some((item) => item.id === product.id)
+                            ? "Remove from addtocard"
+                            : "Add to addtocard"
+                        }
+                          >
+                           
                             <ShoppingCart className="w-5 h-5" />
                           </button>
                         </div>
