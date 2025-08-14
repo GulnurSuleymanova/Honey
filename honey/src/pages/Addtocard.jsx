@@ -52,9 +52,7 @@ const Addtocard = () => {
                   <p className="text-amber-600 font-semibold">
                     {product.price} AZN
                   </p>
-                  <p className="text-gray-500 text-sm">
-                    Cəmi: {(product.price * (product.quantity || 1)).toFixed(2)} AZN
-                  </p>
+               
                 </div>
               </div>
 
@@ -65,7 +63,10 @@ const Addtocard = () => {
                     updateQuantity(product.id, (product.quantity || 1) - 1)
                   }
                   disabled={product.quantity <= 1}
-                  className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                  className="px-3 py-1  border-l border-l-amber-400
+                border-r border-r-amber-400  
+                hover:border-amber-400 hover:border
+                rounded-lg p-4 shadow hover:shadow-lg transition-shadow00"
                 >
                   -
                 </button>
@@ -78,7 +79,10 @@ const Addtocard = () => {
                   onClick={() =>
                     updateQuantity(product.id, (product.quantity || 1) + 1)
                   }
-                  className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                  className="px-3 py-1  border-l border-l-amber-400
+                border-r border-r-amber-400  
+                hover:border-amber-400 hover:border
+                rounded-lg p-4 shadow hover:shadow-lg transition-shadow00"
                 >
                   +
                 </button>
