@@ -32,8 +32,9 @@ createRoot(document.getElementById('root')).render(
     <WishlistProvider> 
             <AddtocardProvider>
 
-      <ToastContainer />
-      <RouterProvider router={route} />
+<ToastContainer 
+          position="bottom-right" 
+        />      <RouterProvider router={route} />
             </AddtocardProvider>
 
     </WishlistProvider>

@@ -1,14 +1,29 @@
-import React from "react";
 import { useWishlist } from "../context/WishlistContext";
 import bgImage from "../assets/slider4.webp";
 import bee from "../assets/icon-footer.png";
+import { ShoppingCart } from "lucide-react";
+import { useAddtocard } from "../context/AddtocardContext";
+import { toast } from "react-toastify";
 
 const Wishlist = () => {
   const { wishlist, removeFromWishlist } = useWishlist();
+  const { toggleAddtocard, addtocard } = useAddtocard();
 
   if (wishlist.length === 0) {
     return <p className="text-center mt-10 text-lg">Wishlist boşdur</p>;
   }
+
+  const handleAddtocardClick = (e, product) => {
+    e.stopPropagation();
+
+    const isInAddtocard = addtocard.some((item) => item.id === product.id);
+    if (!isInAddtocard) {
+      toggleAddtocard(product);
+      toast.success(`"${product.name}" səbətə əlavə olundu.`);
+    } else {
+      toast.info(`"${product.name}" artıq səbətdə var.`);
+    }
+  };
 
   return (
     <>
@@ -32,8 +47,8 @@ const Wishlist = () => {
               className="flex items-center justify-between 
                 border-l border-l-amber-400
                 border-r border-r-amber-400  
-                hover:border-amber-400  hover:border
-                rounded-lg p-4 shadow hover:shadow-lg transition-shadow"
+                hover:border-amber-400 hover:border
+                rounded-lg p-4"
             >
               <div className="flex items-center gap-4">
                 <img
@@ -49,17 +64,21 @@ const Wishlist = () => {
 
               <div className="flex items-center gap-4">
                 <button
-                  className="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700 transition"
-                  onClick={() => {
-                    alert(`"${product.name}" cart-a əlavə olundu!`);
-                  }}
+                  className="w-12 h-12 bg-amber-600 hover:bg-amber-700 rounded-2xl flex items-center justify-center text-white transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg hover:shadow-xl"
+                  onClick={(e) => handleAddtocardClick(e, product)}
+                  title={
+                    addtocard.some((item) => item.id === product.id)
+                      ? "Artıq səbətdədir"
+                      : "Səbətə əlavə et"
+                  }
                 >
-                  Add to Cart
+                  <ShoppingCart className="w-5 h-5" />
                 </button>
+
                 <button
                   className="text-red-600 hover:text-red-800 font-bold text-xl px-3"
                   onClick={() => removeFromWishlist(product.id)}
-                  title="Remove from wishlist"
+                  title="Wishlist-dən sil"
                 >
                   &times;
                 </button>
