@@ -1,9 +1,16 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const AddtocardContext = createContext();
 
 export const AddtocardProvider = ({ children }) => {
-  const [addtocard, setAddtocard] = useState([]);
+  const [addtocard, setAddtocard] = useState(() => {
+    const saved = localStorage.getItem("addtocard");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("addtocard", JSON.stringify(addtocard));
+  }, [addtocard]);
 
   const toggleAddtocard = (product) => {
     setAddtocard((prev) => {
@@ -27,7 +34,9 @@ export const AddtocardProvider = ({ children }) => {
   const updateQuantity = (productId, quantity) => {
     setAddtocard((prev) =>
       prev.map((item) =>
-        item.id === productId ? { ...item, quantity: Math.max(quantity, 1) } : item
+        item.id === productId
+          ? { ...item, quantity: Math.max(quantity, 1) }
+          : item
       )
     );
   };

@@ -47,7 +47,7 @@ export const route = createBrowserRouter(
                 <Route path="/wishlist" element={<Wishlist />} />
 <Route path="/addtocard" element={<Addtocard/>}/>
                 <Route path="/shop" element={<Shop />} />
-        <Route path="/details/:id" element={<Details />} />
+        <Route path="/product/:id" element={<Details />} />
 
       </Route>
 

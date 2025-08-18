@@ -3,11 +3,9 @@ import { useAddtocard } from "../context/AddtocardContext";
 import bgImage from "../assets/slider4.webp";
 import bee from "../assets/icon-footer.png";
 
-// Qiyməti təmizləyib number qaytarır
 const cleanPrice = (price) =>
   typeof price === "number" ? price : +String(price).replace(/[^\d.-]/g, "") || 0;
 
-// Format AZN
 const toAZN = (value) =>
   new Intl.NumberFormat("az-AZ", {
     style: "currency",
@@ -25,7 +23,6 @@ const Addtocard = () => {
     );
   }
 
-  // Hesablamalar
   const subtotal = addtocard.reduce(
     (sum, p) => sum + cleanPrice(p.price) * (p.quantity || 1),
     0
@@ -34,7 +31,6 @@ const Addtocard = () => {
 
   return (
     <>
-      {/* Banner */}
       <section
         className="h-[400px] bg-cover bg-center -mt-30"
         style={{ backgroundImage: `url(${bgImage})` }}
@@ -47,9 +43,7 @@ const Addtocard = () => {
         </div>
       </section>
 
-      {/* Content */}
       <div className="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Məhsullar */}
         <div className="lg:col-span-2">
           <div className="overflow-x-auto rounded-xl border border-amber-400">
             <table className="w-full text-left">
