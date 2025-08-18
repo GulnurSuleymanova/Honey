@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../assets/logo.png';
 import { Heart, ShoppingBasket, UserPen, X, Logs, Link } from 'lucide-react';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { useWishlist } from '../context/WishlistContext';
 import { useAddtocard } from '../context/AddtocardContext';
 

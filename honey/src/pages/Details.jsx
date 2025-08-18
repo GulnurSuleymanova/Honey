@@ -1,27 +1,25 @@
 import React from "react";
-import { useParams} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useGetProductByIdQuery } from "../store/shopApi";
 import { ArrowLeft, ShoppingCart, Heart } from "lucide-react";
 import bgImage from "../assets/slider4.webp";
 import { useAddtocard } from "../context/AddtocardContext";
 import { useWishlist } from "../context/WishlistContext";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
 
 const Details = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  if (!id) return <p className="text-center text-red-500">Product ID not specified.</p>;
-
   const { data: item, isLoading, error } = useGetProductByIdQuery(id);
 
-  const { toggleAddtocard, addtocard } = useAddtocard();
-  const { toggleWishlist, wishlist } = useWishlist();
+  const { addtocard, toggleAddtocard } = useAddtocard();
+  const { wishlist, toggleWishlist } = useWishlist();
 
   const handleAddtocardClick = (e, product) => {
     e.stopPropagation();
-    const isInAddtocard = addtocard.some(p => p._id === product._id);
+    const isInAddtocard = addtocard.some(
+      (p) => p._id === product._id || p.id === product.id
+    );
     toggleAddtocard(product);
     toast[isInAddtocard ? "info" : "success"](
       `"${product.name}" ${isInAddtocard ? "səbətdə artıq var" : "səbətə əlavə olundu"}`
@@ -30,16 +28,17 @@ const Details = () => {
 
   const handleWishlistClick = (e, product) => {
     e.stopPropagation();
-    const isInWishlist = wishlist.some(p => p._id === product._id);
+    const isInWishlist = wishlist.some(
+      (p) => p._id === product._id || p.id === product.id
+    );
     toggleWishlist(product);
     toast[isInWishlist ? "info" : "success"](
       `"${product.name}" ${isInWishlist ? "wishlistdən silindi" : "wishlistə əlavə olundu"}`
     );
   };
 
-  if (error) {
-    return <p className="text-center text-red-500">Error loading product.</p>;
-  }
+  if (!id) return <p className="text-center text-red-500">Product ID not specified.</p>;
+  if (error) return <p className="text-center text-red-500">Error loading product.</p>;
 
   return (
     <>
@@ -80,7 +79,7 @@ const Details = () => {
               >
                 <Heart
                   className={`w-5 h-5 transition-all duration-200 ${
-                    wishlist.some(p => p._id === item._id)
+                    wishlist.some((p) => p._id === item._id || p.id === item.id)
                       ? "text-red-500 fill-red-500"
                       : "text-amber-700 hover:text-red-500 hover:fill-red-500"
                   }`}
@@ -90,12 +89,8 @@ const Details = () => {
 
             <div className="flex-1 flex flex-col justify-between">
               <div>
-                <h1 className="text-4xl font-extrabold mb-4 text-amber-600">
-                  {item.name}
-                </h1>
-                <p className="text-3xl font-bold text-gray-900 mb-6">
-                  {item.price} AZN
-                </p>
+                <h1 className="text-4xl font-extrabold mb-4 text-amber-600">{item.name}</h1>
+                <p className="text-3xl font-bold text-gray-900 mb-6">{item.price} AZN</p>
                 {item.description ? (
                   <p className="text-gray-700 leading-relaxed">{item.description}</p>
                 ) : (

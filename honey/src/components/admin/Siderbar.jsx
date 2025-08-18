@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FiGrid, FiPackage, FiLogOut, FiUser } from "react-icons/fi";
 
 const SiderBar = () => {

@@ -1,5 +1,5 @@
 import img404 from '../assets/404-error-page.gif';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 const NotFound = () => {
   return (

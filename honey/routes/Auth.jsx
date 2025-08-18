@@ -1,5 +1,5 @@
 
-import { Navigate } from 'react-router'
+import { Navigate } from 'react-router-dom'
 
 const Auth = ({ children }) => {
     let user = JSON.parse(localStorage.getItem('user'))

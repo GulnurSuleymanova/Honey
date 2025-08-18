@@ -8,7 +8,7 @@ import shopslider5 from "../assets/Fresh_Fruit-shop.webp";
 import shopslider6 from "../assets/Meats-shop.webp";
 import { useGetAllProductQuery, useGetCategoriesQuery } from "../store/shopApi";
 import { Heart, Search, ShoppingCart } from "lucide-react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useWishlist } from "../context/WishlistContext";
 import { toast } from "react-toastify";
 import { useAddtocard } from "../context/AddtocardContext";

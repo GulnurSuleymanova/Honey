@@ -3,7 +3,7 @@ import honey from '../../assets/honey2.webp';
 import { useLoginMutation } from '../../store/shopApi';
 import { toast } from 'react-toastify';
 import { Loader2 } from 'lucide-react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
