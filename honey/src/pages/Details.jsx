@@ -17,25 +17,26 @@ const Details = () => {
 
   const handleAddtocardClick = (e, product) => {
     e.stopPropagation();
-    const isInAddtocard = addtocard.some(
-      (p) => p._id === product._id || p.id === product.id
-    );
-    toggleAddtocard(product);
-    toast[isInAddtocard ? "info" : "success"](
-      `"${product.name}" ${isInAddtocard ? "səbətdə artıq var" : "səbətə əlavə olundu"}`
-    );
-  };
 
+    const isInAddtocard = addtocard.some((item) => item.id === product.id);
+    if (!isInAddtocard) {
+      toggleAddtocard(product);
+      toast.success(`"${product.name}" səbətə əlavə olundu.`);
+    } else {
+      toast.info(`"${product.name}" artıq səbətdə var.`);
+    }
+  };
   const handleWishlistClick = (e, product) => {
     e.stopPropagation();
-    const isInWishlist = wishlist.some(
-      (p) => p._id === product._id || p.id === product.id
-    );
+    const isInWishlist = wishlist.some((item) => item.id === product.id);
     toggleWishlist(product);
-    toast[isInWishlist ? "info" : "success"](
-      `"${product.name}" ${isInWishlist ? "wishlistdən silindi" : "wishlistə əlavə olundu"}`
-    );
+    if (!isInWishlist) {
+      toast.success(`"${product.name}" wishliste əlavə olundu.`);
+    } else {
+      toast(`"${product.name}" wishlistdən silindi.`);
+    }
   };
+
 
   if (!id) return <p className="text-center text-red-500">Product ID not specified.</p>;
   if (error) return <p className="text-center text-red-500">Error loading product.</p>;
@@ -76,13 +77,13 @@ const Details = () => {
               <div
                 className="absolute top-4 right-4 w-11 h-11 bg-amber-50/95 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer"
                 onClick={(e) => handleWishlistClick(e, item)}
+                title={wishlist.some((i) => i.id === item.id) ? "Remove from wishlist" : "Add to wishlist"}
               >
                 <Heart
-                  className={`w-5 h-5 transition-all duration-200 ${
-                    wishlist.some((p) => p._id === item._id || p.id === item.id)
+                  className={`w-5 h-5 transition-all duration-200 ${wishlist.some((i) => i.id === item.id)
                       ? "text-red-500 fill-red-500"
                       : "text-amber-700 hover:text-red-500 hover:fill-red-500"
-                  }`}
+                    }`}
                 />
               </div>
             </div>
