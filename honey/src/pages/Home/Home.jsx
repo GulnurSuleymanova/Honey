@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import hero_slider1 from '../../assets/honey1.webp';
 import bee from '../../assets/bee.webp';
 import bee2 from '../../assets/bee2.webp';
 import slideBackground from '../../assets/slide4-2.webp';
@@ -27,17 +26,16 @@ const Home = () => {
     <>
       <div className="relative w-full -mt-32 z-10">
         <div
-          className="relative bg-cover bg-center bg-no-repeat w-full h-[110vh] pt-[250px]"
-          style={{ backgroundImage: `url(${slideBackground})` }}
+            className="relative home-hero w-full h-[110vh] pt-[250px]"
         >
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-8">
             <div className="flex flex-wrap">
               <div className="w-full md:w-1/3 text-start">
-                <h5 className="text-[30px] mb-3 text-[#151418] font-medium tracking-wide" data-aos="fade-right">
+                <h5 className="text-[30px] mb-3  font-medium tracking-wide mx-24" data-aos="fade-right">
                   Fresh Organic
                 </h5>
                 <h3
-                  className="text-[#151418] text-[60px] leading-[1.2em] mb-[42px] font-medium tracking-wide"
+                  className=" text-[60px] leading-[1.2em] mb-[42px] font-medium tracking-wide mx-24"
                   data-aos="fade-right"
                   data-aos-delay="200"
                 >
@@ -54,14 +52,12 @@ const Home = () => {
                 </div>
 
                 {/* Əsas şəkil - zoom effekti */}
-                <div data-aos="zoom-in" data-aos-delay="300">
-                  <img
-                    src={hero_slider1}
-                    className="mx-auto img-fluid max-w-full hero_img"
-                    alt="Hero"
-                    loading="lazy"
-                  />
-                </div>
+                <div
+  data-aos="zoom-in"
+  data-aos-delay="300"
+  className="herohoney w-[900px] h-[800px] bg-contain bg-no-repeat bg-center mx-auto -mt-30"
+/>
+
 
                 {/* İkinci arı - aşağıdan gəlir və fırlanır */}
                 <div

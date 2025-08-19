@@ -9,7 +9,7 @@ import test from "../../assets/icon-testimonial.webp";
 
 const BSocial = () => {
   return (
-    <div className="pt-[100px] bg-white dark:bg-white">
+    <div className="pt-[100px] ">
                     <img src={test} alt="testimonial icon" className="mx-auto mb-4" />
 
       <div className="max-w-[1240px] mx-auto px-4">
@@ -26,12 +26,12 @@ const BSocial = () => {
           </div>
 
           <div className="text-center w-full lg:w-1/2">
-            <h5 className="text-[35px] text-[#222] font-semibold pb-2">
+            <h5 className="text-[35px]  font-semibold pb-2">
               Let's Bee Social
             </h5>
-            <p className="text-[#434343]">@botanica</p>
-            <p className="text-[#434343]">Share your style: #botanica</p>
-            <p className="text-[#434343]">Share your pup’s style: #botanica</p>
+            <p >@botanica</p>
+            <p >Share your style: #botanica</p>
+            <p >Share your pup’s style: #botanica</p>
           </div>
 
           <div className="w-full lg:w-1/4 relative group overflow-hidden rounded-[20px]">

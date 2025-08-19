@@ -4,6 +4,7 @@ import { Heart, ShoppingBasket, UserPen, X, Logs, Link } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useWishlist } from '../context/WishlistContext';
 import { useAddtocard } from '../context/AddtocardContext';
+import DarkModeToggle from './DarkModeToggle';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,12 +12,12 @@ const Header = () => {
   const { addtocard } = useAddtocard(); 
 
   return (
-    <header className="relative mx-auto md:h-[90px] w-[1310px] mt-7 lg:px-[15px] pt-[15px] md:rounded-[90px] bg-[#FBF2E0] shadow-md dark:text-gray-800 z-40">
+    <header className="relative mx-auto md:h-[90px] w-[1310px] mt-7 lg:px-[15px] pt-[15px] md:rounded-[90px] shadow-md  z-40">
       <div className="relative flex justify-between items-center h-full mx-auto">
 
         <button
           onClick={() => setIsOpen(true)}
-          className="group bg-white duration-300 h-[50px] w-[50px] flex items-center justify-center rounded-full hover:bg-amber-950 cursor-pointer"
+          className="group bg-white text-gray-700 duration-300 h-[50px] w-[50px] flex items-center justify-center rounded-full hover:bg-amber-950 cursor-pointer"
         >
           <Logs size={24} className="group-hover:text-white duration-300" />
         </button>
@@ -26,6 +27,8 @@ const Header = () => {
         </div>
 
         <div className="flex items-center gap-2 z-40">
+            <DarkModeToggle />
+
           <div className="relative">
                <NavLink to='/login' onClick={() => setIsOpen(false)}  aria-label="user"
               className="group bg-white duration-300 h-[50px] w-[50px] flex items-center justify-center rounded-full hover:bg-amber-950"
@@ -68,7 +71,7 @@ const Header = () => {
       )}
 
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-[#FBF2E0] shadow-lg z-50 transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`fixed top-0 left-0 h-full w-64 bg-[#FBF2E0] side shadow-lg z-50 transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
       >
         <div className="flex justify-between items-center p-4 border-b">

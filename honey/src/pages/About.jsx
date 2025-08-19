@@ -30,7 +30,7 @@ const About = () => {
       <section className="flex flex-col md:flex-row items-center justify-between gap-10 px-6  max-w-6xl mx-auto">
         <div className="md:w-1/2 space-y-6">
           <h3 className="text-3xl font-medium tracking-wide text-[#3a1e0d]">Why Choose Us?</h3>
-          <p className="text-gray-700 text-lg font-medium tracking-wide leading-relaxed">
+          <p className="text-lg font-medium tracking-wide leading-relaxed">
             Maecenas congue metus id turpis iaculis mattis. Sed pellentesque id arcu id
             scelerisque. Ut ullamcorper rutrum justo, at blandit eros maximus ut. Integer non
             tincidunt justo, rhoncus Aenean venenatis sed purus ac sollicitudin. Nulla mauris
@@ -49,7 +49,7 @@ const About = () => {
         <div className="md:w-1/2 space-y-6">
           <h3 className="text-3xl font-medium tracking-wide text-[#3a1e0d]">Trusted online shopping
           </h3>
-          <p className="text-gray-700 text-lg font-medium tracking-wide leading-relaxed">
+          <p className="text-lg font-medium tracking-wide leading-relaxed">
             Maecenas congue metus id turpis iaculis mattis. Sed pellentesque id arcu id scelerisque. Ut ullamcorper rutrum justo, at blandit eros maximus ut. Integer non tincidunt justo, rhoncus Aenean venenatis sed purus ac sollicitudin. Nulla mauris risus, commodo et luctus rutrum, lobortis sed mauris. Integer congue, sem elementum varius tristique.
           </p>
         </div>

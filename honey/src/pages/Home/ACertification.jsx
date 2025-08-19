@@ -26,7 +26,7 @@ const ACertification = () => {
 
           <div className="w-full lg:w-1/2 pt-8 lg:pt-20 ">
             <div>
-              <h6 className="text-[#5B2800] text-[27px] font-semibold mb-2">
+              <h6 className=" text-[27px] font-semibold mb-2">
 True Source Certified
 
               </h6>

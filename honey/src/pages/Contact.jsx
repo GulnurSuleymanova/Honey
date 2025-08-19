@@ -36,15 +36,15 @@ const Contact = () => {
 
         <form className="space-y-6  p-6 ">
           <div>
-            <label htmlFor="name" className="text-sm text-gray-700">Full Name</label>
+            <label htmlFor="name" className="text-sm ">Full Name</label>
             <input id="name" type="text" className="w-full p-3 rounded border border-gray-300" />
           </div>
           <div>
-            <label htmlFor="email" className="text-sm text-gray-700">Email</label>
+            <label htmlFor="email" className="text-sm ">Email</label>
             <input id="email" type="email" className="w-full p-3 rounded border border-gray-300" />
           </div>
           <div>
-            <label htmlFor="message" className="text-sm text-gray-700">Message</label>
+            <label htmlFor="message" className="text-sm ">Message</label>
             <textarea id="message" rows="4" className="w-full p-3 rounded border border-gray-300"></textarea>
           </div>
           <button
@@ -70,7 +70,7 @@ const Contact = () => {
           referrerPolicy="no-referrer-when-downgrade"
           className="w-full rounded-lg shadow-lg md:w-1/2"
         />
-          <div className="flex flex-col space-y-4 text-gray-700 md:w-1/2 px-8">
+          <div className="flex flex-col space-y-4  md:w-1/2 px-8">
           <p className="flex items-start gap-2">
             <FaMapMarkerAlt className="text-[#3a1e0d]" size={18} />
             <span>123 Suspendis matti, Visaosang Building VST District, NY Accums, North American</span>

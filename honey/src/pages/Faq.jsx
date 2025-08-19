@@ -45,7 +45,7 @@ const Faq = () => {
               openItem1 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
             }`}>
               <div className="px-6 pb-4">
-                <div className="pl-8 text-gray-700 leading-relaxed">
+                <div className="pl-8  leading-relaxed">
                   Yes, our honey is 100% natural and additive-free. Our bees receive no chemical intervention and the honey reaches you without any processing. Our hives are located in organically certified flower fields.
                 </div>
               </div>
@@ -74,7 +74,7 @@ const Faq = () => {
               openItem2 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
             }`}>
               <div className="px-6 pb-4">
-                <div className="pl-8 text-gray-700 leading-relaxed">
+                <div className="pl-8  leading-relaxed">
                   Each batch of our honey undergoes laboratory testing. Pollen analysis, moisture content, HMF value and antibiotic residue tests are performed. We also have ISO 22000 quality certificates.
                 </div>
               </div>
@@ -103,7 +103,7 @@ const Faq = () => {
               openItem3 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
             }`}>
               <div className="px-6 pb-4">
-                <div className="pl-8 text-gray-700 leading-relaxed">
+                <div className="pl-8  leading-relaxed">
                   We have chestnut honey, pine honey, lavender honey, acacia honey, wildflower honey and strained honey varieties. Each has its own unique taste and health benefits. We also have seasonal specialty honeys available.
                 </div>
               </div>
@@ -132,7 +132,7 @@ const Faq = () => {
               openItem4 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
             }`}>
               <div className="px-6 pb-4">
-                <div className="pl-8 text-gray-700 leading-relaxed">
+                <div className="pl-8  leading-relaxed">
                   Our honey contains natural antioxidants, vitamins and minerals. It strengthens the immune system, aids digestion and is a natural energy source. It also has anti-inflammatory and antibacterial properties.
                 </div>
               </div>

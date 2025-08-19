@@ -1,5 +1,4 @@
 import React from 'react';
-import bgFooter from '../assets/bg-footer4.webp';
 import logo from '../assets/logo.png';
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from 'react-icons/fa6';
@@ -8,12 +7,11 @@ const Footer = () => {
   return (
     <div>
       <section
-        className="w-full py-12 px-4 md:px-8 bg-top bg-repeat"
-        style={{ backgroundImage: `url(${bgFooter})`, backgroundSize: 'auto' }}
+        className="w-full py-12 px-4 md:px-8 bg-top bg-repeat bgfooter"
       >
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-4">Subscribe</h2>
-          <p className="text-gray-600 mb-6 max-w-xl mx-auto">
+          <h2 className="text-3xl font-semibold  mb-4">Subscribe</h2>
+          <p className=" mb-6 max-w-xl mx-auto">
             Sign up for newsletter to receive special offers and exclusive news about Botanica products
           </p>
 
@@ -32,7 +30,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <footer className="py-10 text-gray-900">
+        <footer className="py-10 ">
           <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
               <div className="text-center md:text-left order-1">
@@ -48,7 +46,7 @@ const Footer = () => {
 
               <div className="flex flex-col items-center md:items-center order-2">
                 <img src={logo} alt="Logo" className="w-32 mb-4" />
-                <p className="text-sm text-center text-gray-700">
+                <p className="text-sm text-center ">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed dui tempor eros porttitor tristique eget eu lectus. Sed auctor mi vitae velit aliquet, quis pharetra sem vestibulum. Nam vel lectus imperdiet.    </p>
               <div className="flex space-x-4 mt-10">
   <a
@@ -83,7 +81,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row items-center justify-center text-sm text-gray-600 border-t pt-6">
+            <div className="flex flex-col md:flex-row items-center justify-center text-sm  border-t pt-6">
                 <span>© 2025 Gulnur</span>
             </div>
           </div>

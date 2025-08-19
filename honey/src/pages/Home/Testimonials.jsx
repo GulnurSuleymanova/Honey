@@ -13,8 +13,8 @@ const Testimonials = () => {
   return (
     <div className="text-center px-8">
       <img src={test} alt="testimonial icon" className="mx-auto mb-4 mt-8" />
-      <p className="text-[16px] font-medium text-[#5B2800]">Product Benefits</p>
-      <h5 className="text-[24px] font-semibold text-[#222] mb-10">Featured Categories</h5>
+      <p className="text-[16px] font-medium ">Product Benefits</p>
+      <h5 className="text-[24px] font-semibold  mb-10">Featured Categories</h5>
 
       <Swiper
         grabCursor

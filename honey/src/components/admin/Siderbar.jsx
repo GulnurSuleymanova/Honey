@@ -13,11 +13,11 @@ const SiderBar = () => {
   const isActivePath = (path) => location.pathname === path;
 
   return (
-    <div className="flex flex-col h-screen w-72 bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-100 shadow-xl border-r border-amber-200">
+    <div className="flex flex-col h-screen w-72  shadow-xl border-r border-amber-200">
       <div className="p-6 border-b border-amber-200 bg-white/60 backdrop-blur-sm">
         <div className="flex items-center space-x-3 mb-2">
           <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
-            <FiUser className="text-white text-xl" />
+            <FiUser className=" text-xl" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-amber-800 leading-tight">
@@ -44,7 +44,7 @@ const SiderBar = () => {
             className={`
               w-10 h-10 rounded-lg flex items-center justify-center mr-3 transition-colors
               ${isActivePath("/admin/category")
-                ? "bg-gradient-to-br from-amber-400 to-orange-400 text-white shadow-sm"
+                ? "bg-gradient-to-br from-amber-400 to-orange-400  shadow-sm"
                 : "text-amber-500 group-hover:bg-amber-100"
               }
             `}
@@ -71,7 +71,7 @@ const SiderBar = () => {
             className={`
               w-10 h-10 rounded-lg flex items-center justify-center mr-3 transition-colors
               ${isActivePath("/admin/product")
-                ? "bg-gradient-to-br from-orange-400 to-amber-400 text-white shadow-sm"
+                ? "bg-gradient-to-br from-orange-400 to-amber-400  shadow-sm"
                 : "text-orange-500 group-hover:bg-amber-100"
               }
             `}

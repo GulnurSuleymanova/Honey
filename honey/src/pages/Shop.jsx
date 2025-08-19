@@ -142,14 +142,14 @@ const Shop = () => {
               placeholder="Search products..."
               value={searchTerm}
               onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
-              className="w-full px-4 py-3 pr-12 border border-[#7A3E1C] rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 placeholder-gray-400 text-gray-700 font-medium"
+              className="w-full px-4 py-3 pr-12 border border-[#7A3E1C] rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 placeholder-gray-400  font-medium"
             />
-            <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-[#7A3E1C] w-5 h-5" />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5" />
           </div>
 
           {/* Categories */}
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
-            <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Categories</p>
+            <p className="text-xl font-semibold tracking-wide ">Categories</p>
             <hr className="mt-2 border-[#7A3E1C]" />
             <div className="pt-4 flex flex-col gap-3">
               {isCategoryLoading ? (
@@ -171,7 +171,7 @@ const Shop = () => {
                       className={`text-sm tracking-wide ${
                         selectedCategories.includes(item.name)
                           ? "text-orange-600 font-medium"
-                          : "text-gray-700"
+                          : ""
                       }`}
                     >
                       {item.name}
@@ -186,7 +186,7 @@ const Shop = () => {
           {/* Burada əvvəlki kod dəyişməz */}
           {/* Price filter */}
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
-            <h5 className="text-xl font-semibold tracking-wide text-[#7A3E1C] cursor-pointer flex justify-between items-center pb-4 select-none">
+            <h5 className="text-xl font-semibold tracking-wide cursor-pointer flex justify-between items-center pb-4 select-none">
               Price
             </h5>
             <div className="relative pt-4">
@@ -232,7 +232,7 @@ const Shop = () => {
 
           {/* Sizes */}
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
-            <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Sizes</p>
+            <p className="text-xl font-semibold tracking-wide ">Sizes</p>
             <hr className="mt-2 border-[#7A3E1C]" />
             <div className="pt-4 flex flex-col gap-3">
               {isProductLoading ? (
@@ -252,7 +252,7 @@ const Shop = () => {
                       onChange={() => { toggleSize(size); setCurrentPage(1); }}
                       className="accent-orange-600 w-4 h-4"
                     />
-                    <span className={`text-sm tracking-wide ${selectedSizes.includes(size) ? "text-orange-600 font-medium" : "text-gray-700"}`}>
+                    <span className={`text-sm tracking-wide ${selectedSizes.includes(size) ? "text-orange-600 font-medium" : ""}`}>
                       {size}
                     </span>
                   </label>
@@ -263,7 +263,7 @@ const Shop = () => {
 
           {/* Colors */}
           <div className="mb-6 border-[#7A3E1C] rounded-3xl border-2 p-6 my-10">
-            <p className="text-xl font-semibold tracking-wide text-[#7A3E1C]">Colors</p>
+            <p className="text-xl font-semibold tracking-wide ">Colors</p>
             <hr className="mt-2 border-[#7A3E1C]" />
             <div className="pt-4 flex flex-wrap gap-3">
               {isProductLoading ? (
@@ -310,7 +310,7 @@ const Shop = () => {
                     </div>
                     <div className="p-6">
                       <div className="mb-4">
-                        <h3 className="font-bold text-xl text-gray-900 mb-2 ">{product.name}</h3>
+                        <h3 className="font-bold text-xl  mb-2 ">{product.name}</h3>
                         <div className="flex items-center gap-1 mb-3">
                           <div className="flex">
                             {[...Array(5)].map((_, i) => (
@@ -341,7 +341,7 @@ const Shop = () => {
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                   <button
                     key={page}
-                    className={`px-4 py-2 rounded-lg font-medium ${page === currentPage ? "bg-amber-600 text-white" : "bg-gray-200 text-gray-700"}`}
+                    className={`px-4 py-2 rounded-lg font-medium ${page === currentPage ? "bg-amber-600 text-white" : "bg-gray-200 "}`}
                     onClick={() => setCurrentPage(page)}
                   >
                     {page}
