@@ -6,9 +6,9 @@ import bgImage from "../assets/slider4.webp";
 import { useAddtocard } from "../context/AddtocardContext";
 import { useWishlist } from "../context/WishlistContext";
 import { toast } from "react-toastify";
-import mastercard from "../assets/mastercard.png"; // default import
-import visa from "../assets/visa.png"; // default import
-import paypal from "../assets/paypal.png"; // default import
+import mastercard from "../assets/mastercard.png"; 
+import visa from "../assets/visa.png"; 
+import paypal from "../assets/paypal.png"; 
 
 const Details = () => {
   const { id } = useParams();
@@ -20,7 +20,6 @@ const Details = () => {
 
   const [selectedImage, setSelectedImage] = useState("");
 
-  // Məhsul yükləndikdə default əsas şəkli seç
   useEffect(() => {
     if (item) {
       setSelectedImage(item.images?.[0]?.url || item.image);
@@ -78,90 +77,74 @@ const Details = () => {
         ) : !item ? (
           <p className="text-center text-red-500 text-lg">Product not found.</p>
         ) : (
-         <div className="flex flex-col md:flex-row gap-10">
-  {/* Şəkillər */}
-  <div className="flex-1 bg-white rounded-3xl shadow-lg p-6 flex flex-col justify-center items-center relative">
-    <img
-      src={selectedImage}
-      alt={item.name}
-      className="max-h-96 object-contain rounded-xl"
-    />
-    {/* Wishlist icon */}
-    <div
-      className="absolute top-4 right-4 w-11 h-11 bg-amber-50/95 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer"
-      onClick={(e) => handleWishlistClick(e, item)}
-      title={wishlist.some((i) => i.id === item.id) ? "Remove from wishlist" : "Add to wishlist"}
-    >
-      <Heart
-        className={`w-5 h-5 transition-all duration-200 ${
-          wishlist.some((i) => i.id === item.id)
-            ? "text-red-500 fill-red-500"
-            : "text-amber-700 hover:text-red-500 hover:fill-red-500"
-        }`}
-      />
-    </div>
-
-    {/* Thumbnail şəkillər */}
-    <div className="flex gap-2 mt-4">
-      {item.images?.map((img, index) => (
-        <img
-          key={index}
-          src={img.url}
-          alt={`${item.name}-${index}`}
-          className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${
-            selectedImage === img.url ? "border-amber-600" : "border-transparent"
-          }`}
-          onClick={() => setSelectedImage(img.url)}
-        />
-      ))}
-    </div>
-  </div>
-
-  {/* Məhsul və ödəniş məlumatları */}
-  <div className="flex-1 flex flex-col justify-between">
-    {/* Pay divini düymədən yuxarı qoyuruq */}
-    
-
-    {/* Məhsul məlumatı */}
-    <div className=" p-6 rounded-lg space-y-6 mb-4">
-      <h1 className="text-4xl font-extrabold mb-4 text-amber-600">{item.name}</h1>
-      <p className="text-3xl font-bold text-gray-900 mb-6">{item.price} AZN</p>
-      {item.description ? (
-        <p className="text-gray-700 leading-relaxed">{item.description}</p>
-      ) : (
-        <p className="text-gray-400">No description available.</p>
-      )}
-    </div>
-<div className="pay m-6">
-      {/* Payment Methods */}
-      <div className="flex flex-col items-center justify-center bg-gray-200 p-4 rounded-lg space-y-2 mb-4">
-        <p className="font-medium text-gray-700">Guarantee safe & secure checkout</p>
-        <div className="flex items-center gap-4 mt-2">
-          <img src={mastercard} alt="MasterCard" className="h-6" />
-          <img src={visa} alt="Visa" className="h-6" />
-          <img src={paypal} alt="PayPal" className="h-6" />
-        </div>
-      </div>
-      {/* Delivery Info */}
-      <div className="flex items-center gap-3 text-gray-700 mb-2">
-        <Clock className="w-5 h-5" />
-        <p>Estimated Delivery : <span className="font-medium">25 - 26 Aug, 2025</span></p>
-      </div>
-      {/* Shipping Info */}
-      <div className="flex items-center gap-3 text-gray-700">
-        <Truck className="w-5 h-5" />
-        <p>Free Shipping & Returns : <span className="font-medium">On all order over $200.00</span></p>
-      </div>
-    </div>
-    {/* Add to Cart düyməsi */}
-    <button
-      onClick={(e) => handleAddtocardClick(e, item)}
-      className="mt-6 w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-2xl flex items-center justify-center gap-2"
-    >
-      <ShoppingCart className="w-5 h-5" /> Add to Cart
-    </button>
-  </div>
-</div>
+          <div className="flex flex-col md:flex-row gap-10">
+            <div className="flex-1 bg-white rounded-3xl shadow-lg p-6 flex flex-col justify-center items-center relative">
+              <img
+                src={selectedImage}
+                alt={item.name}
+                className="max-h-96 object-contain rounded-xl"
+              />
+              <div
+                className="absolute top-4 right-4 w-11 h-11 bg-amber-50/95 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer"
+                onClick={(e) => handleWishlistClick(e, item)}
+                title={wishlist.some((i) => i.id === item.id) ? "Remove from wishlist" : "Add to wishlist"}
+              >
+                <Heart
+                  className={`w-5 h-5 transition-all duration-200 ${wishlist.some((i) => i.id === item.id)
+                      ? "text-red-500 fill-red-500"
+                      : "text-amber-700 hover:text-red-500 hover:fill-red-500"
+                    }`}
+                />
+              </div>
+              <div className="flex gap-2 mt-4">
+                {item.images?.map((img, index) => (
+                  <img
+                    key={index}
+                    src={img.url}
+                    alt={`${item.name}-${index}`}
+                    className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${selectedImage === img.url ? "border-amber-600" : "border-transparent"
+                      }`}
+                    onClick={() => setSelectedImage(img.url)}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="flex-1 flex flex-col justify-between">
+              <div className=" p-6 rounded-lg space-y-6 mb-4">
+                <h1 className="text-4xl font-extrabold mb-4 text-amber-600">{item.name}</h1>
+                <p className="text-3xl font-bold text-gray-900 mb-6">{item.price} AZN</p>
+                {item.description ? (
+                  <p className="text-gray-700 leading-relaxed">{item.description}</p>
+                ) : (
+                  <p className="text-gray-400">No description available.</p>
+                )}
+              </div>
+              <div className="pay m-6">
+                <div className="flex flex-col items-center justify-center bg-gray-200 p-4 rounded-lg space-y-2 mb-4">
+                  <p className="font-medium text-gray-700">Guarantee safe & secure checkout</p>
+                  <div className="flex items-center gap-4 mt-2">
+                    <img src={mastercard} alt="MasterCard" className="h-6" />
+                    <img src={visa} alt="Visa" className="h-6" />
+                    <img src={paypal} alt="PayPal" className="h-6" />
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700 mb-2">
+                  <Clock className="w-5 h-5" />
+                  <p>Estimated Delivery : <span className="font-medium">25 - 26 Aug, 2025</span></p>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <Truck className="w-5 h-5" />
+                  <p>Free Shipping & Returns : <span className="font-medium">On all order over $200.00</span></p>
+                </div>
+              </div>
+              <button
+                onClick={(e) => handleAddtocardClick(e, item)}
+                className="mt-6 w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-2xl flex items-center justify-center gap-2"
+              >
+                <ShoppingCart className="w-5 h-5" /> Add to Cart
+              </button>
+            </div>
+          </div>
 
         )}
       </div>
