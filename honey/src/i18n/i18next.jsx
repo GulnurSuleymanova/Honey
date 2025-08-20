@@ -102,7 +102,28 @@ const resources = {
                     "desc": "Akasya Balı açıq rəngi və yüngül dadı ilə tanınır. Akasya ağaclarından toplanan bu bal incə şirinliyi sevənlər üçün idealdır."
                 }
 
-            }
+            },
+            footer:[
+                   "Abunə olun",
+   "Xüsusi təkliflər və Botanica məhsulları haqqında eksklüziv xəbərləri almaq üçün bülleteni qeydiyyatdan keçirin",
+       "E-mailinizi daxil edin",
+       "Abunə Ol",
+       "Mağaza",
+       "Bütün Məhsullar",
+       "Ən çox satılanlar",
+       "Yeni gələnlər",
+       "Hədiyyələr",
+       "Topdansatış",
+       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed dui tempor eros porttitor tristique eget eu lectus. Sed auctor mi vitae velit aliquet, quis pharetra sem vestibulum. Nam vel lectus imperdiet.",
+       "Məlumat",
+       "Haqqımızda",
+       "Əlaqə",
+       "Bloq",
+       "Suallar",
+       "Qaytarma",
+       "© 2025 Gulnur"
+    
+],
         }
     },
     en: {
@@ -202,7 +223,28 @@ const resources = {
                     "title": "Acacia Honey",
                     "desc": "Acacia Honey is known for its light color and mild flavor. Harvested from acacia trees, it is perfect for those who love delicate sweetness without overpowering taste."
                 }
-            }
+            },
+            footer: [
+  "Subscribe",
+  "Sign up for newsletter to receive special offers and exclusive news about Botanica products",
+  "Enter Your Email",
+  "Subscribe",
+  "Shop",
+  "All Products",
+  "Best Sellers",
+  "New Arrivals",
+  "Gifts",
+  "Wholesale",
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed dui tempor eros porttitor tristique eget eu lectus. Sed auctor mi vitae velit aliquet, quis pharetra sem vestibulum. Nam vel lectus imperdiet.",
+  "Info",
+  "About Us",
+  "Contact",
+  "Blog",
+  "FAQs",
+  "Returns",
+  "© 2025 Gulnur"
+]
+
         }
     }
 };
