@@ -1,61 +1,88 @@
-import React from 'react';
-import border from '../../assets/border.png';
-import category1 from '../../assets/category1.webp';
-import category2 from '../../assets/category2.webp';
-import category3 from '../../assets/category3.webp';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import border from "../../assets/border.png";
+import category1 from "../../assets/category1.webp";
+import category2 from "../../assets/category2.webp";
+import category3 from "../../assets/category3.webp";
 
 const Featured = () => {
+  const { t } = useTranslation();
+
   return (
-    <div
-      className="py-20 bg-no-repeat bg-cover bg-center -mt-60 home-hero "
-    >
+    <div className="py-20 bg-no-repeat bg-cover bg-center -mt-60 home-hero">
       <div className="text-center mb-16 mt-36">
-        <p className=" text-[37px] font-medium tracking-wide">Product Benefits</p>
-        <h2 className="text-[48px]  font-medium tracking-wide mt-4">Featured Categories</h2>
+        <p className="text-[37px] font-medium tracking-wide">
+          {t("featured.subtitle")}
+        </p>
+        <h2 className="text-[48px] font-medium tracking-wide mt-4">
+          {t("featured.title")}
+        </h2>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center gap-10 px-4 " >
+      <div className="flex flex-col md:flex-row items-center justify-center gap-10 px-4">
+        {/* 1-ci kateqoriya */}
         <div className="w-[300px] text-center">
           <div className="relative w-[260px] h-[260px] mx-auto mb-8">
-            <img src={border} alt="border" className="absolute inset-0 w-full h-full object-contain z-10" />
+            <img
+              src={border}
+              alt="border"
+              className="absolute inset-0 w-full h-full object-contain z-10"
+            />
             <img
               src={category1}
-              alt="Sunflower Honey"
+              alt={t("featured.sunflower.name")}
               className="absolute inset-0 w-[60%] h-[60%] object-cover m-auto z-0 rounded-full"
             />
           </div>
-          <h3 className="text-[28px] font-medium  tracking-wide mb-2">Sunflower Honey</h3>
-          <p className="text-[15px]  font-medium tracking-wide leading-relaxed mb-32">
-            Sunflower Honey delivers the delight of the world’s happiest flowers with every spoonful. We proudly source this golden treasure from the beekeepers of Ukraine and Romania.
+          <h3 className="text-[28px] font-medium tracking-wide mb-2">
+            {t("featured.sunflower.name")}
+          </h3>
+          <p className="text-[15px] font-medium tracking-wide leading-relaxed mb-32">
+            {t("featured.sunflower.desc")}
           </p>
         </div>
 
+        {/* 2-ci kateqoriya */}
         <div className="w-[300px] text-center">
           <div className="relative w-[260px] h-[260px] mx-auto mb-8">
-            <img src={border} alt="border" className="absolute inset-0 w-full h-full object-contain z-10" />
+            <img
+              src={border}
+              alt="border"
+              className="absolute inset-0 w-full h-full object-contain z-10"
+            />
             <img
               src={category2}
-              alt="Wildflower Honey"
+              alt={t("featured.wildflower.name")}
               className="absolute inset-0 w-[60%] h-[60%] object-cover m-auto z-0 rounded-full"
             />
           </div>
-          <h3 className="text-[28px] font-medium  tracking-wide mb-2">Wildflower Honey</h3>
-          <p className="text-[15px]  font-medium tracking-wide leading-relaxed mb-32">
-            Wildflower Honey captures the natural aroma of mixed blossoms. Sourced from the most vibrant meadows of Europe, this honey brings a rich floral taste to your table.
+          <h3 className="text-[28px] font-medium tracking-wide mb-2">
+            {t("featured.wildflower.name")}
+          </h3>
+          <p className="text-[15px] font-medium tracking-wide leading-relaxed mb-32">
+            {t("featured.wildflower.desc")}
           </p>
         </div>
+
+        {/* 3-cü kateqoriya */}
         <div className="w-[300px] text-center">
           <div className="relative w-[260px] h-[260px] mx-auto mb-8">
-            <img src={border} alt="border" className="absolute inset-0 w-full h-full object-contain z-10" />
+            <img
+              src={border}
+              alt="border"
+              className="absolute inset-0 w-full h-full object-contain z-10"
+            />
             <img
               src={category3}
-              alt="Acacia Honey"
+              alt={t("featured.acacia.name")}
               className="absolute inset-0 w-[60%] h-[60%] object-cover m-auto z-0 rounded-full"
             />
           </div>
-          <h3 className="text-[28px] font-medium  tracking-wide mb-2">Acacia Honey</h3>
-          <p className="text-[15px]  font-medium tracking-wide leading-relaxed mb-32">
-            Acacia Honey is known for its light color and mild flavor. Harvested from acacia trees, it is perfect for those who love delicate sweetness without overpowering taste.
+          <h3 className="text-[28px] font-medium tracking-wide mb-2">
+            {t("featured.acacia.name")}
+          </h3>
+          <p className="text-[15px] font-medium tracking-wide leading-relaxed mb-32">
+            {t("featured.acacia.desc")}
           </p>
         </div>
       </div>
