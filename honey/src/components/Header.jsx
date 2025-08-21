@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../assets/logo.png';
 import { Heart, ShoppingBasket, UserPen, X, Logs, Globe } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useWishlist } from '../context/WishlistContext';
 import { useAddtocard } from '../context/AddtocardContext';
 import DarkModeToggle from './DarkModeToggle';
@@ -10,10 +10,12 @@ import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [openLang, setOpenLang] = useState(false); // 🔹 dil select açılıb bağlansın
+  const [openLang, setOpenLang] = useState(false);
+  const [openUser, setOpenUser] = useState(false); // 🔹 user menu üçün state
   const { wishlist } = useWishlist();
   const { addtocard } = useAddtocard();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const changeLang = (lang) => {
     i18n.changeLanguage(lang);
@@ -24,7 +26,7 @@ const Header = () => {
     <header className="relative mx-auto md:h-[90px] w-[1310px] mt-7 lg:px-[15px] pt-[15px] md:rounded-[90px] shadow-md z-40">
       <div className="relative flex justify-between items-center h-full mx-auto">
 
-        {/* Sol menyu açılma düyməsi */}
+        {/* Sol menyu */}
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsOpen(true)}
@@ -70,13 +72,33 @@ const Header = () => {
         <div className="flex items-center gap-2 z-40">
           <DarkModeToggle />
 
-          {/* User */}
+          {/* 🔹 User dropdown */}
           <div className="relative">
-            <NavLink to='/login' onClick={() => setIsOpen(false)} aria-label="user"
+            <button
+              onClick={() => setOpenUser(!openUser)}
+              aria-label="user"
               className="group bg-white duration-300 h-[50px] w-[50px] flex items-center justify-center rounded-full hover:bg-amber-950"
-              style={{ boxShadow: '2px 3px 0 0 #FABE17' }}>
+              style={{ boxShadow: '2px 3px 0 0 #FABE17' }}
+            >
               <UserPen className="w-5 h-5 text-gray-700 group-hover:text-white duration-300" />
-            </NavLink>
+            </button>
+
+            {openUser && (
+              <div className="absolute top-14 right-0 bg-white border rounded-lg shadow-lg p-2 w-32">
+                <button
+                  onClick={() => { navigate('/login'); setOpenUser(false); }}
+                  className="block w-full text-left px-3 py-1 rounded hover:bg-gray-100"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => { navigate('/register'); setOpenUser(false); }}
+                  className="block w-full text-left px-3 py-1 rounded hover:bg-gray-100"
+                >
+                  Register
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Wishlist */}
@@ -124,7 +146,7 @@ const Header = () => {
         </div>
         <ul className="p-4 space-y-2">
           <NavLink to='/' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
-                      {t("sidebar.0")}
+            {t("sidebar.0")}
           </NavLink>
           <NavLink to='/shop' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
             {t("sidebar.1")}
