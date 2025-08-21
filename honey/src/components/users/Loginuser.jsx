@@ -5,10 +5,10 @@ import { toast } from 'react-toastify';
 import { Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Loginuser = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [login, { isLoading }] = useLoginMutation();
+  const [user, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -89,4 +89,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Loginuser;

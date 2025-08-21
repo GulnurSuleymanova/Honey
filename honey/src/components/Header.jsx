@@ -86,7 +86,7 @@ const Header = () => {
             {openUser && (
               <div className="absolute top-14 right-0 bg-white border rounded-lg shadow-lg p-2 w-32">
                 <button
-                  onClick={() => { navigate('/login'); setOpenUser(false); }}
+                  onClick={() => { navigate('/loginuser'); setOpenUser(false); }}
                   className="block w-full text-left px-3 py-1 rounded hover:bg-gray-100"
                 >
                   Login

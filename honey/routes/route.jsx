@@ -41,18 +41,14 @@ export const route = createBrowserRouter(
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Faq />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/loginuser" element={<Loginuser />} />
-
-                <Route path="/wishlist" element={<Wishlist />} />
-<Route path="/addtocard" element={<Addtocard/>}/>
-                <Route path="/shop" element={<Shop />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/loginuser" element={<Loginuser />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/addtocard" element={<Addtocard />} />
+        <Route path="/shop" element={<Shop />} />
         <Route path="/product/:id" element={<Details />} />
-
       </Route>
-
       <Route path="/login" element={<Login />} />
-
       <Route
         path="/admin"
         element={
@@ -62,10 +58,8 @@ export const route = createBrowserRouter(
         }
       >
         <Route path="product" element={<Product />} />
-                <Route path="category" element={<Category />} />
-
+        <Route path="category" element={<Category />} />
       </Route>
-
       <Route path="*" element={<NotFound />} />
     </>
   )
