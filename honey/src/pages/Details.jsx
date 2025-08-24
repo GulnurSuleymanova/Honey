@@ -74,30 +74,34 @@ const Details = () => {
         </button>
 
         {isLoading ? (
-          <p className="text-center  text-lg">Loading...</p>
+          <p className="text-center text-lg">Loading...</p>
         ) : !item ? (
           <p className="text-center text-red-500 text-lg">Product not found.</p>
         ) : (
           <div className="flex flex-col md:flex-row gap-10">
             {/* Şəkil və Zoom */}
             <div className="flex-1 bg-white rounded-3xl shadow-lg p-6 flex flex-col justify-center items-center relative">
-              <div className="w-full max-h-96 rounded-xl overflow-hidden">
-                <ReactImageMagnify
-                  {...{
-                    smallImage: {
-                      alt: item.name,
-                      isFluidWidth: true,
-                      src: selectedImage,
-                    },
-                    largeImage: {
-                      src: selectedImage,
-                      width: 1200,
-                      height: 800,
-                    },
-                    enlargedImageContainerStyle: { zIndex: 9, background: "#fff", borderRadius: "12px" }
-                  }}
-                />
-              </div>
+              <ReactImageMagnify
+                {...{
+                  smallImage: {
+                    alt: item.name,
+                    isFluidWidth: true,
+                    src: selectedImage,
+                  },
+                  largeImage: {
+                    src: selectedImage,
+                    width: 1200,
+                    height: 800,
+                  },
+                  enlargedImagePosition: "beside", // Kənarda göstər
+                  enlargedImageContainerStyle: {
+                    background: "#fff",
+                    borderRadius: "12px",
+                    boxShadow: "0 10px 20px rgba(0,0,0,0.2)",
+                  },
+                  shouldUsePositiveSpaceLens: true,
+                }}
+              />
 
               {/* Wishlist button */}
               <div
@@ -106,10 +110,11 @@ const Details = () => {
                 title={wishlist.some((i) => i.id === item.id) ? "Remove from wishlist" : "Add to wishlist"}
               >
                 <Heart
-                  className={`w-5 h-5 transition-all duration-200 ${wishlist.some((i) => i.id === item.id)
+                  className={`w-5 h-5 transition-all duration-200 ${
+                    wishlist.some((i) => i.id === item.id)
                       ? "text-red-500 fill-red-500"
                       : "text-amber-700 hover:text-red-500 hover:fill-red-500"
-                    }`}
+                  }`}
                 />
               </div>
 
@@ -120,8 +125,9 @@ const Details = () => {
                     key={index}
                     src={img.url}
                     alt={`${item.name}-${index}`}
-                    className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${selectedImage === img.url ? "border-amber-600" : "border-transparent"
-                      }`}
+                    className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${
+                      selectedImage === img.url ? "border-amber-600" : "border-transparent"
+                    }`}
                     onClick={() => setSelectedImage(img.url)}
                   />
                 ))}
