@@ -6,10 +6,14 @@ import { Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [gender, setGender] = useState('male'); // default
+
   const [register, { isLoading }] = useRegisterMutation();
   const navigate = useNavigate();
 
@@ -17,24 +21,36 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error('Şifrələr uyğun gəlmir');
+      toast.error('Passwords do not match');
       return;
     }
 
+    const userData = {
+      firstName,
+      lastName,
+      email,
+      password,
+      dateOfBirth: new Date(dateOfBirth).toISOString(),
+      gender,
+    };
+
     try {
-      const user = await register({ name, email, password }).unwrap();
+      console.log("Sending data to backend:", userData); // ✅ Debug üçün
 
+      const user = await register(userData).unwrap();
+
+      // save user and token
       localStorage.setItem('user', JSON.stringify(user.user));
-      localStorage.setItem('token', user?.token);
+      localStorage.setItem('token', user.token);
 
-      toast.success('Uğurla qeydiyyatdan keçdiniz');
-      navigate('/login'); // qeydiyyatdan sonra login-ə yönləndiririk
-    } catch (error) {
-      console.log('Register error:', error);
+      toast.success('Successfully registered!');
+      navigate('/login');
+    } catch (err) {
+      console.error("Register error:", err);
 
-      const errMessage = Array.isArray(error?.data?.message)
-        ? error.data.message.join(', ')
-        : error?.data?.message || "Qeydiyyat zamanı xəta baş verdi";
+      const errMessage = Array.isArray(err?.data?.message)
+        ? err.data.message.join(', ')
+        : err?.data?.message || "Registration failed";
 
       toast.error(errMessage);
     }
@@ -43,33 +59,41 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="flex flex-col md:flex-row shadow-lg rounded-2xl overflow-hidden max-w-4xl w-full bg-yellow-50">
+        
         {/* Form */}
         <div className="w-full md:w-1/2 flex items-center justify-center p-8">
           <div className="w-full max-w-sm">
             <h2 className="text-3xl font-semibold text-center text-yellow-800 mb-6">Register</h2>
+            
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium">
-                  Full Name
-                </label>
+                <label className="block text-sm font-medium">First Name</label>
                 <input
                   type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"
-                  placeholder="John Doe"
+                  placeholder="John"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium">
-                  Email address
-                </label>
+                <label className="block text-sm font-medium">Last Name</label>
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"
+                  placeholder="Doe"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium">Email</label>
                 <input
                   type="email"
-                  id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"
@@ -79,12 +103,34 @@ const Register = () => {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium">
-                  Password
-                </label>
+                <label className="block text-sm font-medium">Date of Birth</label>
+                <input
+                  type="date"
+                  value={dateOfBirth}
+                  onChange={(e) => setDateOfBirth(e.target.value)}
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium">Gender</label>
+                <select
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"
+                  required
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium">Password</label>
                 <input
                   type="password"
-                  id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"
@@ -94,12 +140,9 @@ const Register = () => {
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium">
-                  Confirm Password
-                </label>
+                <label className="block text-sm font-medium">Confirm Password</label>
                 <input
                   type="password"
-                  id="confirmPassword"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"

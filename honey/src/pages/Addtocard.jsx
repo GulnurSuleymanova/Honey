@@ -18,7 +18,7 @@ const Addtocard = () => {
   if (!addtocard.length) {
     return (
       <p className="text-center mt-10 text-lg font-medium tracking-wide">
-        Səbət boşdur
+        Cart is empty
       </p>
     );
   }
@@ -49,10 +49,10 @@ const Addtocard = () => {
             <table className="w-full text-left">
               <thead className="bg-amber-50 text-sm font-medium tracking-wide text-amber-700 uppercase">
                 <tr>
-                  <th className="p-4">Məhsul</th>
-                  <th className="p-4">Qiymət</th>
-                  <th className="p-4">Say</th>
-                  <th className="p-4">Cəm</th>
+                  <th className="p-4">Product</th>
+                  <th className="p-4">Price</th>
+                  <th className="p-4">Quantity</th>
+                  <th className="p-4">Total</th>
                   <th className="p-4"></th>
                 </tr>
               </thead>
@@ -103,7 +103,7 @@ const Addtocard = () => {
                         <button
                           onClick={() => removeFromAddtocard(p.id)}
                           className="text-red-600 hover:text-red-800 font-bold text-xl px-3"
-                          title="Səbətdən sil"
+                          title="Remove from cart"
                         >
                           &times;
                         </button>
@@ -115,32 +115,32 @@ const Addtocard = () => {
             </table>
           </div>
 
-          {/* Kupon */}
+          {/* Coupon */}
           <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
             <input
               type="text"
-              placeholder="Kupon kodu"
+              placeholder="Coupon code"
               className="border border-amber-400 rounded-lg px-4 py-2 flex-1"
             />
             <button className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 shadow-md">
-              Kupon tətbiq et
+              Apply coupon
             </button>
           </div>
         </div>
 
-        {/* Sağ tərəf */}
+        {/* Right side */}
         <div className="bg-amber-50 rounded-xl border border-amber-400 p-6 h-fit">
           <h2 className="text-xl font-medium mb-4 text-amber-800">
-            Səbət Məlumatları
+            Cart Summary
           </h2>
 
           <div className="flex justify-between py-2 border-b border-amber-300 mt-4">
-            <span>Ümumi:</span>
+            <span>Subtotal:</span>
             <span className="text-amber-700 font-semibold">{toAZN(total)}</span>
           </div>
 
           <button className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 rounded-lg mt-6 transition-all duration-200 hover:scale-105 active:scale-95 shadow-md">
-            Sifarişi tamamla
+            Proceed to Checkout
           </button>
         </div>
       </div>

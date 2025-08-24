@@ -4,17 +4,19 @@ import bee from "../assets/icon-footer.png";
 import { ShoppingCart } from "lucide-react";
 import { useAddtocard } from "../context/AddtocardContext";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
   const { wishlist, removeFromWishlist } = useWishlist();
   const { toggleAddtocard, addtocard } = useAddtocard();
+  const navigate = useNavigate();
 
   if (wishlist.length === 0) {
     return <p className="text-center mt-10 text-lg">Wishlist boşdur</p>;
   }
 
   const handleAddtocardClick = (e, product) => {
-    e.stopPropagation();
+    e.stopPropagation(); // məhsul kartına klikləyəndə details-ə yönlənməsin
 
     const isInAddtocard = addtocard.some((item) => item.id === product.id);
     if (!isInAddtocard) {
@@ -23,6 +25,10 @@ const Wishlist = () => {
     } else {
       toast.info(`"${product.name}" artıq səbətdə var.`);
     }
+  };
+
+  const handleProductClick = (id) => {
+    navigate(`/product/${id}`);
   };
 
   return (
@@ -44,12 +50,8 @@ const Wishlist = () => {
           {wishlist.map((product) => (
             <div
               key={product.id}
-              className="flex items-center justify-between 
-                border-l border-l-amber-400
-                border-r border-r-amber-400  
-                hover:border-amber-400 hover:border
-                rounded-lg p-4"
-            >
+              onClick={() => handleProductClick(product.id)}
+          className="flex items-center justify-between border-l border-l-amber-400 border-r border-r-amber-400 hover:border-amber-400 hover:border rounded-lg p-4 cursor-pointer" >
               <div className="flex items-center gap-4">
                 <img
                   src={product.images?.[0]?.url}
@@ -77,7 +79,10 @@ const Wishlist = () => {
 
                 <button
                   className="text-red-600 hover:text-red-800 font-bold text-xl px-3"
-                  onClick={() => removeFromWishlist(product.id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeFromWishlist(product.id);
+                  }}
                   title="Wishlist-dən sil"
                 >
                   &times;

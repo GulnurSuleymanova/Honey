@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import mastercard from "../assets/mastercard.png"; 
 import visa from "../assets/visa.png"; 
 import paypal from "../assets/paypal.png"; 
+import ReactImageMagnify from "react-image-magnify";   
 
 const Details = () => {
   const { id } = useParams();
@@ -33,7 +34,7 @@ const Details = () => {
       toggleAddtocard(product);
       toast.success(`"${product.name}" səbətə əlavə olundu.`);
     } else {
-      toast.info(`"${product.name}" artıq səbətdə var.`);
+      toast.info(`"${product.name}" artıq səbətdədir.`);
     }
   };
 
@@ -78,12 +79,27 @@ const Details = () => {
           <p className="text-center text-red-500 text-lg">Product not found.</p>
         ) : (
           <div className="flex flex-col md:flex-row gap-10">
+            {/* Şəkil və Zoom */}
             <div className="flex-1 bg-white rounded-3xl shadow-lg p-6 flex flex-col justify-center items-center relative">
-              <img
-                src={selectedImage}
-                alt={item.name}
-                className="max-h-96 object-contain rounded-xl"
-              />
+              <div className="w-full max-h-96 rounded-xl overflow-hidden">
+                <ReactImageMagnify
+                  {...{
+                    smallImage: {
+                      alt: item.name,
+                      isFluidWidth: true,
+                      src: selectedImage,
+                    },
+                    largeImage: {
+                      src: selectedImage,
+                      width: 1200,
+                      height: 800,
+                    },
+                    enlargedImageContainerStyle: { zIndex: 9, background: "#fff", borderRadius: "12px" }
+                  }}
+                />
+              </div>
+
+              {/* Wishlist button */}
               <div
                 className="absolute top-4 right-4 w-11 h-11 bg-amber-50/95 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer"
                 onClick={(e) => handleWishlistClick(e, item)}
@@ -96,6 +112,8 @@ const Details = () => {
                     }`}
                 />
               </div>
+
+              {/* Thumbnail images */}
               <div className="flex gap-2 mt-4">
                 {item.images?.map((img, index) => (
                   <img
@@ -109,12 +127,14 @@ const Details = () => {
                 ))}
               </div>
             </div>
+
+            {/* Məhsul məlumatları */}
             <div className="flex-1 flex flex-col justify-between">
-              <div className=" p-6 rounded-lg space-y-6 mb-4">
+              <div className="p-6 rounded-lg space-y-6 mb-4">
                 <h1 className="text-4xl font-extrabold mb-4 text-amber-600">{item.name}</h1>
-                <p className="text-3xl font-bold  mb-6">{item.price} AZN</p>
+                <p className="text-3xl font-bold mb-6">{item.price} AZN</p>
                 {item.description ? (
-                  <p className=" leading-relaxed">{item.description}</p>
+                  <p className="leading-relaxed">{item.description}</p>
                 ) : (
                   <p className="text-gray-400">No description available.</p>
                 )}
@@ -128,11 +148,11 @@ const Details = () => {
                     <img src={paypal} alt="PayPal" className="h-6" />
                   </div>
                 </div>
-                <div className="flex items-center gap-3  mb-2">
+                <div className="flex items-center gap-3 mb-2">
                   <Clock className="w-5 h-5" />
                   <p>Estimated Delivery : <span className="font-medium">25 - 26 Aug, 2025</span></p>
                 </div>
-                <div className="flex items-center gap-3 ">
+                <div className="flex items-center gap-3">
                   <Truck className="w-5 h-5" />
                   <p>Free Shipping & Returns : <span className="font-medium">On all order over $200.00</span></p>
                 </div>
@@ -145,7 +165,6 @@ const Details = () => {
               </button>
             </div>
           </div>
-
         )}
       </div>
     </>

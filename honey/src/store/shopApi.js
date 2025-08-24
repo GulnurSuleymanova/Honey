@@ -7,7 +7,7 @@ const getToken = () => localStorage.getItem("token");
 export const shopApi = createApi({
   reducerPath: "shopApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api", // öz backend URL-ni yaz
+    baseUrl: "http://localhost:3000/api", 
     prepareHeaders: (headers) => {
       const token = getToken();
       if (token) {
