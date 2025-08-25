@@ -174,7 +174,7 @@ const Header = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-[#FBF2E0] shadow-lg z-50 transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed top-0 left-0 h-full w-64 bg-[#f6c35c] shadow-lg z-50 transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
         <div className="flex justify-between items-center p-4 border-b">
           <button onClick={() => setIsOpen(false)}>
@@ -182,19 +182,19 @@ const Header = () => {
           </button>
         </div>
         <ul className="p-4 space-y-2">
-          <NavLink to='/' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+          <NavLink to='/' onClick={() => setIsOpen(false)} className="block p-2 rounded ">
             {t("sidebar.0")}
           </NavLink>
-          <NavLink to='/shop' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+          <NavLink to='/shop' onClick={() => setIsOpen(false)} className="block p-2 rounded ">
             {t("sidebar.1")}
           </NavLink>
-          <NavLink to='/about' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+          <NavLink to='/about' onClick={() => setIsOpen(false)} className="block p-2 rounded ">
             {t("sidebar.2")}
           </NavLink>
-          <NavLink to='/contact' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+          <NavLink to='/contact' onClick={() => setIsOpen(false)} className="block p-2 rounded ">
             {t("sidebar.3")}
           </NavLink>
-          <NavLink to='/faq' onClick={() => setIsOpen(false)} className="block p-2 rounded hover:bg-gray-100">
+          <NavLink to='/faq' onClick={() => setIsOpen(false)} className="block p-2 rounded ">
             {t("sidebar.4")}
           </NavLink>
         </ul>

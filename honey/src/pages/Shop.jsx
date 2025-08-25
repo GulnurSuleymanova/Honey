@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useWishlist } from "../context/WishlistContext";
 import { toast } from "react-toastify";
 import { useAddtocard } from "../context/AddtocardContext";
-
+import loader from "../assets/loader.gif"
 const Shop = () => {
   const { toggleWishlist, wishlist } = useWishlist();
   const { toggleAddtocard, addtocard } = useAddtocard();
@@ -153,7 +153,7 @@ const Shop = () => {
             <hr className="mt-2 border-[#7A3E1C]" />
             <div className="pt-4 flex flex-col gap-3">
               {isCategoryLoading ? (
-                <p className="text-gray-500 text-sm text-center">Loading...</p>
+                <p className="text-gray-500 text-sm text-center"><img src={loader} alt="" /></p>
               ) : (
                 categoryData.map((item, index) => (
                   <label
@@ -236,7 +236,7 @@ const Shop = () => {
             <hr className="mt-2 border-[#7A3E1C]" />
             <div className="pt-4 flex flex-col gap-3">
               {isProductLoading ? (
-                <p className="text-gray-500 text-sm text-center">Loading...</p>
+                <p className="text-gray-500 text-sm text-center"><img src={loader} alt="" /></p>
               ) : uniqueSizes.length === 0 ? (
                 <p className="text-gray-500 text-sm">No sizes found.</p>
               ) : (
@@ -267,7 +267,7 @@ const Shop = () => {
             <hr className="mt-2 border-[#7A3E1C]" />
             <div className="pt-4 flex flex-wrap gap-3">
               {isProductLoading ? (
-                <p className="text-gray-500 text-sm text-center">Loading...</p>
+                <p className="text-gray-500 text-sm text-center"><img src={loader} alt="" /></p>
               ) : uniqueColors.length === 0 ? (
                 <p className="text-gray-500 text-sm">No colors found.</p>
               ) : (
@@ -292,7 +292,7 @@ const Shop = () => {
         {/* Products */}
         <div className="w-4/5 mr-30 mb-10">
           {isProductLoading ? (
-            <p className="text-gray-600 text-center text-lg">Loading products...</p>
+            <p className="text-gray-600 text-center text-lg"><img src={loader} alt="" /></p>
           ) : (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">

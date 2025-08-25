@@ -9,7 +9,8 @@ const Featured = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="py-20 bg-no-repeat bg-cover bg-center -mt-60 home-hero">
+    <div className="py-20 bg-no-repeat bg-cover bg-center -mt-60 home-hero hidden sm:block">
+      {/* Başlıq */}
       <div className="text-center mb-16 mt-36">
         <p className="text-[37px] font-medium tracking-wide">
           {t("featured.subtitle")}
@@ -19,6 +20,7 @@ const Featured = () => {
         </h2>
       </div>
 
+      {/* Kateqoriyalar */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-10 px-4">
         {/* 1-ci kateqoriya */}
         <div className="w-[300px] text-center">
