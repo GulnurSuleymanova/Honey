@@ -13,12 +13,15 @@ import { useWishlist } from "../context/WishlistContext";
 import { toast } from "react-toastify";
 import { useAddtocard } from "../context/AddtocardContext";
 import loader from "../assets/loader.gif"
+import ShopFilterBar from "./ShopFilterBar";
 const Shop = () => {
   const { toggleWishlist, wishlist } = useWishlist();
   const { toggleAddtocard, addtocard } = useAddtocard();
 
   const { data: categoryData = [], isLoading: isCategoryLoading } = useGetCategoriesQuery();
   const { data: productData = [], isLoading: isProductLoading } = useGetAllProductQuery();
+  const [viewType, setViewType] = useState("grid_3"); // grid_3 default
+  const [sortType, setSortType] = useState("default"); // default sorting
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
@@ -83,29 +86,42 @@ const Shop = () => {
     }
   };
 
-  // Filter edilmiş məhsullar
-  const filteredProducts = productData.filter(({ category, sizes = [], colors = [], price, name }) => {
-    const priceValue = Number(price) || 0;
-    const minPrice = selectedPrice.min !== "" ? Number(selectedPrice.min) : null;
-    const maxPrice = selectedPrice.max !== "" ? Number(selectedPrice.max) : null;
-    const searchValue = searchTerm.trim().toLowerCase();
-    const categoryName = typeof category === "string" ? category : category?.name;
+ // Filter edilmiş məhsullar
+const filteredProducts = productData.filter(({ category, sizes = [], colors = [], price, name }) => {
+  const priceValue = Number(price) || 0;
+  const minPrice = selectedPrice.min !== "" ? Number(selectedPrice.min) : null;
+  const maxPrice = selectedPrice.max !== "" ? Number(selectedPrice.max) : null;
+  const searchValue = searchTerm.trim().toLowerCase();
+  const categoryName = typeof category === "string" ? category : category?.name;
 
-    return (
-      (selectedCategories.length === 0 || selectedCategories.includes(categoryName)) &&
-      (selectedSizes.length === 0 || sizes.some(size => selectedSizes.includes(size))) &&
-      (selectedColors.length === 0 || colors.some(color => selectedColors.includes(color))) &&
-      (minPrice === null || priceValue >= minPrice) &&
-      (maxPrice === null || priceValue <= maxPrice) &&
-      (searchValue === "" || (name || "").toLowerCase().includes(searchValue))
-    );
-  });
+  return (
+    (selectedCategories.length === 0 || selectedCategories.includes(categoryName)) &&
+    (selectedSizes.length === 0 || sizes.some(size => selectedSizes.includes(size))) &&
+    (selectedColors.length === 0 || colors.some(color => selectedColors.includes(color))) &&
+    (minPrice === null || priceValue >= minPrice) &&
+    (maxPrice === null || priceValue <= maxPrice) &&
+    (searchValue === "" || (name || "").toLowerCase().includes(searchValue))
+  );
+});
 
-  // Pagination
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+// Sort edilmiş məhsullar
+const sortedProducts = [...filteredProducts]; // copy array
+if (sortType === "name-asc") {
+  sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+} else if (sortType === "name-desc") {
+  sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+} else if (sortType === "price-asc") {
+  sortedProducts.sort((a, b) => a.price - b.price);
+} else if (sortType === "price-desc") {
+  sortedProducts.sort((a, b) => b.price - a.price);
+}
+
+// Pagination
+const indexOfLastProduct = currentPage * productsPerPage;
+const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
+
 
   return (
     <>
@@ -291,6 +307,15 @@ const Shop = () => {
 
         {/* Products */}
         <div className="w-4/5 mr-30 mb-10">
+<ShopFilterBar
+  viewType={viewType}
+  setViewType={setViewType}
+  sortBy={sortType}
+  setSortBy={setSortType}
+  filteredCount={sortedProducts.length}
+  totalCount={productData.length}
+/>
+
           {isProductLoading ? (
             <p className="text-gray-600 text-center text-lg"><img src={loader} alt="" /></p>
           ) : (
