@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import slide4 from '../../assets/slide4.webp'
+import { NavLink } from 'react-router-dom'
 
 const Shopbutton = () => {
   const { t } = useTranslation()
@@ -25,12 +26,12 @@ const Shopbutton = () => {
             <p className="text-white text-sm md:text-base lg:text-lg leading-relaxed">
               {t('shopbutton.description')}
             </p>
-            <a
-              href="#"
+           <NavLink
+              to="/shop"
               className="inline-block mt-6 px-8 py-3 bg-white text-black rounded-full text-sm md:text-base font-semibold shadow-lg hover:bg-yellow-200 transition duration-300"
             >
               {t('shopbutton.button')}
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>

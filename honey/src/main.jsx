@@ -1,49 +1,6 @@
-// import { createRoot } from 'react-dom/client'
-// import './index.css'
-// import { BrowserRouter, RouterProvider } from 'react-router'
-// import { route } from '../routes/route'
-// import 'animate.css';
-// import { Provider } from 'react-redux';
-// import { store } from '../src/store/store';
-// import { ToastContainer } from 'react-toastify';
-
-// createRoot(document.getElementById('root')).render(
-//       <Provider store={store}>
-//     <ToastContainer />
-
-//         <RouterProvider router={route} />
-//   </Provider>
-
-// )
-
-// import { createRoot } from 'react-dom/client'
-// import './index.css'
-// import { RouterProvider } from 'react-router' 
-// import { route } from '../routes/route'
-// import 'animate.css';
-// import { Provider } from 'react-redux';
-// import { store } from '../src/store/store';
-// import { ToastContainer } from 'react-toastify';
-// import { WishlistProvider } from '../src/context/WishlistContext'; 
-// import { AddtocardProvider } from './context/AddtocardContext';
-
-// createRoot(document.getElementById('root')).render(
-//   <Provider store={store}>
-//     <WishlistProvider> 
-//             <AddtocardProvider>
-
-// <ToastContainer 
-//           position="bottom-right" 
-//         />      <RouterProvider router={route} />
-//             </AddtocardProvider>
-
-//     </WishlistProvider>
-//   </Provider>
-// )
-
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { RouterProvider } from 'react-router-dom'   // ✅ düzəldildi
+import { RouterProvider } from 'react-router-dom'
 import { route } from '../routes/route'
 import 'animate.css';
 import { Provider } from 'react-redux';
@@ -51,17 +8,17 @@ import { store } from '../src/store/store';
 import { ToastContainer } from 'react-toastify';
 import { WishlistProvider } from '../src/context/WishlistContext'; 
 import { AddtocardProvider } from './context/AddtocardContext';
-import "./i18n/i18next"; // burada i18next-i import et
+import "./i18n/i18next";
+import ScrollToTop from './components/ScrolToTop';
+
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <WishlistProvider> 
       <AddtocardProvider>
         <ToastContainer position="bottom-right" />
-        <RouterProvider router={route} /> 
+        <RouterProvider router={route} />
+        <ScrollToTop />  {/* burada əlavə et */}
       </AddtocardProvider>
     </WishlistProvider>
   </Provider>
 )
-
-
-
