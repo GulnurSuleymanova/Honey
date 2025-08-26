@@ -312,9 +312,10 @@ const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   setViewType={setViewType}
   sortBy={sortType}
   setSortBy={setSortType}
-  filteredCount={sortedProducts.length}
+  filteredCount={filteredProducts.length}
   totalCount={productData.length}
 />
+
 
           {isProductLoading ? (
             <p className="text-gray-600 text-center text-lg"><img src={loader} alt="" /></p>

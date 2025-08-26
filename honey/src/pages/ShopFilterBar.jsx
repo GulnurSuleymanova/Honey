@@ -1,4 +1,6 @@
 import React from "react";
+import { CiGrid41 } from "react-icons/ci";
+import { TfiLayoutGrid2Thumb } from "react-icons/tfi";
 
 const ShopFilterBar = ({
   viewType,
@@ -17,48 +19,10 @@ const ShopFilterBar = ({
   ];
 
   return (
-    <div className="flex items-center category-top-bar mb-[30px]">
-      <div className="woocommerce-notices-wrapper"></div>
-
-      <div className="flex justify-center items-center">
-        {/* Grid/List toggle */}
-        <div className="grid-list flex justify-center items-center text-center mr-7 text-lg text-[color:var(--rbb-general-button-color)]">
-          <span
-            className={`grid_3 w-[46px] h-[46px] leading-[50px] mr-1.5 rounded ${
-              viewType === "grid_3" ? "active" : ""
-            }`}
-            onClick={() => setViewType("grid_3")}
-          >
-            <i className="rbb-icon-view-grid-2"></i>
-          </span>
-          <span
-            className={`grid_2 w-[46px] h-[46px] leading-[50px] mr-1.5 rounded ${
-              viewType === "grid_2" ? "active" : ""
-            }`}
-            onClick={() => setViewType("grid_2")}
-          >
-            <i className="rbb-icon-view-grid-1"></i>
-          </span>
-          <span
-            className={`list w-[46px] h-[46px] leading-[50px] rounded ${
-              viewType === "list" ? "active" : ""
-            }`}
-            onClick={() => setViewType("list")}
-          >
-            <i className="rbb-icon-view-list-2"></i>
-          </span>
-        </div>
-
-        {/* Showing count */}
-        <p className="woocommerce-result-count mb-0 text-xs">
-          Showing {filteredCount} of {totalCount} results
-        </p>
-      </div>
-
-      {/* Sorting dropdown */}
-      <div className="ml-auto mr-0">
+    <div className="flex justify-end items-center mb-6 flex-wrap">
+      <div>
         <select
-          className="h-[46px] min-w-[165px] px-4 rounded border border-gray-300 cursor-pointer text-sm font-medium"
+          className="h-[46px] min-w-[165px] px-4  border-gray-300 cursor-pointer text-sm font-medium  border rounded-2xl"
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
         >

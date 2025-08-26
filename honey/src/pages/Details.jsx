@@ -6,10 +6,11 @@ import bgImage from "../assets/slider4.webp";
 import { useAddtocard } from "../context/AddtocardContext";
 import { useWishlist } from "../context/WishlistContext";
 import { toast } from "react-toastify";
-import mastercard from "../assets/mastercard.png"; 
-import visa from "../assets/visa.png"; 
-import paypal from "../assets/paypal.png"; 
-import ReactImageMagnify from "react-image-magnify";   
+import mastercard from "../assets/mastercard.png";
+import visa from "../assets/visa.png";
+import paypal from "../assets/paypal.png";
+import ReactImageMagnify from "react-image-magnify";
+import bee from "../assets/icon-footer.png"
 
 const Details = () => {
   const { id } = useParams();
@@ -62,6 +63,7 @@ const Details = () => {
           <h1 className="text-[#3a1e0d] text-3xl font-medium tracking-wide uppercase">
             Details
           </h1>
+                      <img src={bee} alt="" className='w-26' />
         </div>
       </section>
 
@@ -90,8 +92,8 @@ const Details = () => {
                   },
                   largeImage: {
                     src: selectedImage,
-                    width: 1200,
-                    height: 800,
+                    width: 2000,
+                    height: 1000,
                   },
                   enlargedImagePosition: "beside", // Kənarda göstər
                   enlargedImageContainerStyle: {
@@ -110,11 +112,10 @@ const Details = () => {
                 title={wishlist.some((i) => i.id === item.id) ? "Remove from wishlist" : "Add to wishlist"}
               >
                 <Heart
-                  className={`w-5 h-5 transition-all duration-200 ${
-                    wishlist.some((i) => i.id === item.id)
+                  className={`w-5 h-5 transition-all duration-200 ${wishlist.some((i) => i.id === item.id)
                       ? "text-red-500 fill-red-500"
                       : "text-amber-700 hover:text-red-500 hover:fill-red-500"
-                  }`}
+                    }`}
                 />
               </div>
 
@@ -125,9 +126,8 @@ const Details = () => {
                     key={index}
                     src={img.url}
                     alt={`${item.name}-${index}`}
-                    className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${
-                      selectedImage === img.url ? "border-amber-600" : "border-transparent"
-                    }`}
+                    className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${selectedImage === img.url ? "border-amber-600" : "border-transparent"
+                      }`}
                     onClick={() => setSelectedImage(img.url)}
                   />
                 ))}
@@ -156,7 +156,7 @@ const Details = () => {
                 </div>
                 <div className="flex items-center gap-3 mb-2">
                   <Clock className="w-5 h-5" />
-                  <p>Estimated Delivery : <span className="font-medium">25 - 26 Aug, 2025</span></p>
+                  <p>Estimated Delivery : <span className="font-medium">25 - 30 Aug, 2025</span></p>
                 </div>
                 <div className="flex items-center gap-3">
                   <Truck className="w-5 h-5" />
