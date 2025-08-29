@@ -249,13 +249,22 @@ const resources = {
     }
 };
 
+// LocalStorage-dan dil oxu
+const savedLanguage = localStorage.getItem("language") || "en";
+
 i18n.use(initReactI18next).init({
-    resources,
-    lng: "en",
-    fallbackLng: "en",
-    interpolation: {
-        escapeValue: false
-    }
+  resources,
+  lng: savedLanguage, // Yadda qalan dili istifadə et
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false
+  }
+});
+
+// Dili dəyişəndə yadda saxla
+i18n.on("languageChanged", (lng) => {
+  localStorage.setItem("language", lng);
 });
 
 export default i18n;
+

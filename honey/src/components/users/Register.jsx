@@ -26,16 +26,16 @@ const Register = () => {
     }
 
     const userData = {
-      firstName,
-      lastName,
-      email,
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.trim(),
       password,
-      dateOfBirth: new Date(dateOfBirth).toISOString(),
+      dateOfBirth: new Date(dateOfBirth).toISOString(), // ✅ ISO format
       gender,
     };
 
     try {
-      console.log("Sending data to backend:", userData); // ✅ Debug üçün
+      console.log("Sending data to backend:", userData);
 
       const user = await register(userData).unwrap();
 
